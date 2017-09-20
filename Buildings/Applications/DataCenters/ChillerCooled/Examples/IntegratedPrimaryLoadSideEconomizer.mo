@@ -85,8 +85,7 @@ equation
    end for;
   connect(TCHWSupSet.y, cooModCon.TCHWSupSet)
     annotation (Line(points={{-119,160},{-104,160},{-104,130},{-146,130},{-146,
-          118},{-142,118},{-142,118},{-132,118}},
-                                             color={0,0,127}));
+          118},{-142,118},{-132,118}},       color={0,0,127}));
   connect(towTApp.y, cooModCon.TApp)
     annotation (Line(points={{-169,110},{-132,110}},
                                   color={0,0,127}));

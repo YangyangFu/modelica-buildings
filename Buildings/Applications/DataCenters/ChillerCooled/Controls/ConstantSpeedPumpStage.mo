@@ -25,18 +25,20 @@ model ConstantSpeedPumpStage "Staging control for constant speed pumps"
     annotation (Placement(transformation(
         extent={{-10,-10},{10,10}},
         rotation=-90,
-        origin={-70,34})));
+        origin={-60,34})));
   Modelica.StateGraph.StepWithSignal oneOn(nIn=2, nOut=2)
     "One chiller is commanded on" annotation (Placement(transformation(
         extent={{-10,10},{10,-10}},
         rotation=-90,
         origin={-30,10})));
-  Modelica.StateGraph.InitialStep off(nIn=1) "Free cooling mode"
+  Modelica.StateGraph.InitialStep off(nIn=1, nOut=2)
+                                             "Free cooling mode"
     annotation (Placement(transformation(
         extent={{-10,10},{10,-10}},
         rotation=-90,
         origin={-30,60})));
-  Modelica.StateGraph.StepWithSignal twoOn "Two chillers are commanded on"
+  Modelica.StateGraph.StepWithSignal twoOn(nIn=2)
+                                           "Two chillers are commanded on"
     annotation (Placement(transformation(
         extent={{-10,10},{10,-10}},
         rotation=-90,
@@ -54,7 +56,7 @@ model ConstantSpeedPumpStage "Staging control for constant speed pumps"
     annotation (Placement(transformation(
         extent={{-10,-10},{10,10}},
         rotation=-90,
-        origin={-70,-40})));
+        origin={-60,-40})));
   Modelica.StateGraph.Transition con3(
     enableTimer=true,
     waitTime=tWai,
@@ -91,25 +93,34 @@ model ConstantSpeedPumpStage "Staging control for constant speed pumps"
   Buildings.Controls.OBC.CDL.Conversions.IntegerToReal intToRea
     annotation (Placement(transformation(extent={{40,-10},{60,10}})));
 
+  Modelica.StateGraph.Transition con5(
+    enableTimer=true,
+    waitTime=tWai,
+    condition=cooMod == Integer(Buildings.Applications.DataCenters.Types.CoolingModes.FreeCooling))
+    "Fire condition 5: two pumps will be on if in free cooling mode"
+    annotation (Placement(transformation(
+        extent={{-10,-10},{10,10}},
+        rotation=-90,
+        origin={-80,0})));
 equation
   connect(off.outPort[1], con1.inPort)
     annotation (Line(
-      points={{-30,49.5},{-30,49.5},{-30,46},{-30,42},{-70,42},{-70,38}},
+      points={{-30.25,49.5},{-30,49.5},{-30,46},{-30,42},{-60,42},{-60,38}},
       color={0,0,0},
       pattern=LinePattern.Dash));
   connect(con1.outPort, oneOn.inPort[1])
     annotation (Line(
-      points={{-70,32.5},{-70,26},{-30.5,26},{-30.5,21}},
+      points={{-60,32.5},{-60,26},{-30.5,26},{-30.5,21}},
       color={0,0,0},
       pattern=LinePattern.Dash));
   connect(con2.inPort, oneOn.outPort[1])
     annotation (Line(
-      points={{-70,-36},{-70,-10},{-30.25,-10},{-30.25,-0.5}},
+      points={{-60,-36},{-60,-10},{-30.25,-10},{-30.25,-0.5}},
       color={0,0,0},
       pattern=LinePattern.Dash));
   connect(con2.outPort, twoOn.inPort[1])
     annotation (Line(
-      points={{-70,-41.5},{-70,-41.5},{-70,-60},{-30,-60},{-30,-69}},
+      points={{-60,-41.5},{-60,-41.5},{-60,-60},{-30.5,-60},{-30.5,-69}},
       color={0,0,0},
       pattern=LinePattern.Dash));
   connect(twoOn.outPort[1], con3.inPort)
@@ -147,6 +158,15 @@ equation
     annotation (Line(points={{61,0},{68,0}}, color={0,0,127}));
   connect(addInt.y, intToRea.u) annotation (Line(points={{81,-60},{88,-60},{88,
           -20},{30,-20},{30,0},{38,0}}, color={255,127,0}));
+  connect(off.outPort[2], con5.inPort) annotation (Line(
+      points={{-29.75,49.5},{-29.75,44},{-80,44},{-80,4}},
+      color={0,0,0},
+      pattern=LinePattern.Dash));
+  connect(con5.outPort, twoOn.inPort[2]) annotation (Line(
+      points={{-80,-1.5},{-80,-1.5},{-80,-16},{-80,-62},{-29.5,-62},{-29.5,-69}},
+
+      color={0,0,0},
+      pattern=LinePattern.Dash));
   annotation (                   Documentation(info="<html>
 <p>
 This model describes a simple staging control for two constant-speed pumps in
