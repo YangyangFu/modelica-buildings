@@ -1,0 +1,26 @@
+simulateModel("Buildings.Fluid.HeatExchangers.CoolingTowers.BaseClasses.Examples.h_TWetBul", stopTime=864000, method="dassl", resultFile="h_TWetBul");
+createPlot(id=1,
+ position={0, 0, 1537, 651}, 
+ y={"h_TWetBul.h"},
+ range={0.0, 10.0, -40000.0, 40000.0},
+ erase=false,
+ grid=true,
+ filename="h_TWetBul.mat",
+ colors={{28,108,200}});
+createPlot(id=1,
+ position={0, 0, 1537, 215},
+ y={"h_TWetBul.X_TWet.X[1]"},
+ range={0.0, 10.0, 0.0, 0.006},
+ erase=false,
+ grid=true,
+ subPlot=2,
+ colors={{28,108,200}});
+createPlot(id=1,
+ position={0, 0, 1537, 214},
+ y={"h_TWetBul.TWetBul"},
+ range={0.0, 10.0, 240.0, 280.0},
+ erase=false,
+ grid=true,
+ subPlot=3,
+ colors={{28,108,200}});
+
