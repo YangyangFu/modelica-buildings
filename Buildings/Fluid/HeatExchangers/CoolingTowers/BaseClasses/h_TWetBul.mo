@@ -1,14 +1,10 @@
 within Buildings.Fluid.HeatExchangers.CoolingTowers.BaseClasses;
-model h_TWetBul "Enthalpy as a function of wetbulb temperature"
+model h_TWetBul "Block to compute the enthalpy for given pressure, and wet bulb temperature"
   extends
     Buildings.Utilities.Psychrometrics.BaseClasses.HumidityRatioVaporPressure;
+
   Modelica.Blocks.Interfaces.RealInput TWetBul "Wetbulb temperature"
     annotation (Placement(transformation(extent={{-140,-20},{-100,20}})));
-  Buildings.Utilities.Psychrometrics.X_pTphi X_TWet(
-    final use_p_in=use_p_in,
-    final p=p)
-    "Mass fraction as a function of wetbulb temperature"
-    annotation (Placement(transformation(extent={{-40,-10},{-20,10}})));
   Modelica.Blocks.Interfaces.RealOutput h(
     quantity="SpecificEnergy",
     min=-1.0e10,
@@ -17,11 +13,17 @@ model h_TWetBul "Enthalpy as a function of wetbulb temperature"
     "Steam mass fraction"
     annotation (Placement(transformation(extent={{100,-10},{120,10}})));
 
+  Buildings.Utilities.Psychrometrics.X_pTphi X_TWet(
+    final use_p_in=use_p_in,
+    final p=p)
+    "Mass fraction as a function of wetbulb temperature"
+    annotation (Placement(transformation(extent={{-40,-10},{-20,10}})));
+
 protected
   package Medium = Buildings.Media.Air "Medium model";
-
   Buildings.Controls.OBC.CDL.Continuous.Sources.Constant con(k=1)
     annotation (Placement(transformation(extent={{-80,-60},{-60,-40}})));
+
 equation
   h = Medium.specificEnthalpy_pTX(
     p=p_in_internal,
@@ -34,5 +36,17 @@ equation
   connect(con.y, X_TWet.phi) annotation (Line(points={{-59,-50},{-52,-50},{-52,-6},
           {-42,-6}}, color={0,0,127}));
    annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
-        coordinateSystem(preserveAspectRatio=false)));
+        coordinateSystem(preserveAspectRatio=false)),
+    Documentation(info="<html>
+<p>
+This block computes the entahlpy from given pressure and wet bult temperature.
+</p>
+</html>", revisions="<html>
+<ul>
+<li>
+November 10, 2017, by Yangyang Fu:<br/>
+First implementation
+</li>
+</ul>
+</html>"));
 end h_TWetBul;
