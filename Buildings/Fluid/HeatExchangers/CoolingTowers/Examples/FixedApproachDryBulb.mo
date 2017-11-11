@@ -3,7 +3,7 @@ model FixedApproachDryBulb
   "Test model for cooling tower with fixed approach temperature using the dry-bulb temperature"
   extends Modelica.Icons.Example;
   extends BaseClasses.PartialStaticTwoPortCoolingTower(
-    redeclare CoolingTowers.FixedApproach tow,
+    redeclare CoolingTowers.FixedApproach tow(m_flow_nominal=mWat_flow_nominal),
     vol(energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial));
 equation
   connect(weaBus.TDryBul, tow.TAir) annotation (Line(
@@ -17,8 +17,6 @@ equation
 experiment(StartTime=15552000, Tolerance=1e-06, StopTime=15984000),
 __Dymola_Commands(file="modelica://Buildings/Resources/Scripts/Dymola/Fluid/HeatExchangers/CoolingTowers/Examples/FixedApproachDryBulb.mos"
         "Simulate and plot"),
-    Icon(coordinateSystem(preserveAspectRatio=true, extent={{-100,-180},{100,
-            100}})),
             Documentation(info="<html>
 This example illustrates the use of the cooling tower model
 <a href=\"modelica://Buildings.Fluid.HeatExchangers.CoolingTowers.FixedApproach\">

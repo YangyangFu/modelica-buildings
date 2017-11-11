@@ -3,7 +3,8 @@ model YorkCalc
   "Test model for cooling tower using the York performance correlation"
   extends Modelica.Icons.Example;
   extends BaseClasses.PartialStaticTwoPortCoolingTowerWetBulb(
-    redeclare CoolingTowers.YorkCalc tow(energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial),
+    redeclare CoolingTowers.YorkCalc tow(energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
+        m_flow_nominal=mWat_flow_nominal),
     onOffController(bandwidth=2));
 
   Modelica.Blocks.Sources.Constant TSetLea(k=273.15 + 18)
@@ -40,8 +41,6 @@ equation
 experiment(StartTime=15552000, Tolerance=1e-06, StopTime=15724800),
 __Dymola_Commands(file="modelica://Buildings/Resources/Scripts/Dymola/Fluid/HeatExchangers/CoolingTowers/Examples/YorkCalc.mos"
         "Simulate and plot"),
-    Icon(coordinateSystem(preserveAspectRatio=true, extent={{-100,-180},{100,
-            100}})),
     Documentation(info="<html>
 This example illustrates the use of the cooling tower model
 <a href=\"modelica://Buildings.Fluid.HeatExchangers.CoolingTowers.YorkCalc\">
