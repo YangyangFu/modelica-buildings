@@ -1,0 +1,33 @@
+simulateModel("Buildings.Fluid.HeatExchangers.CoolingTowers.Examples.MerkelControl", startTime=15552000, stopTime=15724800, method="dassl", resultFile="MerkelControl");
+createPlot(id=1,
+ position={0, 0, 1361, 701},
+ y={"tow.m_flow"},
+ range={180.0, 182.0, -10.0, 30.0},
+ erase=false,
+ grid=true,
+ filename="MerkelControl.mat",
+ colors={{28,108,200}});
+createPlot(id=1,
+ position={0, 0, 1361, 231},
+ y={"TVol.T", "TSwi.y"},
+ range={180.0, 182.0, 293.0, 297.0},
+ erase=false,
+ grid=true,
+ subPlot=2,
+ colors={{28,108,200}, {238,46,47}});
+createPlot(id=1,
+ position={0, 0, 1361, 231},
+ y={"onOffController.y"},
+ range={180.0, 182.0, -0.5, 1.5},
+ erase=false,
+ grid=true,
+ subPlot=3,
+ colors={{28,108,200}});
+createPlot(id=2,
+ position={568, 14, 592, 427},
+ y={"conFan.y"},
+ range={180.0, 182.0, 0.4, 1.1},
+ erase=false,
+ grid=true,
+ colors={{28,108,200}});
+
