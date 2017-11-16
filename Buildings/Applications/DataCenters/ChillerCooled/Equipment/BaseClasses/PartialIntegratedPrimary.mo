@@ -30,8 +30,8 @@ model PartialIntegratedPrimary
         transformation(
         extent={{-20,-20},{20,20}},
         origin={-120,-10}), iconTransformation(
-        extent={{-16,-16},{16,16}},
-        origin={-116,-2})));
+        extent={{-10,-10},{10,10}},
+        origin={-110,0})));
 
   Modelica.Blocks.Interfaces.RealInput yVal5(
     final unit= "1",
@@ -41,10 +41,10 @@ model PartialIntegratedPrimary
     annotation (Placement(
         transformation(
         extent={{-20,-20},{20,20}},
-        origin={-120,20}), iconTransformation(
-        extent={{16,16},{-16,-16}},
+        origin={-120,10}), iconTransformation(
+        extent={{10,10},{-10,-10}},
         rotation=180,
-        origin={-116,30})));
+        origin={-110,20})));
 
   Buildings.Fluid.Actuators.Valves.TwoWayLinear val5(
     redeclare final package Medium = Medium2,
@@ -96,26 +96,25 @@ equation
     annotation (Line(points={{100,-60},{80,-60},{80,-20},{60,-20}},
       color={0,127,255}));
   connect(port_a2, wse.port_a2)
-    annotation (Line(points={{100,-60},{88,-60},{80,-60},{80,24},{60,24}},
+    annotation (Line(points={{100,-60},{88,-60},{80,-60},{80,34},{60,34}},
       color={0,127,255}));
   connect(val6.port_a, chiPar.port_a2)
-    annotation (Line(points={{-40,-20},{-20,-20},{-20,24},{-40,24}},
+    annotation (Line(points={{-40,-20},{-20,-20},{-20,34},{-40,34}},
       color={0,127,255}));
   connect(chiPar.port_b2, port_b2)
-    annotation (Line(points={{-60,24},{-80,24},{-80,-60},{-100,-60}},
+    annotation (Line(points={{-60,34},{-80,34},{-80,-60},{-100,-60}},
       color={0,127,255}));
   connect(val6.port_b, port_b2)
     annotation (Line(points={{-60,-20},{-80,-20},{-80,-60},{-100,-60}},
       color={0,127,255}));
   connect(val5.y, yVal5)
-    annotation (Line(points={{50,-8},{50,0},{50,0},{-94,0},{-94,20},{-120,20}},
+    annotation (Line(points={{50,-8},{50,0},{-94,0},{-94,10},{-120,10}},
       color={0,0,127}));
   connect(yVal6, val6.y)
     annotation (Line(points={{-120,-10},{-94,-10},{-94,0},{-50,0},{-50,-8}},
       color={0,0,127}));
-  connect(senTem.port_b, val5.port_b)
-    annotation (Line(points={{8,24},{0,24},{0,-20},{40,-20}},
-      color={0,127,255}));
+  connect(senTCHWSupWSE.port_b, val5.port_b) annotation (Line(points={{10,20},{
+          0,20},{0,-20},{40,-20}}, color={0,127,255}));
   annotation (Documentation(info="<html>
 <p>
 Partial model that implements integrated waterside economizer in primary-ony chilled water system.
