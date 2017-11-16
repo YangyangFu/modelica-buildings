@@ -62,7 +62,7 @@ equation
 
   connect(pumSpeSig.y, chiWSE.yPum)
     annotation (Line(
-      points={{-99,-10},{-60,-10},{-60,25.6},{-1.6,25.6}},
+      points={{-99,-10},{-60,-10},{-60,26},{-1,26}},
       color={0,0,127}));
   connect(TCHWSup.port_b, ahu.port_a1)
     annotation (Line(
@@ -71,7 +71,7 @@ equation
       thickness=0.5));
   connect(chiWSE.TCHWSupWSE, cooModCon.TCHWSupWSE)
     annotation (Line(
-      points={{21,34},{148,34},{148,200},{-226,200},{-226,106},{-216,106}},
+      points={{21,30},{148,30},{148,200},{-226,200},{-226,106},{-216,106}},
       color={0,0,127}));
   connect(cooLoaChi.y, chiStaCon.QTot)
     annotation (Line(
@@ -128,9 +128,9 @@ equation
       points={{-193,110},{-190,110},{-190,212},{156,212},{156,160},{178,160}},
       color={255,127,0}));
   connect(yVal5.y, chiWSE.yVal5) annotation (Line(points={{-139,40},{-84,40},{
-          -84,33},{-1.6,33}}, color={0,0,127}));
+          -84,32},{-1,32}},   color={0,0,127}));
   connect(yVal6.y, chiWSE.yVal6) annotation (Line(points={{-139,24},{-84,24},{
-          -84,29.8},{-1.6,29.8}}, color={0,0,127}));
+          -84,30},{-1,30}},       color={0,0,127}));
   connect(cooModCon.y, cooTowSpeCon.cooMod) annotation (Line(points={{-193,110},
           {-190,110},{-190,182.444},{-172,182.444}}, color={255,127,0}));
   connect(cooModCon.y, CWPumCon.cooMod) annotation (Line(points={{-193,110},{
