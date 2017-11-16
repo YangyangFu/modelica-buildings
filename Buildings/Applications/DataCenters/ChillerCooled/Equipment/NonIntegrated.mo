@@ -12,17 +12,16 @@ model NonIntegrated
 
 equation
   connect(port_a2, wse.port_a2)
-    annotation (Line(points={{100,-60},{80,-60},{80,
-          24},{60,24}},color={0,127,255}));
+    annotation (Line(points={{100,-60},{80,-60},{80,34},{60,34}},
+                       color={0,127,255}));
   connect(port_a2, chiPar.port_a2)
-    annotation (Line(points={{100,-60},{-8,-60},
-          {-8,24},{-40,24}},color={0,127,255}));
+    annotation (Line(points={{100,-60},{-8,-60},{-8,34},{-40,34}},
+                            color={0,127,255}));
   connect(chiPar.port_b2, port_b2)
-    annotation (Line(points={{-60,24},{-72,24},{
-          -72,-60},{-100,-60}},color={0,127,255}));
-  connect(senTem.port_b, port_b2)
-    annotation (Line(points={{8,24},{0,24},{0,-40},
-          {-72,-40},{-72,-60},{-100,-60}}, color={0,127,255}));
+    annotation (Line(points={{-60,34},{-72,34},{-72,-60},{-100,-60}},
+                               color={0,127,255}));
+  connect(senTCHWSupWSE.port_b, port_b2) annotation (Line(points={{10,20},{0,20},
+          {0,-40},{-72,-40},{-72,-60},{-100,-60}}, color={0,127,255}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false), graphics={
         Line(points={{64,0},{74,0},{74,-60},{90,-60}}, color={0,128,255}),
         Line(points={{-72,0},{-76,0},{-76,-60},{-92,-60}}, color={0,128,255}),

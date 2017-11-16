@@ -23,7 +23,7 @@ model IntegratedPrimaryLoadSide
   replaceable parameter Buildings.Fluid.Movers.Data.Generic perPum[numPum]
    "Performance data for the pumps"
     annotation (Dialog(group="Pump"),
-          Placement(transformation(extent={{38,78},{58,98}})));
+          Placement(transformation(extent={{52,130},{72,150}})));
   parameter Boolean addPowerToMedium = true
     "Set to false to avoid any power (=heat and flow work) being added to medium (may give simpler equations)"
     annotation (Dialog(group="Pump"));
@@ -52,7 +52,7 @@ model IntegratedPrimaryLoadSide
     each max=1)
     "Constant normalized rotational speed"
     annotation (Placement(transformation(extent={{-140,-60},{-100,-20}}),
-        iconTransformation(extent={{-132,-28},{-100,-60}})));
+        iconTransformation(extent={{-120,-30},{-100,-50}})));
   Modelica.Blocks.Interfaces.RealOutput powPum[numPum](
     each final quantity="Power",
     each final unit="W")

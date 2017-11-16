@@ -26,7 +26,7 @@ model IntegratedPrimarySecondary
   replaceable parameter Buildings.Fluid.Movers.Data.Generic perPum[numPum]
     "Performance data for primary pumps"
     annotation (Dialog(group="Pump"),
-      Placement(transformation(extent={{38,78},{58,98}})));
+      Placement(transformation(extent={{58,130},{78,150}})));
   parameter Boolean addPowerToMedium=true
     "Set to false to avoid any power (=heat and flow work) being added to medium (may give simpler equations)"
     annotation (Dialog(group="Pump"));
@@ -67,8 +67,8 @@ model IntegratedPrimarySecondary
     final quantity="MassFlowRate",
     final unit="kg/s")
     "Prescribed mass flow rate for primary pumps"
-    annotation (Placement(transformation(extent={{-140,-60},{-100,-20}}),
-        iconTransformation(extent={{-130,-50},{-100,-20}})));
+    annotation (Placement(transformation(extent={{-140,-70},{-100,-30}}),
+        iconTransformation(extent={{-120,-50},{-100,-30}})));
   Modelica.Blocks.Interfaces.RealInput yVal5(
     final unit = "1",
     min = 0,
@@ -77,8 +77,8 @@ model IntegratedPrimarySecondary
     annotation (Placement(
         transformation(
         extent={{-20,-20},{20,20}},
-        origin={-120,26}), iconTransformation(extent={{-16,-16},{16,16}},
-          origin={-116,30})));
+        origin={-120,-10}),iconTransformation(extent={{-10,-10},{10,10}},
+          origin={-110,0})));
   Modelica.Blocks.Interfaces.RealOutput powPum[numPum](
     each final quantity="Power",
     each final unit = "W")
@@ -145,31 +145,30 @@ model IntegratedPrimarySecondary
     annotation (Placement(transformation(extent={{-40,-70},{-20,-50}})));
 equation
   connect(wse.port_a2, port_a2)
-    annotation (Line(points={{60,24},{80,24},{80,-60},
-          {100,-60}}, color={0,127,255}));
+    annotation (Line(points={{60,34},{80,34},{80,-60},{100,-60}},
+                      color={0,127,255}));
   connect(port_a2,val5. port_a)
     annotation (Line(points={{100,-60},{100,-60},{80,
           -60},{80,-20},{60,-20}}, color={0,127,255}));
   connect(pum.port_b, chiPar.port_a2)
-    annotation (Line(points={{-10,-20},{-20,
-          -20},{-20,24},{-40,24}}, color={0,127,255}));
+    annotation (Line(points={{-10,-20},{-20,-20},{-20,34},{-40,34}},
+                                   color={0,127,255}));
   connect(val5.y, yVal5)
-    annotation (Line(points={{50,-8},{50,6},{-94,6},{-94,
-          26},{-120,26}}, color={0,0,127}));
+    annotation (Line(points={{50,-8},{50,2},{-92,2},{-92,-10},{-120,-10}},
+                          color={0,0,127}));
   connect(chiPar.port_b2, port_b2)
-    annotation (Line(points={{-60,24},{-78,24},{
-          -78,-60},{-100,-60}}, color={0,127,255}));
+    annotation (Line(points={{-60,34},{-78,34},{-78,-60},{-100,-60}},
+                                color={0,127,255}));
   connect(val5.port_b, bypFlo.port_b)
     annotation (Line(points={{40,-20},{30,-20},
           {30,-60},{-20,-60}}, color={0,127,255}));
   connect(bypFlo.port_a, port_b2)
     annotation (Line(points={{-40,-60},{-100,-60}}, color={0,127,255}));
-  connect(senTem.port_b, val5.port_b)
-    annotation (Line(points={{8,24},{2,24},{2,
-          0},{30,0},{30,-20},{40,-20}}, color={0,127,255}));
+  connect(senTCHWSupWSE.port_b, val5.port_b) annotation (Line(points={{10,20},{
+          2,20},{2,0},{30,0},{30,-20},{40,-20}}, color={0,127,255}));
   connect(m_flow_in, pum.u)
-    annotation (Line(points={{-120,-40},{-96,-40},{-40,-40},
-          {-40,-6},{16,-6},{16,-16},{12,-16}}, color={0,0,127}));
+    annotation (Line(points={{-120,-50},{-96,-50},{-40,-50},{-40,-6},{16,-6},{
+          16,-16},{12,-16}},                   color={0,0,127}));
   connect(pum.port_a, val5.port_b)
     annotation (Line(points={{10,-20},{25,-20},{40,-20}}, color={0,127,255}));
   connect(pum.P, powPum) annotation (Line(points={{-11,-16},{-14,-16},{-14,50},
