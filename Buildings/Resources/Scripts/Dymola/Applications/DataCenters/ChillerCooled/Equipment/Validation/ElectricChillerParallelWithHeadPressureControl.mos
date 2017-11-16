@@ -1,0 +1,19 @@
+simulateModel("Buildings.Applications.DataCenters.ChillerCooled.Equipment.Validation.ElectricChillerParallelWithHeadPressureControl", stopTime=14400, method="dassl", tolerance=1e-006, resultFile="ElectricChillerParallelWithHeadPressureControl");
+removePlots(false);
+createPlot(id=1,
+ position={0, 0, 1452, 643},
+ y={"TCWLeaSet[1].y", "chiPar.TCWLea[1]", "TSet.y", "TEva_in.y"},
+ range={0.0, 14500.0, 5.0, 30.0},
+ erase=false,
+ grid=true,
+ filename="ElectricChillerParallelWithHeadPressureControl.mat",
+ colors={{28,108,200}, {238,46,47}, {0,140,72}, {217,67,180}});
+createPlot(id=1,
+ position={0, 0, 1452, 319},
+ y={"heaPreCon[1].y"},
+ range={0.0, 14500.0, 0.2, 1.2},
+ erase=false,
+ grid=true,
+ subPlot=2,
+ colors={{28,108,200}});
+

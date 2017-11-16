@@ -1,6 +1,7 @@
 CoolingCoilHumidifyingHeating_ClosedLoop
 CoolingCoilHumidifyingHeating_OpenLoop
 ElectricChillerParallel
+ElectricChillerParallelWithHeadPressureControl
 ElectricHeater
 HeatExchanger
 IntegratedPrimaryLoadSide
