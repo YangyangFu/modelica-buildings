@@ -1,0 +1,27 @@
+simulateModel("Buildings.Applications.DataCenters.ChillerCooled.Controls.Validation.HeadPressure", stopTime=1080, method="dassl", tolerance=1e-006, resultFile="HeadPressure");
+removePlots(false);
+createPlot(id=1,
+ position={0, 0, 1452, 643},
+ y={"CWRTSet.y", "CWST.y"},
+ range={0.0, 1100.0, 285.0, 300.0},
+ erase=false,
+ grid=true,
+ filename="HeadPressure.mat",
+ colors={{28,108,200}, {238,46,47}});
+createPlot(id=1,
+ position={0, 0, 1452, 211},
+ y={"cooMod.y"},
+ range={0.0, 1100.0, 0.0, 4.0},
+ erase=false,
+ grid=true,
+ subPlot=2,
+ colors={{28,108,200}});
+createPlot(id=1,
+ position={0, 0, 1452, 211},
+ y={"heaPreCon.y"},
+ range={0.0, 1100.0, 0.0, 1.5},
+ erase=false,
+ grid=true,
+ subPlot=3,
+ colors={{28,108,200}});
+

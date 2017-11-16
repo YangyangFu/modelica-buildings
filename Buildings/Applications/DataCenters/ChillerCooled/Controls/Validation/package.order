@@ -3,5 +3,6 @@ ConstantSpeedPumpStage
 CoolingMode
 CoolingModeNonIntegrated
 CoolingTowerSpeed
+HeadPressure
 Reheat
 VariableSpeedPumpStage
