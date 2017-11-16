@@ -1,29 +1,37 @@
 within Buildings.Applications.DataCenters.ChillerCooled.Equipment.BaseClasses;
 partial model PartialChillerWSE
   "Partial model for chiller and WSE package"
-  extends Buildings.Applications.DataCenters.ChillerCooled.Equipment.BaseClasses.PartialChillerWSEInterface(
+  extends
+    Buildings.Applications.DataCenters.ChillerCooled.Equipment.BaseClasses.PartialChillerWSEInterface(
      final num=numChi+1);
-  extends Buildings.Applications.DataCenters.ChillerCooled.Equipment.BaseClasses.FourPortResistanceChillerWSE(
+  extends
+    Buildings.Applications.DataCenters.ChillerCooled.Equipment.BaseClasses.FourPortResistanceChillerWSE(
      final computeFlowResistance1=true,
      final computeFlowResistance2=true);
-  extends Buildings.Applications.DataCenters.ChillerCooled.Equipment.BaseClasses.PartialControllerInterface(
+  extends
+    Buildings.Applications.DataCenters.ChillerCooled.Equipment.BaseClasses.PartialControllerInterface(
      final reverseAction=true);
-  extends Buildings.Applications.DataCenters.ChillerCooled.Equipment.BaseClasses.ValvesParameters(
+  extends
+    Buildings.Applications.DataCenters.ChillerCooled.Equipment.BaseClasses.ValvesParameters(
      numVal=4,
      final deltaM=deltaM1);
-  extends Buildings.Applications.DataCenters.ChillerCooled.Equipment.BaseClasses.SignalFilterParameters(
+  extends
+    Buildings.Applications.DataCenters.ChillerCooled.Equipment.BaseClasses.SignalFilterParameters(
      final numFil=1,
      final yValve_start={yValWSE_start});
-  extends Buildings.Applications.DataCenters.ChillerCooled.Equipment.BaseClasses.ThreeWayValveParameters(
-     final activate_ThrWayVal=use_controller);
+  extends
+    Buildings.Applications.DataCenters.ChillerCooled.Equipment.BaseClasses.ThreeWayValveParameters(
+     final activate_ThrWayVal=use_controller or activate_heaPreCon);
 
   //Chiller
+  parameter Boolean activate_heaPreCon = false
+    "Set as true, if a three-way valve on condener side is activated for head pressure control in chillers";
   parameter Integer numChi(min=1) "Number of identical chillers"
     annotation(Dialog(group="Chiller"));
   replaceable parameter Buildings.Fluid.Chillers.Data.ElectricEIR.Generic perChi[numChi]
     "Performance data for chillers"
     annotation (choicesAllMatching=true,Dialog(group="Chiller"),
-                Placement(transformation(extent={{70,78},{90,98}})));
+                Placement(transformation(extent={{20,130},{40,150}})));
   parameter Real[2] lValChi(each min=1e-10, each max=1) = {0.0001,0.0001}
     "Valve leakage, l=Kv(y=0)/Kv(y=1)"
     annotation(Dialog(group="Shutoff valve"));
@@ -133,6 +141,15 @@ partial model PartialChillerWSE
     "Type of initialization of the temperature sensor (InitialState and InitialOutput are identical)"
   annotation(Evaluate=true, Dialog(tab="Dynamics", group="Temperature Sensor"));
 
+  Modelica.Blocks.Interfaces.RealInput yValHeaPreCon[numChi] if
+                                                        activate_heaPreCon
+    "Actuator position (0: closed, 1: open)" annotation (Placement(
+        transformation(extent={{-140,100},{-100,60}}), iconTransformation(
+          extent={{-120,80},{-100,100}})));
+  Modelica.Blocks.Interfaces.RealOutput TCWRetChi[numChi]
+    "Temperature of leaving condenser water in chillers" annotation (Placement(
+        transformation(extent={{100,80},{120,100}}), iconTransformation(extent={
+            {100,80},{120,100}})));
   Modelica.Blocks.Interfaces.RealOutput TCHWSupWSE(
     final quantity="ThermodynamicTemperature",
     final unit="K",
@@ -140,13 +157,13 @@ partial model PartialChillerWSE
     min=200,
     start=T2_start)
     "Chilled water supply temperature in the waterside economizer"
-    annotation (Placement(transformation(extent={{100,30},{120,50}}),
-                iconTransformation(extent={{100,30},{120,50}})));
+    annotation (Placement(transformation(extent={{100,-10},{120,10}}),
+                iconTransformation(extent={{100,-10},{120,10}})));
   Modelica.Blocks.Interfaces.RealOutput powChi[numChi](
     each final quantity="Power",
     each final unit="W")
     "Electric power consumed by chiller compressor"
-    annotation (Placement(transformation(extent={{100,-10},{120,10}})));
+    annotation (Placement(transformation(extent={{100,30},{120,50}})));
 
   Buildings.Applications.DataCenters.ChillerCooled.Equipment.ElectricChillerParallel chiPar(
     redeclare final replaceable package Medium1 = Medium1,
@@ -191,9 +208,20 @@ partial model PartialChillerWSE
     final dp2_nominal=dp2_chi_nominal,
     final dpValve_nominal=dpValve_nominal[1:2],
     final rhoStd=rhoStd[1:2],
-    final yValve_start=yValChi_start)
+    final yValve_start=yValChi_start,
+    final activate_ThrWayVal=activate_heaPreCon,
+    final fraK_ThrWayVal=fraK_ThrWayVal,
+    final l_ThrWayVal=l_ThrWayVal,
+    final R=R,
+    final delta0=delta0,
+    final portFlowDirection_1=portFlowDirection_1,
+    final portFlowDirection_2=portFlowDirection_2,
+    final portFlowDirection_3=portFlowDirection_3,
+    final yThrWayVal_start=yThrWayValChi_start,
+    final tauSenT=tauSenT,
+    final initTSenor=initTSenor)
     "Identical chillers"
-    annotation (Placement(transformation(extent={{-60,20},{-40,40}})));
+    annotation (Placement(transformation(extent={{-60,30},{-40,50}})));
   Buildings.Applications.DataCenters.ChillerCooled.Equipment.WatersideEconomizer wse(
     redeclare final replaceable package Medium1 = Medium1,
     redeclare final replaceable package Medium2 = Medium2,
@@ -258,8 +286,8 @@ partial model PartialChillerWSE
     final portFlowDirection_2=portFlowDirection_2,
     final portFlowDirection_3=portFlowDirection_3)
     "Waterside economizer"
-    annotation (Placement(transformation(extent={{40,20},{60,40}})));
-  Buildings.Fluid.Sensors.TemperatureTwoPort senTem(
+    annotation (Placement(transformation(extent={{40,30},{60,50}})));
+  Buildings.Fluid.Sensors.TemperatureTwoPort senTCHWSupWSE(
     redeclare final replaceable package Medium = Medium2,
     final m_flow_nominal=m2_flow_wse_nominal,
     final tau=tauSenT,
@@ -267,50 +295,63 @@ partial model PartialChillerWSE
     final T_start=T2_start,
     final allowFlowReversal=allowFlowReversal2,
     final m_flow_small=m2_flow_small)
-    "Temperature sensor"
-    annotation (Placement(transformation(extent={{28,14},{8,34}})));
+    "Temperature sensor of supplying chilled water in WSEs"
+    annotation (Placement(transformation(extent={{30,10},{10,30}})));
+
+  parameter Real yThrWayValChi_start=1
+    "Initial value of output"
+    annotation(Dialog(tab="Dynamics", group="Filtered opening",
+      enable=activate_heaPreCon and use_inputFilter));
 
 equation
   for i in 1:numChi loop
   connect(chiPar.on[i], on[i])
-    annotation (Line(points={{-62,34},{-92,34},{-92,72},{-120,72}},
+    annotation (Line(points={{-62,42},{-92,42},{-92,30},{-120,30}},
                 color={255,0,255}));
   end for;
   connect(on[numChi+1], wse.on[1])
-    annotation (Line(points={{-120,72},{-120,72},{30,72},{30,34},{38,34}},
+    annotation (Line(points={{-120,30},{-92,30},{-92,120},{30,120},{30,42},{38,42}},
                 color={255,0,255}));
   connect(chiPar.TSet, TSet)
-    annotation (Line(points={{-62,30},{-84,30},{-84,104},{-120,104}},
+    annotation (Line(points={{-62,37},{-90,37},{-90,100},{-120,100}},
                 color={0,0,127}));
-  connect(port_a1, chiPar.port_a1)
-    annotation (Line(points={{-100,60},{-80,60},{-72,60},{-72,36},{-60,36}},
-                color={0,127,255}));
-  connect(chiPar.port_b1, port_b1)
-    annotation (Line(points={{-40,36},{-20,36},{-20,60},{100,60}},
-                color={0,127,255}));
   connect(wse.port_b1, port_b1)
-    annotation (Line(points={{60,36},{80,36},{80,60},{100,60}},color={0,127,255}));
+    annotation (Line(points={{60,46},{80,46},{80,60},{100,60}},color={0,127,255}));
   connect(port_a1, wse.port_a1)
-    annotation (Line(points={{-100,60},{-100,60},{-72,60},{-72,56},{34,56},{34,
-          36},{40,36}},
+    annotation (Line(points={{-100,60},{-88,60},{-88,104},{-88,104},{-88,116},{26,
+          116},{26,46},{40,46}},
                 color={0,127,255}));
   connect(TSet, wse.TSet)
-    annotation (Line(points={{-120,104},{-84,104},{-84,80},
-          {26,80},{26,30},{38,30}}, color={0,0,127}));
+    annotation (Line(points={{-120,100},{-90,100},{-90,118},{28,118},{28,38},{38,
+          38}},                     color={0,0,127}));
   connect(y_reset_in, wse.y_reset_in)
-    annotation (Line(points={{-90,-100},{-90,-100},{-90,10},{40,10},{40,20}},
+    annotation (Line(points={{-90,-100},{-90,12},{40,12},{40,30}},
                 color={0,0,127}));
   connect(trigger, wse.trigger)
-    annotation (Line(points={{-60,-100},{-60,-100},{-60,-80},{-88,-80},{-88,8},
-          {44,8},{44,20}},              color={255,0,255}));
-  connect(senTem.T,TCHWSupWSE)
-    annotation (Line(points={{18,35},{18,35},{18,48},{86,48},{86,40},{110,40}},
-                           color={0,0,127}));
-  connect(wse.port_b2, senTem.port_a)
-    annotation (Line(points={{40,24},{34,24},{28,24}}, color={0,127,255}));
-  connect(chiPar.P, powChi) annotation (Line(points={{-39,32},{-6,32},{-6,52},{
-          90,52},{90,0},{110,0}}, color={0,0,127}));
-  annotation (Icon(coordinateSystem(preserveAspectRatio=false), graphics={
+    annotation (Line(points={{-60,-100},{-60,-78},{-88,-78},{-88,10},{44,10},{44,
+          30}},                         color={255,0,255}));
+  connect(senTCHWSupWSE.T, TCHWSupWSE) annotation (Line(points={{20,31},{20,64},
+          {88,64},{88,0},{110,0}},   color={0,0,127}));
+  connect(wse.port_b2, senTCHWSupWSE.port_a)
+    annotation (Line(points={{40,34},{34,34},{34,20},{30,20}},
+                                               color={0,127,255}));
+  connect(chiPar.P, powChi) annotation (Line(points={{-39,44},{18,44},{18,66},{90,
+          66},{90,40},{110,40}},  color={0,0,127}));
+
+  if activate_heaPreCon then
+  else
+    connect(port_a1, chiPar.port_a1)
+      annotation (Line(points={{-100,60},{-68,60},{
+          -68,46},{-60,46}}, color={0,127,255}));
+  end if;
+
+  connect(chiPar.port_b1, port_b1) annotation (Line(points={{-40,46},{-20,46},{-20,
+          114},{80,114},{80,60},{100,60}}, color={0,127,255}));
+  connect(yValHeaPreCon, chiPar.yHeaPreCon) annotation (Line(points={{-120,80},{
+          -66,80},{-66,48},{-62,48}}, color={0,0,127}));
+  connect(chiPar.TCWLea, TCWRetChi) annotation (Line(points={{-39,42},{16,42},{16,
+          68},{90,68},{90,90},{110,90}}, color={0,0,127}));
+  annotation (Icon(coordinateSystem(preserveAspectRatio=false),graphics={
         Rectangle(
           extent={{24,2},{64,0}},
           lineColor={0,0,0},
@@ -476,5 +517,6 @@ June 30, 2017, by Yangyang Fu:<br/>
 First implementation.
 </li>
 </ul>
-</html>"));
+</html>"),
+    Diagram(coordinateSystem(extent={{-100,-100},{100,160}})));
 end PartialChillerWSE;
