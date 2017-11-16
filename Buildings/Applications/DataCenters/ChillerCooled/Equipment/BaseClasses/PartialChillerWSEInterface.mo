@@ -35,12 +35,12 @@ partial model PartialChillerWSEInterface
     final quantity="ThermodynamicTemperature",
     displayUnit="degC")
     "Set point for leaving water temperature"
-    annotation (Placement(transformation(extent={{-140,84},{-100,124}}),
-        iconTransformation(extent={{-132,92},{-100,124}})));
+    annotation (Placement(transformation(extent={{-140,80},{-100,120}}),
+        iconTransformation(extent={{-120,100},{-100,120}})));
   Modelica.Blocks.Interfaces.BooleanInput on[num]
     "Set to true to enable equipment, or false to disable equipment"
-    annotation (Placement(transformation(extent={{-140,52},{-100,92}}),
-        iconTransformation(extent={{-132,60},{-100,92}})));
+    annotation (Placement(transformation(extent={{-140,10},{-100,50}}),
+        iconTransformation(extent={{-120,30},{-100,50}})));
   Medium1.MassFlowRate m1_flow = port_a1.m_flow
     "Mass flow rate from port_a1 to port_b1 (m1_flow > 0 is design flow direction)";
   Modelica.SIunits.PressureDifference dp1(displayUnit="Pa") = port_a1.p - port_b1.p
