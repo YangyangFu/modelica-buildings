@@ -14,11 +14,12 @@ partial model PartialPlantParallelInterface "Partial model that implements the i
     annotation (Placement(transformation(extent={{-80,34},{-68,46}})));
   Modelica.Blocks.Interfaces.BooleanInput on[num]
     "Set to true to enable equipment, or false to disable equipment"
-    annotation (Placement(transformation(extent={{-140,20},{-100,60}}),
-        iconTransformation(extent={{-140,20},{-100,60}})));
+    annotation (Placement(transformation(extent={{-140,0},{-100,40}}),
+        iconTransformation(extent={{-140,0},{-100,40}})));
 equation
   connect(on, booToRea.u)
-    annotation (Line(points={{-120,40},{-120,40},{-81.2,40}},
+    annotation (Line(points={{-120,20},{-120,20},{-90,20},{-90,20},{-90,20},{
+          -90,40},{-81.2,40}},
       color={255,0,255}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false), graphics={
         Rectangle(
