@@ -47,7 +47,7 @@ partial model PartialPlantParallel
     annotation (Placement(transformation(
         extent={{-10,-10},{10,10}},
         rotation=270,
-        origin={-40,-32})));
+        origin={-60,-40})));
   Buildings.Fluid.Actuators.Valves.TwoWayLinear val1[num](
     redeclare each replaceable package Medium = Medium1,
     each final allowFlowReversal=allowFlowReversal1,
@@ -72,14 +72,14 @@ partial model PartialPlantParallel
       Placement(transformation(
         extent={{10,10},{-10,-10}},
         rotation=270,
-        origin={40,32})));
+        origin={60,40})));
 
 equation
   for i in 1:num loop
     connect(val1[i].port_b, port_b1)
-      annotation (Line(points={{40,42},{40,60},{100,60}}, color={0,127,255}));
+      annotation (Line(points={{60,50},{60,60},{100,60}}, color={0,127,255}));
     connect(val2[i].port_b, port_b2)
-      annotation (Line(points={{-40,-42},{-40,-60},{-100,-60}},
+      annotation (Line(points={{-60,-50},{-60,-60},{-100,-60}},
         color={0,127,255}));
   end for;
   if use_inputFilter then
@@ -92,13 +92,14 @@ equation
         color={0,0,127}));
   end if;
   connect(on, booToRea.u)
-    annotation (Line(points={{-120,40},{-81.2,40},{-81.2,40}},
+    annotation (Line(points={{-120,20},{-90,20},{-90,40},{-81.2,40},{-81.2,40}},
       color={255,0,255}));
   connect(y_actual, val1.y)
-    annotation (Line(points={{-20,74},{-20,66},{20,66},
-          {20,32},{28,32}},color={0,0,127}));
+    annotation (Line(points={{-20,74},{-20,74},{0,74},{0,40},{48,40}},
+                           color={0,0,127}));
   connect(y_actual, val2.y)
-    annotation (Line(points={{-20,74},{-20,-32},{-28,-32}}, color={0,0,127}));
+    annotation (Line(points={{-20,74},{-20,74},{-18,74},{-18,70},{-18,70},{-18,
+          -40},{-48,-40}},                                  color={0,0,127}));
   annotation (    Documentation(info="<html>
 <p>
 Partial model that can be extended to construct parallel chillers such as
