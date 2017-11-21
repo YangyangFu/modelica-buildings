@@ -1,6 +1,5 @@
 within Buildings.Applications.DataCenters.ChillerCooled.Controls.Validation;
 model HeadPressure "Test the head pressure control for chillers"
-  import Buildings;
   extends Modelica.Icons.Example;
 
   parameter Modelica.Blocks.Types.SimpleController controllerType=
@@ -43,6 +42,8 @@ model HeadPressure "Test the head pressure control for chillers"
   Modelica.Blocks.Sources.IntegerTable cooMod(table=[0,1; 360,2; 720,3])
     "Cooling mode"
     annotation (Placement(transformation(extent={{-80,-60},{-60,-40}})));
+  Modelica.Blocks.Sources.BooleanStep on "On"
+    annotation (Placement(transformation(extent={{-80,-100},{-60,-80}})));
 equation
   connect(cooMod.y, heaPreCon.cooMod) annotation (Line(points={{-59,-50},{-40,
           -50},{-40,-4},{-2,-4}}, color={255,127,0}));
@@ -50,6 +51,8 @@ equation
           {-40,8},{-2,8}}, color={0,0,127}));
   connect(CWST.y, heaPreCon.u_m) annotation (Line(points={{-59,10},{-42,10},{
           -42,2},{-2,2}}, color={0,0,127}));
+  connect(on.y, heaPreCon.on) annotation (Line(points={{-59,-90},{-34,-90},{-34,
+          -9},{-2,-9}}, color={255,0,255}));
   annotation (    __Dymola_Commands(file=
           "modelica://Buildings/Resources/Scripts/Dymola/Applications/DataCenters/ChillerCooled/Controls/Validation/HeadPressure.mos"
         "Simulate and Plot"),
