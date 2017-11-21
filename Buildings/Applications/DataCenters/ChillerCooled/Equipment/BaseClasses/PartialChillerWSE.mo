@@ -322,8 +322,8 @@ equation
           116},{26,46},{40,46}},
                 color={0,127,255}));
   connect(TSet, wse.TSet)
-    annotation (Line(points={{-120,100},{-90,100},{-90,118},{28,118},{28,38},{38,
-          38}},                     color={0,0,127}));
+    annotation (Line(points={{-120,100},{-90,100},{-90,118},{28,118},{28,40},{38,
+          40}},                     color={0,0,127}));
   connect(y_reset_in, wse.y_reset_in)
     annotation (Line(points={{-90,-100},{-90,12},{40,12},{40,30}},
                 color={0,0,127}));
@@ -338,12 +338,10 @@ equation
   connect(chiPar.P, powChi) annotation (Line(points={{-39,44},{18,44},{18,66},{90,
           66},{90,40},{110,40}},  color={0,0,127}));
 
-  if activate_heaPreCon then
-  else
-    connect(port_a1, chiPar.port_a1)
-      annotation (Line(points={{-100,60},{-68,60},{
+
+ connect(port_a1, chiPar.port_a1)
+  annotation (Line(points={{-100,60},{-68,60},{
           -68,46},{-60,46}}, color={0,127,255}));
-  end if;
 
   connect(chiPar.port_b1, port_b1) annotation (Line(points={{-40,46},{-20,46},{-20,
           114},{80,114},{80,60},{100,60}}, color={0,127,255}));
