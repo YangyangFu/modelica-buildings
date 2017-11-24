@@ -63,12 +63,13 @@ model IntegratedPrimarySecondary
     "Initial value of output from valve 5:0-closed, 1-fully opened"
     annotation(Dialog(tab="Dynamics", group="Filtered opening",enable=use_inputFilter));
 
-  Modelica.Blocks.Interfaces.RealInput m_flow_in[numPum](
-    final quantity="MassFlowRate",
-    final unit="kg/s")
-    "Prescribed mass flow rate for primary pumps"
-    annotation (Placement(transformation(extent={{-140,-70},{-100,-30}}),
-        iconTransformation(extent={{-120,-50},{-100,-30}})));
+  Modelica.Blocks.Interfaces.RealInput yPum[numPum](
+      each final unit = "1",
+      each min = 0,
+      each max = 1)
+      "Prescribed mass flow rate for primary pumps"
+    annotation (Placement(transformation(extent={{-140,-60},{-100,-20}}),
+        iconTransformation(extent={{-130,-50},{-100,-20}})));
   Modelica.Blocks.Interfaces.RealInput yVal5(
     final unit = "1",
     min = 0,
@@ -84,7 +85,6 @@ model IntegratedPrimarySecondary
     each final unit = "W")
     "Electrical power consumed by the pumps"
     annotation (Placement(transformation(extent={{100,-50},{120,-30}})));
-
 
   Buildings.Fluid.Actuators.Valves.TwoWayLinear  val5(
     redeclare final package Medium = Medium2,
@@ -166,14 +166,13 @@ equation
     annotation (Line(points={{-40,-60},{-100,-60}}, color={0,127,255}));
   connect(senTCHWSupWSE.port_b, val5.port_b) annotation (Line(points={{10,20},{
           2,20},{2,0},{30,0},{30,-20},{40,-20}}, color={0,127,255}));
-  connect(m_flow_in, pum.u)
-    annotation (Line(points={{-120,-50},{-96,-50},{-40,-50},{-40,-6},{16,-6},{
-          16,-16},{12,-16}},                   color={0,0,127}));
+  connect(yPum, pum.u) annotation (Line(points={{-120,-40},{-96,-40},{-40,-40},{
+          -40,-6},{16,-6},{16,-16},{12,-16}}, color={0,0,127}));
   connect(pum.port_a, val5.port_b)
     annotation (Line(points={{10,-20},{25,-20},{40,-20}}, color={0,127,255}));
   connect(pum.P, powPum) annotation (Line(points={{-11,-16},{-14,-16},{-14,50},
           {88,50},{88,-40},{110,-40}},
-                                   color={0,0,127}));
+          color={0,0,127}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false), graphics={
         Ellipse(
           extent={{-14,-30},{8,-52}},
