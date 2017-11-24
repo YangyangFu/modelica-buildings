@@ -80,10 +80,10 @@ block ModeAndSetPoints "Output zone setpoint with operation mode selection"
   parameter Modelica.SIunits.TemperatureDifference decSetDem_3=2.2
     "Heating setpoint decrease value when heating demand limit level 3 is imposed"
     annotation (Evaluate=true, Dialog(tab="Setpoint adjust", group="Demands settings"));
-  parameter Integer cooDemLimLevCon=Buildings.Controls.OBC.ASHRAE.G36_PR1.Constants.DemandLimitLevels.cooling0
+  parameter Integer cooDemLimLevCon=Buildings.Controls.OBC.ASHRAE.G36_PR1.Types.DemandLimitLevels.cooling0
     "Cooling demand limit level"
     annotation (Evaluate=true, Dialog(tab="Setpoint adjust"));
-  parameter Integer heaDemLimLevCon=Buildings.Controls.OBC.ASHRAE.G36_PR1.Constants.DemandLimitLevels.heating0
+  parameter Integer heaDemLimLevCon=Buildings.Controls.OBC.ASHRAE.G36_PR1.Types.DemandLimitLevels.heating0
     "Heating demand limit level"
     annotation (Evaluate=true, Dialog(tab="Setpoint adjust"));
   parameter Boolean winStaCon=false
@@ -94,30 +94,28 @@ block ModeAndSetPoints "Output zone setpoint with operation mode selection"
     each final unit="K",
     each quantity="ThermodynamicTemperature")
     "Measured zone temperatures"
-    annotation (Placement(transformation(rotation=0, extent={{-180,60},{-140,100.5}}),
+    annotation (Placement(transformation(extent={{-180,60},{-140,100.5}}),
       iconTransformation(extent={{-120,40},{-100,60}})));
   Buildings.Controls.OBC.CDL.Interfaces.RealInput tNexOcc(
     final unit="s",
     quantity="Time")
     "Time to next occupied period"
-    annotation (Placement(transformation(rotation=0, extent={{-180,120},{-140,160}}),
+    annotation (Placement(transformation(extent={{-180,120},{-140,160}}),
       iconTransformation(extent={{-120,70},{-100,90}})));
   Buildings.Controls.OBC.CDL.Interfaces.RealInput setAdj[numZon](
     each final unit="K",
     each quantity="ThermodynamicTemperature") if (cooAdj or sinAdj)
     "Setpoint adjustment value"
-    annotation (Placement(transformation(extent={{-20,-20},{20,20}},rotation=0,
-      origin={-160,-40}),
+    annotation (Placement(transformation(extent={{-20,-20},{20,20}},origin={-160,-40}),
                         iconTransformation(extent={{-120,10},{-100,30}})));
   Buildings.Controls.OBC.CDL.Interfaces.RealInput heaSetAdj[numZon](
     each final unit="K",
     each quantity="ThermodynamicTemperature") if heaAdj
     "Heating setpoint adjustment value"
-    annotation (Placement(transformation(extent={{-20,-20},{20,20}},rotation=0,
-      origin={-160,-70}), iconTransformation(extent={{-120,-20},{-100,0}})));
+    annotation (Placement(transformation(extent={{-20,-20},{20,20}},origin={-160,-70}), iconTransformation(extent={{-120,-20},{-100,0}})));
   Buildings.Controls.OBC.CDL.Interfaces.BooleanInput uOcc
     "Current occupancy period, true if it is in occupant period"
-    annotation (Placement(transformation(rotation=0, extent={{-180,0},{-140,40.5}}),
+    annotation (Placement(transformation(extent={{-180,0},{-140,40.5}}),
       iconTransformation(extent={{-120,-50},{-100,-29.5}})));
   Buildings.Controls.OBC.CDL.Interfaces.BooleanInput uOccSen[numZon] if have_occSen
     "Occupancy sensor (occupied=true, unoccupied=false)"
@@ -310,7 +308,8 @@ equation
     annotation (Line(points={{-160,140},{-124,140},{-124,6.6},{-31,6.6}},
       color={0,0,127}));
 
-annotation (Diagram(coordinateSystem(extent={{-140,-180},{140,180}})),
+annotation (defaultComponentName="modSetPoi",
+  Diagram(coordinateSystem(extent={{-140,-180},{140,180}})),
   Icon(graphics={Text(
         extent={{-100,140},{98,102}},
         textString="%name",

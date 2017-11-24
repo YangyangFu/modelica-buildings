@@ -7,7 +7,7 @@ model OutsideAirFlow
 
   Buildings.Controls.OBC.ASHRAE.G36_PR1.AHUs.MultiZone.SetPoints.OutsideAirFlow
     outAirSet_MulZon(numZon=numZon,
-    zonAre=fill(40, numZon),
+    AFlo=fill(40, numZon),
     maxSysPriFlo=1,
     minZonPriFlo=fill(0.08, numZon),
     peaSysPop=20)
@@ -16,7 +16,7 @@ model OutsideAirFlow
   Buildings.Controls.OBC.ASHRAE.G36_PR1.AHUs.MultiZone.SetPoints.OutsideAirFlow
     outAirSet_MulZon1(
     numZon=numZon,
-    zonAre=fill(40, numZon),
+    AFlo=fill(40, numZon),
     maxSysPriFlo=1,
     minZonPriFlo=fill(0.08, numZon),
     peaSysPop=20,
@@ -74,7 +74,7 @@ protected
     each offset=273.15 + 18) "Terminal unit discharge air temperature"
     annotation (Placement(transformation(extent={{-60,0},{-40,20}})));
   Buildings.Controls.OBC.CDL.Integers.Sources.Constant opeMod(
-    final k=Constants.OperationModes.occupied)
+    final k=Buildings.Controls.OBC.ASHRAE.G36_PR1.Types.OperationModes.occupied)
     "AHU operation mode is Occupied"
     annotation (Placement(transformation(extent={{-60,-90},{-40,-70}})));
 

@@ -4,15 +4,18 @@ block LimPID
   output Real controlError = u_s - u_m
     "Control error (set point - measurement)";
   parameter Buildings.Controls.OBC.CDL.Types.SimpleController controllerType=
-         CDL.Types.SimpleController.PID "Type of controller";
-  parameter Real k(min=0, unit="1") = 1 "Gain of controller";
+         Buildings.Controls.OBC.CDL.Types.SimpleController.PI "Type of controller";
+  parameter Real k(
+    min=0,
+    unit="1") = 1 "Gain of controller";
   parameter Modelica.SIunits.Time Ti(min=Constants.small) = 0.5
-    "Time constant of Integrator block"
+    "Time constant of integrator block"
     annotation (Dialog(enable=
           controllerType == CDL.Types.SimpleController.PI or
           controllerType == CDL.Types.SimpleController.PID));
-  parameter Modelica.SIunits.Time Td(min=0) = 0.1
-    "Time constant of Derivative block"
+  parameter Modelica.SIunits.Time Td(
+    min=0) = 0.1
+    "Time constant of derivative block"
     annotation (Dialog(enable=
           controllerType == CDL.Types.SimpleController.PD or
           controllerType == CDL.Types.SimpleController.PID));
@@ -30,7 +33,8 @@ block LimPID
     "The higher Nd, the more ideal the derivative block"
        annotation(Dialog(enable=controllerType==CDL.Types.SimpleController.PD or
                                 controllerType==CDL.Types.SimpleController.PID));
-  parameter Buildings.Controls.OBC.CDL.Types.Init initType= Buildings.Controls.OBC.CDL.Types.Init.InitialState
+  parameter Buildings.Controls.OBC.CDL.Types.Init initType=
+    Buildings.Controls.OBC.CDL.Types.Init.InitialState
     "Type of initialization"
     annotation(Evaluate=true,  Dialog(group="Initialization"));
       // Removed as the Limiter block no longer uses this parameter.
@@ -54,7 +58,7 @@ block LimPID
     annotation (Evaluate=true, choices(checkBox=true), Dialog(tab="Advanced"));
   parameter Boolean reverseAction = false
     "Set to true for throttling the water flow rate through a cooling coil controller";
-  parameter Buildings.Controls.OBC.CDL.Types.Reset reset = CDL.Types.Reset.Disabled
+  parameter Buildings.Controls.OBC.CDL.Types.Reset reset = Buildings.Controls.OBC.CDL.Types.Reset.Disabled
     "Type of controller output reset"
     annotation(Evaluate=true, Dialog(group="Integrator reset"));
   parameter Real y_reset=xi_start
@@ -64,10 +68,12 @@ block LimPID
   Buildings.Controls.OBC.CDL.Interfaces.BooleanInput trigger if reset <> Buildings.Controls.OBC.CDL.Types.Reset.Disabled
     "Resets the controller output when trigger becomes true"
     annotation (Placement(transformation(extent={{-20,-20},{20,20}},
-        rotation=90, origin={-80,-120})));
+        rotation=90, origin={-80,-120}),
+     visible=reset <> Buildings.Controls.OBC.CDL.Types.Reset.Disabled));
   Buildings.Controls.OBC.CDL.Interfaces.RealInput y_reset_in if reset == Buildings.Controls.OBC.CDL.Types.Reset.Input
     "Input signal for state to which integrator is reset, enabled if reset = CDL.Types.Reset.Input"
-    annotation (Placement(transformation(extent={{-140,-100},{-100,-60}})));
+    annotation (Placement(transformation(extent={{-140,-100},{-100,-60}}),
+    visible=reset == Buildings.Controls.OBC.CDL.Types.Reset.Input));
   Buildings.Controls.OBC.CDL.Interfaces.RealInput u_s
     "Connector of setpoint input signal"
     annotation (Placement(transformation(extent={{-140,-20},{-100,20}})));
@@ -261,7 +267,29 @@ equation
 annotation (defaultComponentName="conPID",
 Documentation(info="<html>
 <p>
-This model is similar to
+PID controller in the standard form
+</p>
+<p align=\"center\" style=\"font-style:italic;\">
+y = k &nbsp; ( e(t) + 1 &frasl; T<sub>i</sub> &nbsp; &int; e(s) ds + T<sub>d</sub> de(t)&frasl;dt ),
+</p>
+<p>
+where
+<i>y</i> is the control signal,
+<i>e(t) = u<sub>s</sub> - u<sub>m</sub></i> is the control error,
+with <i>u<sub>s</sub></i> being the set point and <i>u<sub>m</sub></i> being
+the measured quantity,
+<i>k</i> is the gain,
+<i>T<sub>i</sub></i> is the time constant of the integral term and
+<i>T<sub>d</sub></i> is the time constant of the derivative term.
+</p>
+<p>
+Note that the units of <i>k</i> are the inverse of the units of the control error,
+while the units of <i>T<sub>i</sub></i> and <i>T<sub>d</sub></i> are seconds.
+</p>
+<p>
+For detailed treatment of integrator anti-windup, set-point weights and output limitation, see
+<a href=\"modelica://Modelica.Blocks.Continuous.LimPID\">Modelica.Blocks.Continuous.LimPID</a>.
+The model is similar to
 <a href=\"modelica://Modelica.Blocks.Continuous.LimPID\">Modelica.Blocks.Continuous.LimPID</a>,
 except for the following changes:
 </p>
@@ -326,9 +354,18 @@ Some parameters assignments in the instances have been made final.
 </li>
 
 </ol>
+<p>
+For recommendations regarding tuning of closed loop control, see
+<a href=\"modelica://Modelica.Blocks.Continuous.LimPID\">Modelica.Blocks.Continuous.LimPID</a>
+or the control literature.
+</p>
 </html>",
 revisions="<html>
 <ul>
+<li>
+November 13, 2017, by Michael Wetter:<br/>
+Changed default controller type from PID to PI.
+</li>
 <li>
 November 6, 2017, by Michael Wetter:<br/>
 Explicitly declared types and used integrator with reset from CDL.
@@ -374,28 +411,28 @@ First implementation.
           fillColor={255,255,255},
           fillPattern=FillPattern.Solid),
         Text(
-          visible=(controllerType == CDL.Types.SimpleController.P),
+          visible=(controllerType == Buildings.Controls.OBC.CDL.Types.SimpleController.P),
           extent={{-32,-22},{68,-62}},
           lineColor={0,0,0},
           textString="P",
           fillPattern=FillPattern.Solid,
           fillColor={175,175,175}),
         Text(
-          visible=(controllerType == CDL.Types.SimpleController.PI),
-          extent={{-28,-22},{72,-62}},
+          visible=(controllerType == Buildings.Controls.OBC.CDL.Types.SimpleController.PI),
+          extent={{-26,-22},{74,-62}},
           lineColor={0,0,0},
           textString="PI",
           fillPattern=FillPattern.Solid,
           fillColor={175,175,175}),
         Text(
-          visible=(controllerType == CDL.Types.SimpleController.PD),
+          visible=(controllerType == Buildings.Controls.OBC.CDL.Types.SimpleController.PD),
           extent={{-16,-22},{88,-62}},
           lineColor={0,0,0},
           fillPattern=FillPattern.Solid,
           fillColor={175,175,175},
           textString="P D"),
         Text(
-          visible=(controllerType == CDL.Types.SimpleController.PID),
+          visible=(controllerType == Buildings.Controls.OBC.CDL.Types.SimpleController.PID),
           extent={{-14,-22},{86,-62}},
           lineColor={0,0,0},
           textString="PID",

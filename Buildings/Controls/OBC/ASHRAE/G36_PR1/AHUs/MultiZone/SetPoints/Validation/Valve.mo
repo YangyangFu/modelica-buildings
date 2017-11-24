@@ -2,13 +2,13 @@ within Buildings.Controls.OBC.ASHRAE.G36_PR1.AHUs.MultiZone.SetPoints.Validation
 model Valve
   "Validate model for controlling coil valve postion of multi zone VAV AHU"
   extends Modelica.Icons.Example;
-  Buildings.Controls.OBC.ASHRAE.G36_PR1.AHUs.MultiZone.SetPoints.Valve AHUValve
+  Buildings.Controls.OBC.ASHRAE.G36_PR1.AHUs.MultiZone.SetPoints.VAVSupplySignals AHUValve
     "Output valve position and supply air temperature control loop signal"
     annotation (Placement(transformation(extent={{20,60},{40,80}})));
   Buildings.Controls.OBC.CDL.Logical.Sources.Pulse supFanSta(period=7200)
     "Supply fan status"
     annotation (Placement(transformation(extent={{-80,-10},{-60,10}})));
-  Modelica.Blocks.Sources.Sine TSup(
+  Buildings.Controls.OBC.CDL.Continuous.Sources.Sine TSup(
     amplitude=2,
     offset=16 + 273.15,
     freqHz=1/7200) "Supply air temperature"
@@ -19,7 +19,7 @@ model Valve
     offset=15 + 273.15)
     "Supply air temperature setpoint"
     annotation (Placement(transformation(extent={{-80,70},{-60,90}})));
-  Buildings.Controls.OBC.ASHRAE.G36_PR1.AHUs.MultiZone.SetPoints.Valve AHUValve1
+  Buildings.Controls.OBC.ASHRAE.G36_PR1.AHUs.MultiZone.SetPoints.VAVSupplySignals AHUValve1
     "Output valve position and supply air temperature control loop signal"
     annotation (Placement(transformation(extent={{20,0},{40,20}})));
   Buildings.Controls.OBC.CDL.Logical.Sources.Constant fanOn(k=true) "Fan on"
@@ -52,9 +52,9 @@ annotation (
     Documentation(info="<html>
 <p>
 This example validates
-<a href=\"modelica://Buildings.Controls.OBC.ASHRAE.G36_PR1.AHUs.MultiZone.SetPoints.Valve\">
-Buildings.Controls.OBC.ASHRAE.G36_PR1.AHUs.MultiZone.SetPoints.Valve</a>
-for a change of the supply air temperature setpoint, measured supply air temperature and 
+<a href=\"modelica://Buildings.Controls.OBC.ASHRAE.G36_PR1.AHUs.MultiZone.SetPoints.VAVSupplySignals\">
+Buildings.Controls.OBC.ASHRAE.G36_PR1.AHUs.MultiZone.SetPoints.VAVSupplySignals</a>
+for a change of the supply air temperature setpoint, measured supply air temperature and
 the supply fan status, to specify coil valve positions, and generate control
 loop signal.
 </p>
