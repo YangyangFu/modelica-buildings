@@ -1,7 +1,8 @@
 within Buildings.Applications.DataCenters.ChillerCooled.Equipment;
 model IntegratedPrimarySecondary
   "Integrated waterside economizer on the load side in a primary-secondary chilled water system"
-  extends Buildings.Applications.DataCenters.ChillerCooled.Equipment.BaseClasses.PartialChillerWSE(
+  extends
+    Buildings.Applications.DataCenters.ChillerCooled.Equipment.BaseClasses.PartialChillerWSE(
     final numVal=5,
     final m_flow_nominal={m1_flow_chi_nominal,m2_flow_chi_nominal,m1_flow_chi_nominal,
       m2_flow_wse_nominal,numChi*m2_flow_chi_nominal},
@@ -106,7 +107,7 @@ model IntegratedPrimarySecondary
     final l=lVal5)
     "Shutoff valve: closed when fully mechanic cooling is activated; open when fully mechanic cooling is activated"
     annotation (Placement(transformation(extent={{60,-30},{40,-10}})));
-  Buildings.Applications.DataCenters.ChillerCooled.Equipment.FlowMachine_m pum(
+  Buildings.Applications.DataCenters.ChillerCooled.Equipment.FlowMachine_y pum(
     redeclare each final package Medium = Medium2,
     final p_start=p2_start,
     final T_start=T2_start,
@@ -123,7 +124,6 @@ model IntegratedPrimarySecondary
     final use_inputFilter=use_inputFilter,
     final init=initPum,
     final tau=tauPump,
-    final m_flow_nominal=m_flow_pum_nominal,
     final num=numPum,
     final deltaM=deltaM2,
     final dpValve_nominal=dpValPum_nominal,
@@ -136,7 +136,8 @@ model IntegratedPrimarySecondary
     final linearizeFlowResistance=linearizeFlowResistance2,
     final CvData=Buildings.Fluid.Types.CvTypes.OpPoint,
     final riseTimePump=riseTimePump,
-    final yPump_start=yPum_start)
+    final yPump_start=yPum_start,
+    m_flow_nominal=m_flow_pum_nominal)
     "Constant speed pumps"
     annotation (Placement(transformation(extent={{10,-30},{-10,-10}})));
   Buildings.Fluid.Sensors.MassFlowRate bypFlo(redeclare package Medium = Medium2)
