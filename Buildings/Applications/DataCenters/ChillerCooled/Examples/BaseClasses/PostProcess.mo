@@ -11,7 +11,7 @@ partial model PostProcess "Post-processing"
   Buildings.Utilities.Math.IntegratorWithReset PMCTim
     "Partial mechanic cooling time"
     annotation (Placement(transformation(extent={{240,40},{260,60}})));
-  Buildings.Utilities.Math.IntegratorWithReset FMCHou
+  Buildings.Utilities.Math.IntegratorWithReset FMCTim
     "Full mechanic cooling time"
     annotation (Placement(transformation(extent={{240,0},{260,20}})));
   Modelica.Blocks.Sources.RealExpression fulMecCooSig
@@ -51,7 +51,7 @@ equation
     annotation (Line(points={{201,90},{238,90}},   color={0,0,127}));
   connect(parMecCooSig.y,PMCTim. u)
     annotation (Line(points={{201,50},{238,50}},   color={0,0,127}));
-  connect(fulMecCooSig.y, FMCHou.u)
+  connect(fulMecCooSig.y,FMCTim. u)
     annotation (Line(points={{201,10},{238,10}},   color={0,0,127}));
   connect(PHVAC.y,EHVAC. u) annotation (Line(
       points={{201,-50},{238,-50}},
