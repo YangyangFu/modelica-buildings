@@ -13,7 +13,7 @@ model IntegratedPrimaryLoadSideEconomizer
     fulMecCooSig(
       y=if cooModCon.y == Integer(Buildings.Applications.DataCenters.Types.CoolingModes.FullMechanical)
       then 1 else 0),
-    PHVAC(y=cooTow[1].PFan + cooTow[2].PFan + pumCW[1].P + pumCW[2].P + sum(
+    PHVAC(y=cooTow[1].PFan + cooTow[2].PFan + pumCW.P[1] + pumCW.P[2] + sum(
           chiWSE.powChi + chiWSE.powPum) + ahu.PFan + ahu.PHea),
     PIT(y=roo.QSou.Q_flow));
   extends
@@ -77,13 +77,7 @@ equation
     annotation (Line(
       points={{-299,140},{-172,140}},
       color={0,0,127}));
-   for i in 1:numChi loop
-    connect(pumCW[i].port_a, TCWSup.port_b)
-      annotation (Line(
-        points={{-50,110},{-50,140},{-42,140}},
-        color={0,127,255},
-        thickness=0.5));
-   end for;
+
   connect(TCHWSupSet.y, cooModCon.TCHWSupSet)
     annotation (Line(
       points={{-239,160},{-222,160},{-222,118},{-216,118}},
