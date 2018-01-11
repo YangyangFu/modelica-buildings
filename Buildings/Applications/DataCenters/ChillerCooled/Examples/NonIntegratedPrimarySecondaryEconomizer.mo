@@ -13,7 +13,7 @@ model NonIntegratedPrimarySecondaryEconomizer
     fulMecCooSig(
       y=if cooModCon.y == Integer(Buildings.Applications.DataCenters.Types.CoolingModes.FullMechanical)
       then 1 else 0),
-    PHVAC(y=cooTow[1].PFan + cooTow[2].PFan + pumCW[1].P + pumCW[2].P + sum(
+    PHVAC(y=cooTow[1].PFan + cooTow[2].PFan + pumCW.P[1] + pumCW.P[2] + sum(
           chiWSE.powChi) + sum(priPum.P) + sum(secPum.P) + ahu.PFan + ahu.PHea),
     PIT(y=roo.QSou.Q_flow));
   extends
@@ -22,8 +22,8 @@ model NonIntegratedPrimarySecondaryEconomizer
       controllerType=Modelica.Blocks.Types.SimpleController.PI,
       Ti=60),
     weaData(filNam=Modelica.Utilities.Files.loadResource("modelica://Buildings/Resources/weatherdata/DRYCOLD.mos")),
-    CWPumCon(tWai=60),
-    chiStaCon(tWai=60));
+    chiStaCon(tWai=60),
+    pumCW(use_inputFilter=false));
 
   parameter Buildings.Fluid.Movers.Data.Generic[numChi] perPumSec(
     each pressure=
@@ -49,25 +49,19 @@ model NonIntegratedPrimarySecondaryEconomizer
     dpValve_nominal=6000,
     per=perPumSec,
     addPowerToMedium=false,
-    m_flow_nominal=m2_flow_chi_nominal,
-    energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
-    tau=1,
-    use_inputFilter=true)
+    m_flow_nominal=m2_flow_chi_nominal)
     "Secondary pumps"
     annotation (
       Placement(transformation(
         extent={{-10,10},{10,-10}},
         rotation=-90,
         origin={-40,-38})));
-  Buildings.Applications.DataCenters.ChillerCooled.Equipment.FlowMachine_m priPum(
+  Buildings.Applications.DataCenters.ChillerCooled.Equipment.FlowMachine_y priPum(
     redeclare package Medium = MediumW,
     dpValve_nominal=6000,
     per=perPumPri,
     m_flow_nominal=m2_flow_chi_nominal,
-    addPowerToMedium=false,
-    energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
-    tau=1,
-    use_inputFilter=true)
+    addPowerToMedium=false)
     "Constant speed pumps"
     annotation (Placement(
         transformation(
@@ -82,8 +76,6 @@ model NonIntegratedPrimarySecondaryEconomizer
     y=-ahu.port_a1.m_flow*4180*(TCHWRet.T - TCHWSupSet.y))
     "Cooling load in chillers"
     annotation (Placement(transformation(extent={{-212,130},{-192,150}})));
-  inner Modelica.StateGraph.StateGraphRoot stateGraphRoot
-    annotation (Placement(transformation(extent={{-200,-160},{-180,-140}})));
   Buildings.Fluid.Sensors.MassFlowRate bypFlo(
     redeclare package Medium = MediumW)
     "Sensor for bypass flowrate"
@@ -117,10 +109,6 @@ equation
     annotation (Line(
       points={{-109,110},{-80,110},{-80,37.6},{-1.6,37.6}},
       color={255,0,255}));
-  connect(CWPumCon.y, gai.u)
-    annotation (Line(
-      points={{-151,70},{-132,70}},
-      color={0,0,127}));
   connect(secPum.port_b, ahu.port_a1)
     annotation (Line(
       points={{-40,-48},{-40,-48},{-40,-114},{0,-114}},
