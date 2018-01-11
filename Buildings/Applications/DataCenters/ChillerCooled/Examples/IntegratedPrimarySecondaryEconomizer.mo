@@ -13,7 +13,7 @@ model IntegratedPrimarySecondaryEconomizer
     fulMecCooSig(
       y=if cooModCon.y == Integer(Buildings.Applications.DataCenters.Types.CoolingModes.FullMechanical)
       then 1 else 0),
-    PHVAC(y=cooTow[1].PFan + cooTow[2].PFan + pumCW[1].P + pumCW[2].P + sum(
+    PHVAC(y=cooTow[1].PFan + cooTow[2].PFan + pumCW.P[1] + pumCW.P[2] + sum(
           chiWSE.powChi + chiWSE.powPum) + sum(secPum.P) + ahu.PFan + ahu.PHea),
     PIT(y=roo.QSou.Q_flow));
   extends
@@ -102,13 +102,6 @@ equation
       points={{-99,-10},{-78,-10},{-78,-10},{-50,-10},{-50,-22}},
       color={0,0,127}));
 
-   for i in 1:numChi loop
-    connect(pumCW[i].port_a, TCWSup.port_b)
-      annotation (Line(
-        points={{-50,110},{-50,140},{-42,140}},
-        color={0,127,255},
-        thickness=0.5));
-   end for;
   connect(towTApp.y, cooModCon.TApp)
     annotation (Line(
       points={{-307,110},{-210,110}},
