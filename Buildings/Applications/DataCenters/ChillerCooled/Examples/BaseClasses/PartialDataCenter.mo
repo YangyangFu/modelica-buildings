@@ -90,7 +90,7 @@ partial model PartialDataCenter
     each energyDynamics=Modelica.Fluid.Types.Dynamics.SteadyStateInitial,
     each dp_nominal=30000,
     each m_flow_nominal=0.785*m1_flow_chi_nominal,
-    each PFan_nominal=18000)
+    PFan_nominal=8000)
     "Cooling tower"
     annotation (Placement(transformation(extent={{10,-10},{-10,10}},
       origin={10,140})));
@@ -226,8 +226,7 @@ partial model PartialDataCenter
     tWai=120)
     "Speed controller"
     annotation (Placement(transformation(extent={{-168,-14},{-148,6}})));
-  Modelica.Blocks.Sources.RealExpression mPum_flow(
-    y=chiWSE.port_b2.m_flow)
+  Modelica.Blocks.Sources.RealExpression mPum_flow(y=chiWSE.port_a2.m_flow)
     "Mass flowrate of variable speed pumps"
     annotation (Placement(transformation(extent={{-220,-6},{-200,14}})));
   Buildings.Controls.Continuous.LimPID pumSpe(
