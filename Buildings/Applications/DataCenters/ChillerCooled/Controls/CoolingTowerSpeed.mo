@@ -57,7 +57,8 @@ model CoolingTowerSpeed "Controller for the fan speed in cooling towers"
     "Speed signal for cooling tower fans"
     annotation (Placement(transformation(extent={{100,-10},{120,10}})));
 
-  Modelica.Blocks.Sources.Constant uni(k=1) "Unit"
+  Modelica.Blocks.Sources.Constant uni(k=0.9)
+                                            "Unit"
     annotation (Placement(transformation(extent={{20,30},{40,50}})));
   Modelica.Blocks.Sources.BooleanExpression pmcMod(
     y= cooMod == Integer(Buildings.Applications.DataCenters.Types.CoolingModes.PartialMechanical))
