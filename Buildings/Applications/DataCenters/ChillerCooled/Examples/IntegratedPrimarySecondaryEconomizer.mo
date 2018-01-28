@@ -41,11 +41,11 @@ model IntegratedPrimarySecondaryEconomizer
     tWai=tWai,
     deaBan1=1.1,
     deaBan2=0.5,
-    deaBan3=1.1,
-    deaBan4=0.5)
+    deaBan4=0.5,
+    deaBan3=1.5)
     "Cooling mode controller"
     annotation (Placement(transformation(extent={{-208,100},{-188,120}})));
-  Modelica.Blocks.Sources.RealExpression towTApp(y=cooTow[1].TApp_nominal)
+  Modelica.Blocks.Sources.RealExpression towTApp(y=4)
     "Cooling tower approach temperature"
     annotation (Placement(transformation(extent={{-328,100},{-308,120}})));
 

@@ -62,7 +62,7 @@ model DXCooledAirsideEconomizer
     annotation (Placement(transformation(extent={{-20,-70},{0,-50}})));
   Buildings.BoundaryConditions.WeatherData.ReaderTMY3 weaDat(
     pAtmSou=Buildings.BoundaryConditions.Types.DataSource.Parameter,
-    filNam=Modelica.Utilities.Files.loadResource("modelica://Buildings/Resources/weatherdata/USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.mos"))
+    filNam="modelica://Buildings/Resources/weatherdata/DRYCOLD.mos")
     "Weather data reader"
     annotation (Placement(transformation(extent={{-280,60},{-260,80}})));
   Buildings.BoundaryConditions.WeatherData.Bus weaBus "Weather data bus"
@@ -207,15 +207,29 @@ model DXCooledAirsideEconomizer
      Ti=120)
     "Speed controller for DX units"
     annotation (Placement(transformation(extent={{-60,-20},{-40,0}})));
+  Buildings.Fluid.Sensors.RelativeHumidityTwoPort relHumRoo(
+    redeclare package Medium = Medium,
+    m_flow_nominal=mA_flow_nominal)
+    "Relative humidity in the data center room"
+    annotation (Placement(
+        transformation(
+        extent={{10,-10},{-10,10}},
+        rotation=0,
+        origin={-72,-132})));
+  Buildings.Fluid.Sensors.RelativeHumidityTwoPort relHumSupAir(
+    redeclare package Medium = Medium,
+    m_flow_nominal=mA_flow_nominal)
+    "Relative humidity of the supply air"
+    annotation (Placement(transformation(
+        extent={{-10,-10},{10,10}},
+        rotation=0,
+        origin={104,-60})));
 equation
   connect(weaDat.weaBus, weaBus)
     annotation (Line(
       points={{-260,70},{-240,70}},
       color={255,204,51},
       thickness=0.5));
-  connect(fan.port_a, senTemSupAir.port_b)
-    annotation (Line(points={{120,-84},{120,-60},{50,-60}},
-                                                          color={0,127,255}));
   connect(senTemSupAir.port_a, varSpeDX.port_b)
     annotation (Line(points={{30,-60},{0,-60}},
                   color={0,127,255}));
@@ -269,10 +283,6 @@ equation
   connect(fan.port_b, roo.airPorts[1])
     annotation (Line(points={{120,-104},{120,-132},{52.475,-132},{52.475,-118.7}},
                                                             color={0,127,255}));
-  connect(eco.port_Ret, roo.airPorts[2])
-    annotation (Line(points={{-140,0},{-130,0},{-130,-132},{48.425,-132},{
-          48.425,-118.7}},                                        color={0,127,
-          255}));
   connect(const.y, feedback1.u1)
     annotation (Line(points={{-59,130},{-38,130}},
                                                  color={0,0,127}));
@@ -327,6 +337,14 @@ equation
     annotation (Line(
       points={{-39,-10},{-28,-10},{-28,-52},{-21,-52}},
       color={0,0,127}));
+  connect(eco.port_Ret, relHumRoo.port_b) annotation (Line(points={{-140,0},{
+          -130,0},{-130,-132},{-82,-132}}, color={0,127,255}));
+  connect(relHumRoo.port_a, roo.airPorts[2]) annotation (Line(points={{-62,-132},
+          {48.425,-132},{48.425,-118.7}}, color={0,127,255}));
+  connect(fan.port_a, relHumSupAir.port_b) annotation (Line(points={{120,-84},{
+          120,-60},{114,-60}}, color={0,127,255}));
+  connect(relHumSupAir.port_a, senTemSupAir.port_b)
+    annotation (Line(points={{94,-60},{50,-60}}, color={0,127,255}));
   annotation (Diagram(coordinateSystem(preserveAspectRatio=false,
     extent={{-280,-200},{220,220}})),
     __Dymola_Commands(file=

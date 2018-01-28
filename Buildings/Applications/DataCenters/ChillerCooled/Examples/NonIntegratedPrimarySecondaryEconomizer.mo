@@ -40,7 +40,7 @@ model NonIntegratedPrimarySecondaryEconomizer
   Buildings.Applications.DataCenters.ChillerCooled.Controls.CoolingModeNonIntegrated cooModCon(
     tWai=tWai,
     deaBan=1,
-    TSwi=TCHWSet - 5)
+    TSwi=TCHWSet - 7.5)
     "Cooling mode controller"
     annotation (Placement(transformation(extent={{-212,100},{-192,120}})));
 

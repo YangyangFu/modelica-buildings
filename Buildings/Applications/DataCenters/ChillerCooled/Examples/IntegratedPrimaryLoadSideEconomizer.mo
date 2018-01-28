@@ -21,7 +21,9 @@ model IntegratedPrimaryLoadSideEconomizer
     redeclare Buildings.Applications.DataCenters.ChillerCooled.Equipment.IntegratedPrimaryLoadSide chiWSE(
       addPowerToMedium=false,
       perPum=perPumPri),
-    weaData(filNam=Modelica.Utilities.Files.loadResource("modelica://Buildings/Resources/weatherdata/DRYCOLD.mos")));
+    weaData(filNam=Modelica.Utilities.Files.loadResource("modelica://Buildings/Resources/weatherdata/DRYCOLD.mos")),
+    chiStaCon(con1(waitTime=0)),
+    ahu(mWatMax_flow=0.0001));
 
   parameter Buildings.Fluid.Movers.Data.Generic[numChi] perPumPri(
     each pressure=Buildings.Fluid.Movers.BaseClasses.Characteristics.flowParameters(
@@ -34,8 +36,8 @@ model IntegratedPrimaryLoadSideEconomizer
     tWai=tWai,
     deaBan1=1.1,
     deaBan2=0.5,
-    deaBan3=1.1,
-    deaBan4=0.5)
+    deaBan4=0.5,
+    deaBan3=1.5)
     "Cooling mode controller"
     annotation (Placement(transformation(extent={{-214,100},{-194,120}})));
   Modelica.Blocks.Sources.RealExpression towTApp(y=cooTow[1].TApp_nominal)
