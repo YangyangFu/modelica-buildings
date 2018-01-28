@@ -90,7 +90,7 @@ partial model PartialDataCenter
     each energyDynamics=Modelica.Fluid.Types.Dynamics.SteadyStateInitial,
     each dp_nominal=30000,
     each m_flow_nominal=0.785*m1_flow_chi_nominal,
-    PFan_nominal=8000)
+    each PFan_nominal=8000)
     "Cooling tower"
     annotation (Placement(transformation(extent={{10,-10},{-10,10}},
       origin={10,140})));
@@ -159,7 +159,7 @@ partial model PartialDataCenter
     "Supply air temperature"
     annotation (Placement(transformation(extent={{10,-10},{-10,10}},
         rotation=90,
-        origin={-50,-150})));
+        origin={-50,-140})));
   Buildings.Examples.ChillerPlant.BaseClasses.SimplifiedRoom roo(
     redeclare replaceable package Medium = MediumA,
     rooLen=50,
@@ -281,6 +281,19 @@ partial model PartialDataCenter
         extent={{10,-10},{-10,10}},
         rotation=90,
         origin={-46,90})));
+  Fluid.Sensors.RelativeHumidityTwoPort relHumRoo(redeclare package Medium =
+        MediumA, m_flow_nominal=mAir_flow_nominal)
+    "Relative humidity in the data center room" annotation (Placement(
+        transformation(
+        extent={{-10,-10},{10,10}},
+        rotation=90,
+        origin={32,-160})));
+  Fluid.Sensors.RelativeHumidityTwoPort relHumSupAir(m_flow_nominal=
+        mAir_flow_nominal, redeclare final replaceable package Medium = MediumA)
+    "Relative humidity of the supply air" annotation (Placement(transformation(
+        extent={{10,-10},{-10,10}},
+        rotation=90,
+        origin={-50,-168})));
 equation
   connect(chiWSE.port_b2, TCHWSup.port_a)
     annotation (Line(
@@ -424,12 +437,12 @@ equation
       color={0,0,127}));
   connect(TAirSup.port_a, ahu.port_b2)
     annotation (Line(
-      points={{-50,-140},{-50,-126},{0,-126}},
+      points={{-50,-130},{-50,-126},{0,-126}},
       color={0,127,255},
       thickness=0.5));
   connect(TAirSup.T, ahuValSig.u_m)
     annotation (Line(
-      points={{-61,-150},{-72,-150},{-72,-92}},
+      points={{-61,-140},{-72,-140},{-72,-92}},
       color={0,0,127}));
   connect(ahuValSig.y, ahu.uVal)
     annotation (Line(
@@ -460,17 +473,7 @@ equation
     annotation (Line(
       points={{-236.9,65},{-174,65}},
       color={255,127,0}));
-  connect(ahu.port_a2, roo.airPorts[1])
-    annotation (Line(
-      points={{20,-126},{32,-126},{32,-196},{1.525,-196},{1.525,-188.7}},
-      color={0,127,255},
-      thickness=0.5));
 
-  connect(roo.airPorts[2], TAirSup.port_b)
-    annotation (Line(
-      points={{5.575,-188.7},{5.575,-196},{-50,-196},{-50,-160}},
-      color={0,127,255},
-      thickness=0.5));
   connect(roo.TRooAir, ahuFanSpeCon.u_m)
     annotation (Line(
       points={{-7,-180},{-110,-180},{-110,-172}},
@@ -509,6 +512,22 @@ equation
       thickness=0.5));
   connect(CWPumCon.y, pumCW.u) annotation (Line(points={{-151,70},{-136,70},{-136,
           92},{-70,92},{-70,114},{-50,114},{-50,102}}, color={0,0,127}));
+  connect(ahu.port_a2, relHumRoo.port_b) annotation (Line(
+      points={{20,-126},{32,-126},{32,-150}},
+      color={0,127,255},
+      thickness=0.5));
+  connect(relHumRoo.port_a, roo.airPorts[1]) annotation (Line(
+      points={{32,-170},{32,-196},{1.525,-196},{1.525,-188.7}},
+      color={0,127,255},
+      thickness=0.5));
+  connect(roo.airPorts[2], relHumSupAir.port_b) annotation (Line(
+      points={{5.575,-188.7},{5.575,-196},{-50,-196},{-50,-178}},
+      color={0,127,255},
+      thickness=0.5));
+  connect(relHumSupAir.port_a, TAirSup.port_b) annotation (Line(
+      points={{-50,-158},{-50,-150}},
+      color={0,127,255},
+      thickness=0.5));
   annotation (Diagram(coordinateSystem(preserveAspectRatio=false,
     extent={{-360,-200},{160,220}})),
     Documentation(info="<html>
