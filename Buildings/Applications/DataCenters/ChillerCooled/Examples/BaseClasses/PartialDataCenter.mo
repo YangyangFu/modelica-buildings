@@ -227,7 +227,7 @@ partial model PartialDataCenter
     "Cooling tower speed control"
     annotation (Placement(transformation(extent={{-170,170},{-150,186}})));
   Modelica.Blocks.Sources.RealExpression TCWSupSet(
-    y=min(29.44 + 273.15, max(273.15 + 15.56, cooTow[1].TAir + 3)))
+    y(unit="K")=min(29.44 + 273.15, max(273.15 + 15.56, cooTow[1].TAir + 3)))
     "Condenser water supply temperature setpoint"
     annotation (Placement(transformation(extent={{-260,176},{-240,196}})));
 
