@@ -240,8 +240,7 @@ partial model PartialDataCenter
     deaBanSpe=0.45)
     "Speed controller"
     annotation (Placement(transformation(extent={{-168,-14},{-148,6}})));
-  Modelica.Blocks.Sources.RealExpression mPum_flow(
-    y=chiWSE.port_b2.m_flow)
+  Modelica.Blocks.Sources.RealExpression mPum_flow(y=ahu.port_a1.m_flow)
     "Mass flowrate of variable speed pumps"
     annotation (Placement(transformation(extent={{-220,-6},{-200,14}})));
   Buildings.Controls.Continuous.LimPID pumSpe(
