@@ -1,5 +1,5 @@
 within Buildings.Applications.DataCenters.ChillerCooled.Paper;
-model NormalOperation
+model NormalOperation4
   import Buildings;
   extends Modelica.Icons.Example;
   extends
@@ -127,9 +127,6 @@ model NormalOperation
     annotation (Placement(transformation(extent={{300,30},{320,50}})));
   Modelica.Blocks.Sources.Constant powCha(k=500000) "Charging power"
     annotation (Placement(transformation(extent={{300,-10},{320,10}})));
-  Buildings.Applications.DataCenters.ChillerCooled.Paper.BaseClasses.IdealClosingSwitch
-    idealClosingSwitch
-    annotation (Placement(transformation(extent={{312,180},{332,200}})));
   Modelica.Blocks.Sources.BooleanStep booleanStep(startValue=true, startTime(
         displayUnit="h") = 129600)
     annotation (Placement(transformation(extent={{360,242},{340,262}})));
@@ -139,9 +136,7 @@ model NormalOperation
   Modelica.Blocks.Logical.Or con
     annotation (Placement(transformation(extent={{314,210},{294,230}})));
   Buildings.Electrical.AC.ThreePhasesBalanced.Sources.Grid gri
-    annotation (Placement(transformation(extent={{366,166},{386,186}})));
-  Buildings.Electrical.AC.OnePhase.Basics.Ground gnd1
-    annotation (Placement(transformation(extent={{446,144},{466,164}})));
+    annotation (Placement(transformation(extent={{320,180},{300,200}})));
 equation
   connect(TCHWSup.port_b, ahu.port_a1)
     annotation (Line(
@@ -266,33 +261,29 @@ equation
           {360,154},{316,154},{316,142}}, color={0,0,127}));
   connect(powCha.y, batCon.powCha) annotation (Line(points={{321,0},{358,0},{
           358,156},{312,156},{312,142}}, color={0,0,127}));
-  connect(idealClosingSwitch.terminal_n, loaCooTow.terminal) annotation (Line(
-        points={{312,190},{264,190},{264,170},{240,170}}, color={0,120,120}));
-  connect(idealClosingSwitch.terminal_n, loaPowCW.terminal) annotation (Line(
-        points={{312,190},{264,190},{264,130},{240,130}}, color={0,120,120}));
-  connect(idealClosingSwitch.terminal_n, loaChi.terminal) annotation (Line(
-        points={{312,190},{264,190},{264,40},{240,40}}, color={0,120,120}));
-  connect(idealClosingSwitch.terminal_n, loaPumCHW.terminal) annotation (Line(
-        points={{312,190},{264,190},{264,0},{240,0}}, color={0,120,120}));
-  connect(idealClosingSwitch.terminal_n, loaAHU.terminal) annotation (Line(
-        points={{312,190},{264,190},{264,-40},{240,-40}}, color={0,120,120}));
-  connect(bat.terminal, idealClosingSwitch.terminal_n) annotation (Line(points=
-          {{316,74},{268,74},{268,190},{312,190}}, color={0,120,120}));
-  connect(idealClosingSwitch.terminal_n, traACAC.terminal_n) annotation (Line(
-        points={{312,190},{264,190},{264,-38},{364,-38},{364,-88},{350,-88}},
-        color={0,120,120}));
   connect(booleanStep.y, con.u1) annotation (Line(points={{339,252},{328,252},{
           328,220},{316,220}}, color={255,0,255}));
   connect(booleanStep1.y, con.u2) annotation (Line(points={{339,220},{332,220},
           {332,212},{316,212}}, color={255,0,255}));
-  connect(con.y, idealClosingSwitch.control) annotation (Line(points={{293,220},
-          {288,220},{288,204},{322,204},{322,200}}, color={255,0,255}));
   connect(con.y, swiRea.u2) annotation (Line(points={{293,220},{272,220},{272,
           230},{222,230}}, color={255,0,255}));
   connect(con.y, batCon.connected) annotation (Line(points={{293,220},{288,220},
           {288,166},{308,166},{308,142}}, color={255,0,255}));
-  connect(gri.terminal, idealClosingSwitch.terminal_p) annotation (Line(points=
-          {{376,166},{376,162},{336,162},{336,190},{332,190}}, color={0,120,120}));
+  connect(gri.terminal, loaCooTow.terminal) annotation (Line(points={{310,180},
+          {310,170},{240,170}}, color={0,120,120}));
+  connect(gri.terminal, loaPowCW.terminal) annotation (Line(points={{310,180},{
+          310,170},{260,170},{260,130},{240,130}}, color={0,120,120}));
+  connect(gri.terminal, loaChi.terminal) annotation (Line(points={{310,180},{
+          310,170},{260,170},{260,40},{240,40}}, color={0,120,120}));
+  connect(gri.terminal, loaPumCHW.terminal) annotation (Line(points={{310,180},
+          {310,170},{260,170},{260,0},{240,0}}, color={0,120,120}));
+  connect(gri.terminal, loaAHU.terminal) annotation (Line(points={{310,180},{
+          310,170},{260,170},{260,-40},{240,-40}}, color={0,120,120}));
+  connect(gri.terminal, traACAC.terminal_n) annotation (Line(points={{310,180},
+          {310,170},{260,170},{260,-40},{362,-40},{362,-88},{350,-88}}, color={
+          0,120,120}));
+  connect(gri.terminal, bat.terminal) annotation (Line(points={{310,180},{310,
+          170},{272,170},{272,74},{316,74}}, color={0,120,120}));
   annotation (Diagram(coordinateSystem(preserveAspectRatio=false,
     extent={{-380,-220},{260,220}})), experiment(StopTime=86400));
-end NormalOperation;
+end NormalOperation4;
