@@ -36,8 +36,8 @@ model BatteryControl "Battery control"
     annotation (Placement(transformation(extent={{-10,10},{10,-10}},
         rotation=-90,
         origin={-30,-50})));
-  Modelica.StateGraph.Transition           toOff(condition=SOC < SOCLow and
-        not connected)                           "Transition to off"
+  Modelica.StateGraph.Transition           toOff(condition=SOC < SOCLow or
+        connected)                               "Transition to off"
     annotation (Placement(transformation(extent={{-10,10},{10,-10}},
         rotation=-90,
         origin={-60,-70})));
