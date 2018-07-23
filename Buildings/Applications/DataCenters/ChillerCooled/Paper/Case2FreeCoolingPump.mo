@@ -1,23 +1,26 @@
 within Buildings.Applications.DataCenters.ChillerCooled.Paper;
-model NormalOperation
+model Case2FreeCoolingPump
   import Buildings;
   extends Modelica.Icons.Example;
   extends
     Buildings.Applications.DataCenters.ChillerCooled.Paper.BaseClasses.PartialDataCenter(
     redeclare Buildings.Applications.DataCenters.ChillerCooled.Equipment.IntegratedPrimaryLoadSide chiWSE(
       addPowerToMedium=false,
-      perPum=perPumPri),
+      perPum=perPumPri,
+      use_inputFilter=true),
     weaData(filNam=Modelica.Utilities.Files.loadResource("modelica://Buildings/Resources/weatherdata/DRYCOLD.mos")),
-    roo(rooVol(mSenFac=10)),
+    roo(rooVol(mSenFac=25)),
     ahu(tauFan=10),
     val(use_inputFilter=true),
-    pumCW(use_inputFilter=true));
+    pumCW(use_inputFilter=true),
+    PLR = 0.25);
 
   parameter Buildings.Fluid.Movers.Data.Generic[numChi] perPumPri(
     each pressure=Buildings.Fluid.Movers.BaseClasses.Characteristics.flowParameters(
           V_flow=m2_flow_chi_nominal/1000*{0.2,0.6,1.0,1.2},
-          dp=(dp2_chi_nominal+dp2_wse_nominal+18000)*{1.5,1.3,1.0,0.6}))
+          dp=(dp2_chi_nominal+dp2_wse_nominal+18000+pipCHW.dp_nominal)*{1.5,1.3,1.0,0.6}))
     "Performance data for primary pumps";
+ parameter Modelica.SIunits.Energy EMax = 1800*1.3*QRoo_flow_nominal "Maximum available charge";
 
   Buildings.Applications.DataCenters.ChillerCooled.Controls.CoolingMode
     cooModCon(
@@ -93,9 +96,9 @@ model NormalOperation
   Electrical.AC.ThreePhasesBalanced.Conversion.ACACTransformer traACAC(
     VHigh=480,
     VLow=120,
-    VABase=40000,
     XoverR=8,
-    Zperc=0.03)
+    Zperc=0.03,
+    VABase=QRoo_flow_nominal)
     annotation (Placement(transformation(extent={{350,-98},{330,-78}})));
   Electrical.DC.Loads.Conductor conductor(mode=Buildings.Electrical.Types.Load.VariableZ_P_input,
       V_nominal=12)
@@ -115,8 +118,8 @@ model NormalOperation
     annotation (Placement(transformation(extent={{-100,100},{-80,120}})));
   Buildings.Electrical.AC.ThreePhasesBalanced.Storage.Battery bat(
     SOC_start=0,
-    EMax=900000000,
-    V_nominal=480)
+    V_nominal=480,
+    EMax=EMax)
     annotation (Placement(transformation(extent={{316,64},{336,84}})));
   Buildings.Applications.DataCenters.ChillerCooled.Paper.BaseClasses.BatteryControl
     batCon(SOCLow=0.01, SOCHig=0.99) annotation (Placement(transformation(
@@ -127,21 +130,18 @@ model NormalOperation
     annotation (Placement(transformation(extent={{300,30},{320,50}})));
   Modelica.Blocks.Sources.Constant powCha(k=500000) "Charging power"
     annotation (Placement(transformation(extent={{300,-10},{320,10}})));
-  Buildings.Applications.DataCenters.ChillerCooled.Paper.BaseClasses.IdealClosingSwitch
-    idealClosingSwitch
-    annotation (Placement(transformation(extent={{312,180},{332,200}})));
   Modelica.Blocks.Sources.BooleanStep booleanStep(startValue=true, startTime(
-        displayUnit="h") = 129600)
+        displayUnit="h") = 151200)
     annotation (Placement(transformation(extent={{360,242},{340,262}})));
   Modelica.Blocks.Sources.BooleanStep booleanStep1(startTime(displayUnit="h")=
-         131400)
+         153000)
     annotation (Placement(transformation(extent={{360,210},{340,230}})));
   Modelica.Blocks.Logical.Or con
     annotation (Placement(transformation(extent={{314,210},{294,230}})));
   Buildings.Electrical.AC.ThreePhasesBalanced.Sources.Grid gri
-    annotation (Placement(transformation(extent={{366,166},{386,186}})));
-  Buildings.Electrical.AC.OnePhase.Basics.Ground gnd1
-    annotation (Placement(transformation(extent={{446,144},{466,164}})));
+    annotation (Placement(transformation(extent={{320,180},{300,200}})));
+  Modelica.Blocks.Math.RealToBoolean criEqu "Critical equipment "
+    annotation (Placement(transformation(extent={{180,280},{160,300}})));
 equation
   connect(TCHWSup.port_b, ahu.port_a1)
     annotation (Line(
@@ -162,19 +162,23 @@ equation
         points={{-50,110},{-50,140},{-42,140}},
         color={0,127,255},
         thickness=0.5));
-    connect(swiRea.y, sigCWLoo[i].u1) annotation (Line(points={{199,230},{-280,230},
-          {-280,96},{-148,96},{-148,76},{-142,76}}, color={0,0,127}));
     connect(swiBoo.y, orChi[i].u2) annotation (Line(points={{159,252},{-110,252},
             {-110,132},{-102,132}},
                                  color={255,0,255}));
     connect(orChi[i].y, chiWSE.on[i]) annotation (Line(points={{-79,140},{-60,140},
-          {-60,120},{-8,120},{-8,37.6},{-1.6,37.6}}, color={255,0,255}));
-    connect(swiRea.y, sigPumCHW[i].u1) annotation (Line(points={{199,230},{-280,230},
-          {-280,16},{-92,16},{-92,-4},{-82,-4}}, color={0,0,127}));
+            {-60,120},{-10,120},{-10,37.6},{-1.6,37.6}},
+                                                     color={255,0,255}));
+    connect(uni.y, sigCWLoo[i].u1) annotation (Line(points={{239,250},{232,250},{232,
+          274},{-280,274},{-280,90},{-148,90},{-148,76},{-142,76}}, color={0,0,127}));
+    connect(uni.y, sigPumCHW[i].u1) annotation (Line(points={{239,250},{232,250},{
+          232,274},{-280,274},{-280,14},{-92,14},{-92,-4},{-82,-4}}, color={0,0,
+          127}));
+
    end for;
 
-    connect(orWSE.y, chiWSE.on[numChi+1]) annotation (Line(points={{-79,110},{-60,110},{-60,
-          120},{-10,120},{-10,37.6},{-1.6,37.6}}, color={255,0,255}));
+    connect(orWSE.y, chiWSE.on[numChi+1]) annotation (Line(points={{-79,110},{-60,
+          110},{-60,116},{-14,116},{-14,37.6},{-1.6,37.6}},
+                                                  color={255,0,255}));
   connect(TCHWSupSet.y, cooModCon.TCHWSupSet)
     annotation (Line(
       points={{-239,160},{-222,160},{-222,118},{-216,118}},
@@ -187,11 +191,6 @@ equation
     annotation (Line(
       points={{-328,-20},{-340,-20},{-340,200},{-224,200},{-224,114},{-216,114}},
       color={255,204,51},thickness=0.5));
-  connect(TCHWRet.port_b, chiWSE.port_a2)
-    annotation (Line(
-      points={{80,0},{40,0},{40,24},{20,24}},
-      color={0,127,255},
-      thickness=0.5));
   connect(cooModCon.TCHWRetWSE, TCHWRet.T)
     annotation (Line(
       points={{-216,102},{-228,102},{-228,206},{152,206},{152,20},{90,20},{90,
@@ -250,8 +249,6 @@ equation
           252},{182,252}}, color={0,0,127}));
   connect(wseOn.y, orWSE.u1)
     annotation (Line(points={{-119,110},{-102,110}}, color={255,0,255}));
-  connect(swiBoo.y, orWSE.u2) annotation (Line(points={{159,252},{-112,252},{-112,
-          102},{-102,102}}, color={255,0,255}));
   connect(sigCWLoo.y, val.y) annotation (Line(points={{-119,70},{-110,70},{-110,
           90},{-72,90},{-72,198},{60,198},{60,152}}, color={0,0,127}));
   connect(batCon.pow, bat.P) annotation (Line(points={{310,119},{310,100},{326,
@@ -266,33 +263,35 @@ equation
           {360,154},{316,154},{316,142}}, color={0,0,127}));
   connect(powCha.y, batCon.powCha) annotation (Line(points={{321,0},{358,0},{
           358,156},{312,156},{312,142}}, color={0,0,127}));
-  connect(idealClosingSwitch.terminal_n, loaCooTow.terminal) annotation (Line(
-        points={{312,190},{264,190},{264,170},{240,170}}, color={0,120,120}));
-  connect(idealClosingSwitch.terminal_n, loaPowCW.terminal) annotation (Line(
-        points={{312,190},{264,190},{264,130},{240,130}}, color={0,120,120}));
-  connect(idealClosingSwitch.terminal_n, loaChi.terminal) annotation (Line(
-        points={{312,190},{264,190},{264,40},{240,40}}, color={0,120,120}));
-  connect(idealClosingSwitch.terminal_n, loaPumCHW.terminal) annotation (Line(
-        points={{312,190},{264,190},{264,0},{240,0}}, color={0,120,120}));
-  connect(idealClosingSwitch.terminal_n, loaAHU.terminal) annotation (Line(
-        points={{312,190},{264,190},{264,-40},{240,-40}}, color={0,120,120}));
-  connect(bat.terminal, idealClosingSwitch.terminal_n) annotation (Line(points=
-          {{316,74},{268,74},{268,190},{312,190}}, color={0,120,120}));
-  connect(idealClosingSwitch.terminal_n, traACAC.terminal_n) annotation (Line(
-        points={{312,190},{264,190},{264,-38},{364,-38},{364,-88},{350,-88}},
-        color={0,120,120}));
   connect(booleanStep.y, con.u1) annotation (Line(points={{339,252},{328,252},{
           328,220},{316,220}}, color={255,0,255}));
   connect(booleanStep1.y, con.u2) annotation (Line(points={{339,220},{332,220},
           {332,212},{316,212}}, color={255,0,255}));
-  connect(con.y, idealClosingSwitch.control) annotation (Line(points={{293,220},
-          {288,220},{288,204},{322,204},{322,200}}, color={255,0,255}));
   connect(con.y, swiRea.u2) annotation (Line(points={{293,220},{272,220},{272,
           230},{222,230}}, color={255,0,255}));
   connect(con.y, batCon.connected) annotation (Line(points={{293,220},{288,220},
           {288,166},{308,166},{308,142}}, color={255,0,255}));
-  connect(gri.terminal, idealClosingSwitch.terminal_p) annotation (Line(points=
-          {{376,166},{376,162},{336,162},{336,190},{332,190}}, color={0,120,120}));
-  annotation (Diagram(coordinateSystem(preserveAspectRatio=false,
-    extent={{-380,-220},{260,220}})), experiment(StopTime=86400));
-end NormalOperation;
+  connect(gri.terminal, loaCooTow.terminal) annotation (Line(points={{310,180},
+          {310,170},{240,170}}, color={0,120,120}));
+  connect(gri.terminal, loaPowCW.terminal) annotation (Line(points={{310,180},{
+          310,170},{260,170},{260,130},{240,130}}, color={0,120,120}));
+  connect(gri.terminal, loaChi.terminal) annotation (Line(points={{310,180},{
+          310,170},{260,170},{260,40},{240,40}}, color={0,120,120}));
+  connect(gri.terminal, loaPumCHW.terminal) annotation (Line(points={{310,180},
+          {310,170},{260,170},{260,0},{240,0}}, color={0,120,120}));
+  connect(gri.terminal, loaAHU.terminal) annotation (Line(points={{310,180},{
+          310,170},{260,170},{260,-40},{240,-40}}, color={0,120,120}));
+  connect(gri.terminal, traACAC.terminal_n) annotation (Line(points={{310,180},
+          {310,170},{260,170},{260,-40},{362,-40},{362,-88},{350,-88}}, color={
+          0,120,120}));
+  connect(gri.terminal, bat.terminal) annotation (Line(points={{310,180},{310,
+          170},{272,170},{272,74},{316,74}}, color={0,120,120}));
+  connect(pipCHW.port_b, chiWSE.port_a2) annotation (Line(points={{48,0},{38,0},
+          {38,24},{20,24}}, color={0,127,255}));
+  connect(criEqu.u, uni.y) annotation (Line(points={{182,290},{232,290},{232,250},
+          {239,250}}, color={0,0,127}));
+  connect(criEqu.y, orWSE.u2) annotation (Line(points={{159,290},{-112,290},{-112,
+          102},{-102,102}}, color={255,0,255}));
+ annotation (Diagram(coordinateSystem(preserveAspectRatio=false,
+    extent={{-380,-220},{260,220}})), experiment(StopTime=172800));
+end Case2FreeCoolingPump;

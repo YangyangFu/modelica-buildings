@@ -1,23 +1,26 @@
 within Buildings.Applications.DataCenters.ChillerCooled.Paper;
-model NormalOperation4
+model Case2FreeCoolingAHU
   import Buildings;
   extends Modelica.Icons.Example;
   extends
     Buildings.Applications.DataCenters.ChillerCooled.Paper.BaseClasses.PartialDataCenter(
     redeclare Buildings.Applications.DataCenters.ChillerCooled.Equipment.IntegratedPrimaryLoadSide chiWSE(
       addPowerToMedium=false,
-      perPum=perPumPri),
+      perPum=perPumPri,
+      use_inputFilter=true),
     weaData(filNam=Modelica.Utilities.Files.loadResource("modelica://Buildings/Resources/weatherdata/DRYCOLD.mos")),
-    roo(rooVol(mSenFac=10)),
+    roo(rooVol(mSenFac=25)),
     ahu(tauFan=10),
     val(use_inputFilter=true),
-    pumCW(use_inputFilter=true));
+    pumCW(use_inputFilter=true),
+    PLR = 0.25);
 
   parameter Buildings.Fluid.Movers.Data.Generic[numChi] perPumPri(
     each pressure=Buildings.Fluid.Movers.BaseClasses.Characteristics.flowParameters(
           V_flow=m2_flow_chi_nominal/1000*{0.2,0.6,1.0,1.2},
           dp=(dp2_chi_nominal+dp2_wse_nominal+18000)*{1.5,1.3,1.0,0.6}))
     "Performance data for primary pumps";
+  parameter Modelica.SIunits.Energy EMax = 1800*1.3*QRoo_flow_nominal "Maximum available charge";
 
   Buildings.Applications.DataCenters.ChillerCooled.Controls.CoolingMode
     cooModCon(
@@ -93,9 +96,9 @@ model NormalOperation4
   Electrical.AC.ThreePhasesBalanced.Conversion.ACACTransformer traACAC(
     VHigh=480,
     VLow=120,
-    VABase=40000,
     XoverR=8,
-    Zperc=0.03)
+    Zperc=0.03,
+    VABase=QRoo_flow_nominal)
     annotation (Placement(transformation(extent={{350,-98},{330,-78}})));
   Electrical.DC.Loads.Conductor conductor(mode=Buildings.Electrical.Types.Load.VariableZ_P_input,
       V_nominal=12)
@@ -115,8 +118,8 @@ model NormalOperation4
     annotation (Placement(transformation(extent={{-100,100},{-80,120}})));
   Buildings.Electrical.AC.ThreePhasesBalanced.Storage.Battery bat(
     SOC_start=0,
-    EMax=900000000,
-    V_nominal=480)
+    V_nominal=480,
+    EMax=EMax)
     annotation (Placement(transformation(extent={{316,64},{336,84}})));
   Buildings.Applications.DataCenters.ChillerCooled.Paper.BaseClasses.BatteryControl
     batCon(SOCLow=0.01, SOCHig=0.99) annotation (Placement(transformation(
@@ -128,15 +131,16 @@ model NormalOperation4
   Modelica.Blocks.Sources.Constant powCha(k=500000) "Charging power"
     annotation (Placement(transformation(extent={{300,-10},{320,10}})));
   Modelica.Blocks.Sources.BooleanStep booleanStep(startValue=true, startTime(
-        displayUnit="h") = 129600)
+        displayUnit="h") = 151200)
     annotation (Placement(transformation(extent={{360,242},{340,262}})));
-  Modelica.Blocks.Sources.BooleanStep booleanStep1(startTime(displayUnit="h")
-       = 131400)
+  Modelica.Blocks.Sources.BooleanStep booleanStep1(startTime(displayUnit="h")=
+         153000)
     annotation (Placement(transformation(extent={{360,210},{340,230}})));
   Modelica.Blocks.Logical.Or con
     annotation (Placement(transformation(extent={{314,210},{294,230}})));
   Buildings.Electrical.AC.ThreePhasesBalanced.Sources.Grid gri
     annotation (Placement(transformation(extent={{320,180},{300,200}})));
+
 equation
   connect(TCHWSup.port_b, ahu.port_a1)
     annotation (Line(
@@ -182,11 +186,6 @@ equation
     annotation (Line(
       points={{-328,-20},{-340,-20},{-340,200},{-224,200},{-224,114},{-216,114}},
       color={255,204,51},thickness=0.5));
-  connect(TCHWRet.port_b, chiWSE.port_a2)
-    annotation (Line(
-      points={{80,0},{40,0},{40,24},{20,24}},
-      color={0,127,255},
-      thickness=0.5));
   connect(cooModCon.TCHWRetWSE, TCHWRet.T)
     annotation (Line(
       points={{-216,102},{-228,102},{-228,206},{152,206},{152,20},{90,20},{90,
@@ -284,6 +283,8 @@ equation
           0,120,120}));
   connect(gri.terminal, bat.terminal) annotation (Line(points={{310,180},{310,
           170},{272,170},{272,74},{316,74}}, color={0,120,120}));
+  connect(chiWSE.port_a2, pipCHW.port_b) annotation (Line(points={{20,24},{40,24},
+          {40,0},{48,0}}, color={0,127,255}));
   annotation (Diagram(coordinateSystem(preserveAspectRatio=false,
-    extent={{-380,-220},{260,220}})), experiment(StopTime=86400));
-end NormalOperation4;
+    extent={{-380,-220},{260,220}})), experiment(StopTime=172800));
+end Case2FreeCoolingAHU;
