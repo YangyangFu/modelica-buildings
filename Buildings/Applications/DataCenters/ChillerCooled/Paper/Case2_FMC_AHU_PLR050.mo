@@ -1,5 +1,5 @@
 within Buildings.Applications.DataCenters.ChillerCooled.Paper;
-model Case2FreeCoolingAHU
+model Case2_FMC_AHU_PLR050
   import Buildings;
   extends Modelica.Icons.Example;
   extends
@@ -8,21 +8,15 @@ model Case2FreeCoolingAHU
       addPowerToMedium=false,
       perPum=perPumPri,
       use_inputFilter=true),
-    weaData(filNam=Modelica.Utilities.Files.loadResource("modelica://Buildings/Resources/weatherdata/DRYCOLD.mos")),
     roo(rooVol(mSenFac=25)),
     ahu(tauFan=10),
     val(use_inputFilter=true),
     pumCW(use_inputFilter=true),
-    PLR = 0.25);
+    PLR = 0.50);
 
-  parameter Buildings.Fluid.Movers.Data.Generic[numChi] perPumPri(
-    each pressure=Buildings.Fluid.Movers.BaseClasses.Characteristics.flowParameters(
-          V_flow=m2_flow_chi_nominal/1000*{0.2,0.6,1.0,1.2},
-          dp=(dp2_chi_nominal+dp2_wse_nominal+18000)*{1.5,1.3,1.0,0.6}))
-    "Performance data for primary pumps";
-  parameter Modelica.SIunits.Energy EMax = 1800*1.3*QRoo_flow_nominal "Maximum available charge";
+  parameter Modelica.SIunits.Energy EMax = 1800*1.4*QRoo_flow_nominal "Maximum available charge";
 
-  Buildings.Applications.DataCenters.ChillerCooled.Controls.CoolingMode
+  Buildings.Applications.DataCenters.ChillerCooled.Paper.BaseClasses.CoolingMode
     cooModCon(
     tWai=tWai,
     deaBan1=1.1,
@@ -40,9 +34,12 @@ model Case2FreeCoolingAHU
     then 1 else 0)
     "On/off signal for valve 5"
     annotation (Placement(transformation(extent={{-160,30},{-140,50}})));
+
   Modelica.Blocks.Sources.RealExpression yVal6(
     y=if cooModCon.y == Integer(
-    Buildings.Applications.DataCenters.Types.CoolingModes.FreeCooling)
+    Buildings.Applications.DataCenters.ChillerCooled.Paper.BaseClasses.Types.CoolingModes.FreeCooling) or
+      cooModCon.y == Integer(
+    Buildings.Applications.DataCenters.ChillerCooled.Paper.BaseClasses.Types.CoolingModes.Outage)
     then 1 else 0)
     "On/off signal for valve 6"
     annotation (Placement(transformation(extent={{-160,14},{-140,34}})));
@@ -131,16 +128,26 @@ model Case2FreeCoolingAHU
   Modelica.Blocks.Sources.Constant powCha(k=500000) "Charging power"
     annotation (Placement(transformation(extent={{300,-10},{320,10}})));
   Modelica.Blocks.Sources.BooleanStep booleanStep(startValue=true, startTime(
-        displayUnit="h") = 151200)
+        displayUnit="h") = 18540000)
     annotation (Placement(transformation(extent={{360,242},{340,262}})));
   Modelica.Blocks.Sources.BooleanStep booleanStep1(startTime(displayUnit="h")=
-         153000)
+         18541800)
     annotation (Placement(transformation(extent={{360,210},{340,230}})));
   Modelica.Blocks.Logical.Or con
     annotation (Placement(transformation(extent={{314,210},{294,230}})));
   Buildings.Electrical.AC.ThreePhasesBalanced.Sources.Grid gri
     annotation (Placement(transformation(extent={{320,180},{300,200}})));
 
+  Modelica.Blocks.Sources.BooleanConstant sch
+    annotation (Placement(transformation(extent={{-340,220},{-320,240}})));
+  parameter Buildings.Fluid.Movers.Data.Generic[numChi]  perPumPri(each
+      pressure=
+        Buildings.Fluid.Movers.BaseClasses.Characteristics.flowParameters(
+        V_flow=m2_flow_chi_nominal/1000*{0.2,0.6,1.0,1.2}, dp=(dp2_chi_nominal +
+        dp2_wse_nominal + ahu.dp1_nominal + 18000 + pipCHW.dp_nominal +
+        dpSetPoi)*{1.2,1.1,1.0,0.6}))
+    "Performance data for primary chilled water pump"
+    annotation (Placement(transformation(extent={{-240,-200},{-220,-180}})));
 equation
   connect(TCHWSup.port_b, ahu.port_a1)
     annotation (Line(
@@ -196,10 +203,6 @@ equation
     annotation (Line(
       points={{-193,110},{-190,110},{-190,146},{-172,146}},
       color={255,127,0}));
-  connect(cooModCon.y,intToBoo.u)
-    annotation (Line(
-      points={{-193,110},{-172,110}},
-      color={255,127,0}));
   connect(TCHWSup.T, chiStaCon.TCHWSup)
     annotation (Line(
       points={{-26,11},{-26,18},{-182,18},{-182,134},{-172,134}},
@@ -242,8 +245,6 @@ equation
     annotation (Line(points={{-119,140},{-102,140}}, color={255,0,255}));
   connect(swiRea.y, swiBoo.u) annotation (Line(points={{199,230},{188,230},{188,
           252},{182,252}}, color={0,0,127}));
-  connect(wseOn.y, orWSE.u1)
-    annotation (Line(points={{-119,110},{-102,110}}, color={255,0,255}));
   connect(swiBoo.y, orWSE.u2) annotation (Line(points={{159,252},{-112,252},{-112,
           102},{-102,102}}, color={255,0,255}));
   connect(sigCWLoo.y, val.y) annotation (Line(points={{-119,70},{-110,70},{-110,
@@ -285,6 +286,19 @@ equation
           170},{272,170},{272,74},{316,74}}, color={0,120,120}));
   connect(chiWSE.port_a2, pipCHW.port_b) annotation (Line(points={{20,24},{40,24},
           {40,0},{48,0}}, color={0,127,255}));
+  connect(cooModCon.y, wseSta.cooMod) annotation (Line(points={{-193,110},{-174,
+          110},{-174,116},{-162,116}}, color={255,127,0}));
+  connect(wseSta.y, orWSE.u1)
+    annotation (Line(points={{-139,110},{-102,110}}, color={255,0,255}));
+  connect(sch.y, cooModCon.on) annotation (Line(points={{-319,230},{-212,230},{-212,
+          122}}, color={255,0,255}));
+  connect(con.y, cooModCon.connected) annotation (Line(points={{293,220},{272,220},
+          {272,276},{-206,276},{-206,122}}, color={255,0,255}));
   annotation (Diagram(coordinateSystem(preserveAspectRatio=false,
-    extent={{-380,-220},{260,220}})), experiment(StopTime=172800));
-end Case2FreeCoolingAHU;
+    extent={{-380,-220},{260,220}})), experiment(
+      StartTime=18403200,
+      StopTime=18576000,
+      __Dymola_Algorithm="Cvode"),
+    __Dymola_Commands(file="Resources/Scripts/Dymola/Applications/DataCenters/ChillerCooled/Paper/Case2_FMC_AHU_PLR050.mos"
+        "Simulate and Plot"));
+end Case2_FMC_AHU_PLR050;

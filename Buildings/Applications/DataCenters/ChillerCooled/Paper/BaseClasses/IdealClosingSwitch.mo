@@ -1,6 +1,7 @@
 within Buildings.Applications.DataCenters.ChillerCooled.Paper.BaseClasses;
 model IdealClosingSwitch
-  extends Buildings.Applications.DataCenters.ChillerCooled.Paper.BaseClasses.IdealSwitchOnePhase;
+  extends
+    Buildings.Applications.DataCenters.ChillerCooled.Paper.BaseClasses.IdealSwitchOnePhase;
   Modelica.Blocks.Interfaces.BooleanInput control
     "true => p--n connected, false => switch open" annotation (Placement(
         transformation(

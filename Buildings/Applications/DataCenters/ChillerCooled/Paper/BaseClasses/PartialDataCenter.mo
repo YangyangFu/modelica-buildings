@@ -53,9 +53,9 @@ partial model PartialDataCenter
     "Real heat generated in data center room";
 
   parameter Buildings.Fluid.Movers.Data.Generic perFan(
-    pressure(dp=800*{1.2,1.12,1},
-    V_flow=mAir_flow_nominal/1.29*{0,0.5,1}),
-    motorCooledByFluid=false)
+    motorCooledByFluid=false, pressure(dp=800*{1.461,1.455,1.407,1.329,1.234,
+          1.126,1.0,0.85,0.731}, V_flow=mAir_flow_nominal/1.29*{0,0.41,0.54,
+          0.66,0.77,0.89,1,1.12,1.19}))
     "Performance data for the fan"
     annotation (Placement(transformation(extent={{-280,-200},{-260,-180}})));
 
@@ -107,12 +107,11 @@ partial model PartialDataCenter
         origin={131,140.5})));
   Buildings.Fluid.HeatExchangers.CoolingTowers.YorkCalc cooTow[numChi](
     redeclare each replaceable package Medium = MediumW,
-    each TAirInWB_nominal(displayUnit="degC") = 283.15,
-    each TApp_nominal=6,
     each energyDynamics=Modelica.Fluid.Types.Dynamics.SteadyStateInitial,
     each dp_nominal=30000,
-    each m_flow_nominal=0.785*m1_flow_chi_nominal,
-    each PFan_nominal=18000)
+    each PFan_nominal=18000,
+    each m_flow_nominal=m1_flow_chi_nominal,
+    each TAirInWB_nominal(displayUnit="degC"))
     "Cooling tower"
     annotation (Placement(transformation(extent={{10,-10},{-10,10}},
       origin={10,140})));
@@ -122,7 +121,8 @@ partial model PartialDataCenter
     "Chilled water supply temperature"
     annotation (Placement(transformation(extent={{-16,-10},{-36,10}})));
   Buildings.BoundaryConditions.WeatherData.ReaderTMY3  weaData(filNam=
-    Modelica.Utilities.Files.loadResource("modelica://Buildings/Resources/weatherdata/USA_CA_San.Francisco.Intl.AP.724940_TMY3.mos"))
+        ModelicaServices.ExternalReferences.loadResource(
+        "modelica://Buildings/Resources/weatherdata/4C_Salem-McNary.Field.726940_TMY3.mos"))
     annotation (Placement(transformation(extent={{-360,-80},{-340,-60}})));
   Buildings.BoundaryConditions.WeatherData.Bus weaBus "Weather data bus"
     annotation (Placement(transformation(extent={{-338,-30},{-318,-10}})));
@@ -142,7 +142,7 @@ partial model PartialDataCenter
     each addPowerToMedium=false,
     per=perPumCW,
     each energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
-    each use_inputFilter=false)
+    each use_inputFilter=true)
     "Condenser water pump"
     annotation (Placement(transformation(
         extent={{-10,10},{10,-10}},
@@ -215,26 +215,19 @@ partial model PartialDataCenter
   Buildings.Applications.DataCenters.ChillerCooled.Paper.BaseClasses.ChillerStage
     chiStaCon(
     QEva_nominal=QEva_nominal,
-    tWai=60,
-    criPoiTem=TCHWSet + 1)
+    criPoiTem=TCHWSet + 1,
+    tWai=1200)
     "Chiller staging control"
     annotation (Placement(transformation(extent={{-170,130},{-150,150}})));
   Modelica.Blocks.Math.RealToBoolean chiOn[numChi]
     "Real value to boolean value"
     annotation (Placement(transformation(extent={{-140,130},{-120,150}})));
-  Modelica.Blocks.Math.IntegerToBoolean intToBoo(
-    threshold=Integer(Buildings.Applications.DataCenters.Types.CoolingModes.FullMechanical))
-    "Inverse on/off signal for the WSE"
-    annotation (Placement(transformation(extent={{-170,100},{-150,120}})));
-  Modelica.Blocks.Logical.Not wseOn
-    "True: WSE is on; False: WSE is off "
-    annotation (Placement(transformation(extent={{-140,100},{-120,120}})));
-  Buildings.Applications.DataCenters.ChillerCooled.Controls.ConstantSpeedPumpStage CWPumCon(
-    tWai=0)
+  Buildings.Applications.DataCenters.ChillerCooled.Paper.BaseClasses.ConstantSpeedPumpStage
+                                                                                   CWPumCon(tWai=30)
     "Condenser water pump controller"
     annotation (Placement(transformation(extent={{-172,60},{-152,80}})));
-  Modelica.Blocks.Sources.IntegerExpression chiNumOn(
-    y=integer(sum(chiStaCon.y)))
+  Modelica.Blocks.Sources.IntegerExpression chiNumOn(y=
+        Modelica.Math.BooleanVectors.countTrue(chiWSE.on[1:numChi]))
     "The number of running chillers"
     annotation (Placement(transformation(extent={{-260,54},{-238,76}})));
   Modelica.Blocks.Math.Gain gai[numChi](
@@ -329,6 +322,9 @@ partial model PartialDataCenter
     annotation (Placement(transformation(extent={{68,-10},{48,10}})));
 
 
+  Buildings.Applications.DataCenters.ChillerCooled.Paper.BaseClasses.wseStage
+    wseSta
+    annotation (Placement(transformation(extent={{-160,100},{-140,120}})));
 equation
   connect(chiWSE.port_b2, TCHWSup.port_a)
     annotation (Line(
@@ -407,10 +403,6 @@ equation
     annotation (Line(
       points={{-149,140},{-142,140}},
       color={0,0,127}));
-  connect(intToBoo.y, wseOn.u)
-    annotation (Line(
-      points={{-149,110},{-142,110}},
-      color={255,0,255}));
   connect(TCWSupSet.y, cooTowSpeCon.TCWSupSet)
     annotation (Line(
       points={{-239,186},{-172,186}},
