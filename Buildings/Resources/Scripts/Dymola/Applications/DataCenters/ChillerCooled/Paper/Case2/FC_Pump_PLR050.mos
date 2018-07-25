@@ -1,0 +1,5 @@
+simulateModel("Buildings.Applications.DataCenters.ChillerCooled.Paper.Case2.FC_Pump_PLR050", startTime=30499200, stopTime=30672000, method="Cvode", resultFile="FC_Pump_PLR050");
+removePlots(false);
+createPlot(id=1, position={0, 0, 1563, 677}, y={"loaCooTow.P", "loaPowCW.P", "loaChi.P", "loaPumCHW.P", "loaAHU.P"}, range={213.0, 215.0, -500000.0, 100000.0}, grid=true, filename="FC_Pump_PLR050.mat", colors={{28,108,200}, {238,46,47}, {0,140,72}, {217,67,180}, {0,0,0}}, timeUnit="h");
+createPlot(id=1, position={0, 0, 1563, 335}, y={"roo.TRooAir", "TAirSup.T"}, range={213.0, 215.0, -10.0, 60.0}, grid=true, subPlot=2, colors={{28,108,200}, {238,46,47}}, timeUnit="h", displayUnits={"degC", "degC"});
+
