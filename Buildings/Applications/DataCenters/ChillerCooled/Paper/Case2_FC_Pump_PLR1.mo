@@ -128,8 +128,8 @@ model Case2_FC_Pump_PLR1
   Modelica.Blocks.Sources.BooleanStep booleanStep(startValue=true, startTime(
         displayUnit="h") = 30636000)
     annotation (Placement(transformation(extent={{360,242},{340,262}})));
-  Modelica.Blocks.Sources.BooleanStep booleanStep1(startTime(displayUnit="h")
-       = 30637800)
+  Modelica.Blocks.Sources.BooleanStep booleanStep1(startTime(displayUnit="h")=
+         30637800)
     annotation (Placement(transformation(extent={{360,210},{340,230}})));
   Modelica.Blocks.Logical.Or con
     annotation (Placement(transformation(extent={{314,210},{294,230}})));

@@ -1,5 +1,5 @@
-within Buildings.Applications.DataCenters.ChillerCooled.Paper;
-model Case2_FC_AHU_PLR1
+within Buildings.Applications.DataCenters.ChillerCooled.Paper.Case1;
+model PLR050 "Part load ratio is 0.5"
   import Buildings;
   extends Modelica.Icons.Example;
   extends
@@ -12,7 +12,7 @@ model Case2_FC_AHU_PLR1
     ahu(tauFan=10),
     val(use_inputFilter=true),
     pumCW(use_inputFilter=true),
-    PLR = 1.0);
+    PLR = 0.5);
 
   parameter Modelica.SIunits.Energy EMax = 1800*1.4*QRoo_flow_nominal "Maximum available charge";
 
@@ -127,11 +127,9 @@ model Case2_FC_AHU_PLR1
     annotation (Placement(transformation(extent={{300,30},{320,50}})));
   Modelica.Blocks.Sources.Constant powCha(k=500000) "Charging power"
     annotation (Placement(transformation(extent={{300,-10},{320,10}})));
-  Modelica.Blocks.Sources.BooleanStep booleanStep(startValue=true, startTime(
-        displayUnit="h") = 30636000)
+  Modelica.Blocks.Sources.BooleanStep booleanStep(startTime(displayUnit="h"))
     annotation (Placement(transformation(extent={{360,242},{340,262}})));
-  Modelica.Blocks.Sources.BooleanStep booleanStep1(startTime(displayUnit="h")=
-         30637800)
+  Modelica.Blocks.Sources.BooleanStep booleanStep1(startTime(displayUnit="h"))
     annotation (Placement(transformation(extent={{360,210},{340,230}})));
   Modelica.Blocks.Logical.Or con
     annotation (Placement(transformation(extent={{314,210},{294,230}})));
@@ -296,10 +294,10 @@ equation
           {272,276},{-206,276},{-206,122}}, color={255,0,255}));
   annotation (Diagram(coordinateSystem(preserveAspectRatio=false,
     extent={{-380,-220},{260,220}})), experiment(
-      StartTime=30499200,
-      StopTime=30672000,
+      StopTime=31536000,
+      Tolerance=1e-06,
       __Dymola_Algorithm="Cvode"),
     __Dymola_Commands(file=
-          "Resources/Scripts/Dymola/Applications/DataCenters/ChillerCooled/Paper/Case2_FC_AHU_PLR1.mos"
+          "Resources/Scripts/Dymola/Applications/DataCenters/ChillerCooled/Paper/Case1/PLR050.mos"
         "Simulate and Plot"));
-end Case2_FC_AHU_PLR1;
+end PLR050;
