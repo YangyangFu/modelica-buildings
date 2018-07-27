@@ -14,7 +14,6 @@ model PLR075 "Part load ratio is 0.75"
     pumCW(use_inputFilter=true),
     PLR = 0.75);
 
-  parameter Modelica.SIunits.Energy EMax = 1800*1.4*QRoo_flow_nominal "Maximum available charge";
 
   Buildings.Applications.DataCenters.ChillerCooled.Paper.BaseClasses.CoolingMode
     cooModCon(

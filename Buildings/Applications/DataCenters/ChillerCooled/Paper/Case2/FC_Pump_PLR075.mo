@@ -13,8 +13,6 @@ model FC_Pump_PLR075
     pumCW(use_inputFilter=true),
     PLR = 0.75);
 
- parameter Modelica.SIunits.Energy EMax = 1800*1.4*QRoo_flow_nominal "Maximum available charge";
-
   Buildings.Applications.DataCenters.ChillerCooled.Paper.BaseClasses.CoolingMode
     cooModCon(
     tWai=tWai,
@@ -121,7 +119,7 @@ model FC_Pump_PLR075
         extent={{10,-10},{-10,10}},
         rotation=90,
         origin={310,130})));
-  Buildings.Controls.OBC.CDL.Continuous.MultiSum criPow(nin=2) "Critical power"
+  Buildings.Controls.OBC.CDL.Continuous.MultiSum criPow(nin=5) "Critical power"
     annotation (Placement(transformation(extent={{300,30},{320,50}})));
   Modelica.Blocks.Sources.Constant powCha(k=500000) "Charging power"
     annotation (Placement(transformation(extent={{300,-10},{320,10}})));
@@ -255,9 +253,9 @@ equation
   connect(bat.SOC, batCon.SOC) annotation (Line(points={{337,80},{356,80},{356,
           158},{304,158},{304,142}}, color={0,0,127}));
   connect(powAHU.y, criPow.u[1]) annotation (Line(points={{201,-40},{212,-40},{
-          212,-16},{276,-16},{276,43.5},{298,43.5}}, color={0,0,127}));
+          212,-16},{276,-16},{276,45.6},{298,45.6}}, color={0,0,127}));
   connect(powIT.y, criPow.u[2]) annotation (Line(points={{201,-88},{212,-88},{
-          212,-58},{278,-58},{278,36.5},{298,36.5}}, color={0,0,127}));
+          212,-58},{278,-58},{278,42.8},{298,42.8}}, color={0,0,127}));
   connect(criPow.y, batCon.powDis) annotation (Line(points={{321.7,40},{360,40},
           {360,154},{316,154},{316,142}}, color={0,0,127}));
   connect(powCha.y, batCon.powCha) annotation (Line(points={{321,0},{358,0},{
@@ -299,6 +297,13 @@ equation
           110},{-172,116},{-162,116}}, color={255,127,0}));
   connect(wseSta.y, orWSE.u1)
     annotation (Line(points={{-139,110},{-102,110}}, color={255,0,255}));
+
+  connect(powPumCHW.y, criPow.u[3]) annotation (Line(points={{201,0},{210,0},{
+          210,22},{272,22},{272,40},{298,40}}, color={0,0,127}));
+  connect(powPumCW.y, criPow.u[4]) annotation (Line(points={{201,130},{214,130},
+          {214,54},{270,54},{270,37.2},{298,37.2}}, color={0,0,127}));
+  connect(powCooTow.y, criPow.u[5]) annotation (Line(points={{201,170},{210,170},
+          {210,58},{274,58},{274,34.4},{298,34.4}}, color={0,0,127}));
  annotation (Diagram(coordinateSystem(preserveAspectRatio=false,
     extent={{-380,-220},{260,220}}), graphics={Rectangle(
           extent={{154,326},{280,190}},

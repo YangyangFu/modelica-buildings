@@ -46,16 +46,16 @@ partial model PartialDataCenter
   parameter Modelica.SIunits.Time tWai=1200 "Waiting time";
 
   // AHU
-  parameter Modelica.SIunits.Power QRoo_flow_nominal=-numChi*QEva_nominal
+  parameter Modelica.SIunits.Power QRoo_flow_nominal=-0.8*numChi*QEva_nominal
     "Heat generation of the computer room";
   parameter Real PLR = 0.25 "Part load ratio of the data center";
   parameter Modelica.SIunits.Power QRoo_flow = PLR*QRoo_flow_nominal
     "Real heat generated in data center room";
 
   parameter Buildings.Fluid.Movers.Data.Generic perFan(
-    motorCooledByFluid=false, pressure(dp=800*{1.461,1.455,1.407,1.329,1.234,
-          1.126,1.0,0.85,0.731}, V_flow=mAir_flow_nominal/1.29*{0,0.41,0.54,
-          0.66,0.77,0.89,1,1.12,1.19}))
+    motorCooledByFluid=false, pressure(dp=1500*{1.461,1.455,1.407,1.329,1.234,1.126,
+          1.0,0.85,0.731}, V_flow=mAir_flow_nominal/1.29*{0,0.41,0.54,0.66,0.77,
+          0.89,1,1.12,1.19}))
     "Performance data for the fan"
     annotation (Placement(transformation(extent={{-280,-200},{-260,-180}})));
 
@@ -71,14 +71,17 @@ partial model PartialDataCenter
   parameter Real yValMinAHU(min=0,max=1,unit="1")=0.1
     "Minimum valve openning position";
   // Set point
-  parameter Modelica.SIunits.Temperature TCHWSet = 273.15 + 7
+  parameter Modelica.SIunits.Temperature TCHWSet = 273.15 + 8
     "Chilled water temperature setpoint";
-  parameter Modelica.SIunits.Temperature TSupAirSet = TCHWSet + 9
+  parameter Modelica.SIunits.Temperature TSupAirSet = TCHWSet + 8
     "Supply air temperature setpoint";
   parameter Modelica.SIunits.Temperature TRetAirSet = 273.15 + 25
     "Supply air temperature setpoint";
   parameter Modelica.SIunits.Pressure dpSetPoi = 80000
     "Differential pressure setpoint";
+
+ // UPS
+  parameter Modelica.SIunits.Energy EMax = 1800*1.6*QRoo_flow_nominal "Maximum available charge";
 
   replaceable Buildings.Applications.DataCenters.ChillerCooled.Equipment.BaseClasses.PartialChillerWSE chiWSE(
     redeclare replaceable package Medium1 = MediumW,
@@ -109,9 +112,9 @@ partial model PartialDataCenter
     redeclare each replaceable package Medium = MediumW,
     each energyDynamics=Modelica.Fluid.Types.Dynamics.SteadyStateInitial,
     each dp_nominal=30000,
-    each PFan_nominal=18000,
     each m_flow_nominal=m1_flow_chi_nominal,
-    each TAirInWB_nominal(displayUnit="degC"))
+    each TAirInWB_nominal(displayUnit="degC"),
+    each PFan_nominal=36000)
     "Cooling tower"
     annotation (Placement(transformation(extent={{10,-10},{-10,10}},
       origin={10,140})));
@@ -155,7 +158,6 @@ partial model PartialDataCenter
     m1_flow_nominal=numChi*m2_flow_chi_nominal,
     m2_flow_nominal=mAir_flow_nominal,
     dpValve_nominal=6000,
-    dp2_nominal=600,
     mWatMax_flow=0.01,
     UA_nominal=UA_nominal,
     addPowerToMedium=false,
@@ -164,7 +166,8 @@ partial model PartialDataCenter
     QHeaMax_flow=30000,
     energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
     dp1_nominal=30000,
-    perFan=perFan)
+    perFan=perFan,
+    dp2_nominal=800)
     "Air handling unit"
     annotation (Placement(transformation(extent={{0,-130},{20,-110}})));
   Buildings.Fluid.Sensors.TemperatureTwoPort TCHWRet(
@@ -309,7 +312,8 @@ partial model PartialDataCenter
     lambdaIns=0.01,
     length=1000,
     m_flow_nominal=numChi*m1_flow_chi_nominal,
-    v_nominal=0.5)
+    v_nominal=0.5,
+    dp_nominal=180000)
     annotation (Placement(transformation(extent={{48,50},{68,70}})));
   Buildings.Fluid.FixedResistances.Pipe pipCHW(
     redeclare package Medium = MediumW,
@@ -318,13 +322,21 @@ partial model PartialDataCenter
     lambdaIns=0.01,
     length=1000,
     m_flow_nominal=numChi*m2_flow_chi_nominal,
-    v_nominal=0.5)
+    dp_nominal=80000,
+    v_nominal=1)
     annotation (Placement(transformation(extent={{68,-10},{48,10}})));
 
 
   Buildings.Applications.DataCenters.ChillerCooled.Paper.BaseClasses.wseStage
     wseSta
     annotation (Placement(transformation(extent={{-160,100},{-140,120}})));
+  Buildings.Fluid.FixedResistances.PressureDrop duc(
+    m_flow_nominal=mAir_flow_nominal,
+    dp_nominal=600,
+    redeclare package Medium = MediumA) annotation (Placement(transformation(
+        extent={{-10,-10},{10,10}},
+        rotation=90,
+        origin={32,-162})));
 equation
   connect(chiWSE.port_b2, TCHWSup.port_a)
     annotation (Line(
@@ -480,15 +492,10 @@ equation
     annotation (Line(
       points={{-236.9,65},{-174,65}},
       color={255,127,0}));
-  connect(ahu.port_a2, roo.airPorts[1])
-    annotation (Line(
-      points={{20,-126},{32,-126},{32,-196},{1.525,-196},{1.525,-188.7}},
-      color={0,127,255},
-      thickness=0.5));
 
-  connect(roo.airPorts[2], TAirSup.port_b)
+  connect(roo.airPorts[1], TAirSup.port_b)
     annotation (Line(
-      points={{5.575,-188.7},{5.575,-196},{-50,-196},{-50,-170}},
+      points={{1.525,-188.7},{1.525,-196},{-50,-196},{-50,-170}},
       color={0,127,255},
       thickness=0.5));
   connect(roo.TRooAir, ahuFanSpeCon.u_m)
@@ -537,6 +544,10 @@ equation
     annotation (Line(points={{68,60},{82,60}}, color={0,127,255}));
   connect(pipCHW.port_a, TCHWRet.port_b)
     annotation (Line(points={{68,0},{80,0}}, color={0,127,255}));
+  connect(ahu.port_a2, duc.port_b) annotation (Line(points={{20,-126},{32,-126},
+          {32,-152}}, color={0,127,255}));
+  connect(duc.port_a, roo.airPorts[2]) annotation (Line(points={{32,-172},{32,-196},
+          {5.575,-196},{5.575,-188.7}}, color={0,127,255}));
   annotation (Diagram(coordinateSystem(preserveAspectRatio=false,
     extent={{-360,-200},{160,220}})),
     Documentation(info="<html>

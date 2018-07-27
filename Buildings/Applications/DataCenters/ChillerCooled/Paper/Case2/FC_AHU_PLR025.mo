@@ -14,8 +14,6 @@ model FC_AHU_PLR025
     pumCW(use_inputFilter=true),
     PLR = 0.25);
 
-  parameter Modelica.SIunits.Energy EMax = 1800*1.4*QRoo_flow_nominal "Maximum available charge";
-
   Buildings.Applications.DataCenters.ChillerCooled.Paper.BaseClasses.CoolingMode
     cooModCon(
     tWai=tWai,
