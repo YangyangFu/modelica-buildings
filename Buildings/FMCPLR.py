@@ -24,8 +24,8 @@ path = "c:/Users/fuya744/github/modelica-buildings/Buildings/"
 os.chdir(path)
 
 # set up interested period (outage in FC mode)
-ts = (8510*60-5)*60
-te = (8510.5*60+5)*60
+ts = (5150*60-5)*60
+te = (5150.5*60+5)*60
 tim_Nor = np.arange(ts,te+1,60)
 
 # constant values
@@ -52,7 +52,7 @@ print len(tim_Nor)
 
 #**** Critical equipment: AHU
 #*************************
-nameResCriAHU100 = "FC_AHU_PLR1.mat"
+nameResCriAHU100 = "FMC_AHU_PLR1.mat"
 resCriAHU100 = Reader(path+nameResCriAHU100,"dymola")
 tim_CriAHU100, SOC_CriAHU100 = resCriAHU100.values("bat.SOC")
 tim_CriAHU100, TRooAir_CriAHU100 = resCriAHU100.values("roo.TRooAir")
@@ -64,7 +64,7 @@ TRooAir_CriAHU100 = int(tim_Nor)
 
 #**** critical equipment: AHU + Pumps
 #*************************
-nameResCriPum100 = "FC_Pump_PLR1.mat"
+nameResCriPum100 = "FMC_Pump_PLR1.mat"
 resCriPum100 = Reader(path+nameResCriPum100,"dymola")
 tim_CriPum100, SOC_CriPum100 = resCriPum100.values("bat.SOC")
 tim_CriPum100, TRooAir_CriPum100 = resCriPum100.values("roo.TRooAir")
@@ -80,7 +80,7 @@ TRooAir_CriPum100 = int(tim_Nor)
 
 #**** Critical equipment: AHU
 #*************************
-nameResCriAHU075 = "FC_AHU_PLR075.mat"
+nameResCriAHU075 = "FMC_AHU_PLR075.mat"
 resCriAHU075 = Reader(path+nameResCriAHU075,"dymola")
 tim_CriAHU075, SOC_CriAHU075 = resCriAHU075.values("bat.SOC")
 tim_CriAHU075, TRooAir_CriAHU075 = resCriAHU075.values("roo.TRooAir")
@@ -92,7 +92,7 @@ TRooAir_CriAHU075 = int(tim_Nor)
 
 #**** critical equipment: AHU + Pumps
 #*************************
-nameResCriPum075 = "FC_Pump_PLR075.mat"
+nameResCriPum075 = "FMC_Pump_PLR075.mat"
 resCriPum075 = Reader(path+nameResCriPum075,"dymola")
 tim_CriPum075, SOC_CriPum075 = resCriPum075.values("bat.SOC")
 tim_CriPum075, TRooAir_CriPum075 = resCriPum075.values("roo.TRooAir")
@@ -109,7 +109,7 @@ TRooAir_CriPum075 = int(tim_Nor)
 
 #**** Critical equipment: AHU
 #*************************
-nameResCriAHU050 = "FC_AHU_PLR050.mat"
+nameResCriAHU050 = "FMC_AHU_PLR050.mat"
 resCriAHU050 = Reader(path+nameResCriAHU050,"dymola")
 tim_CriAHU050, SOC_CriAHU050 = resCriAHU050.values("bat.SOC")
 tim_CriAHU050, TRooAir_CriAHU050 = resCriAHU050.values("roo.TRooAir")
@@ -121,7 +121,7 @@ TRooAir_CriAHU050 = int(tim_Nor)
 
 #**** critical equipment: AHU + Pumps
 #*************************
-nameResCriPum050 = "FC_Pump_PLR050.mat"
+nameResCriPum050 = "FMC_Pump_PLR050.mat"
 resCriPum050 = Reader(path+nameResCriPum050,"dymola")
 tim_CriPum050, SOC_CriPum050 = resCriPum050.values("bat.SOC")
 tim_CriPum050, TRooAir_CriPum050 = resCriPum050.values("roo.TRooAir")
@@ -136,7 +136,7 @@ TRooAir_CriPum050 = int(tim_Nor)
 
 #**** Critical equipment: AHU
 #*************************
-nameResCriAHU025 = "FC_AHU_PLR025.mat"
+nameResCriAHU025 = "FMC_AHU_PLR025.mat"
 resCriAHU025 = Reader(path+nameResCriAHU025,"dymola")
 tim_CriAHU025, SOC_CriAHU025 = resCriAHU025.values("bat.SOC")
 tim_CriAHU025, TRooAir_CriAHU025 = resCriAHU025.values("roo.TRooAir")
@@ -148,7 +148,7 @@ TRooAir_CriAHU025 = int(tim_Nor)
 
 #**** critical equipment: AHU + Pumps
 #*************************
-nameResCriPum025 = "FC_Pump_PLR025.mat"
+nameResCriPum025 = "FMC_Pump_PLR025.mat"
 resCriPum025 = Reader(path+nameResCriPum025,"dymola")
 tim_CriPum025, SOC_CriPum025 = resCriPum025.values("bat.SOC")
 tim_CriPum025, TRooAir_CriPum025 = resCriPum025.values("roo.TRooAir")
@@ -199,8 +199,8 @@ plt.ylabel('SOC')
 plt.xticks(a)
 plt.xlabel ('Time')
 plt.legend(["CE: AHU","CE: AHU+Pump","Normal"],loc=3)
-plt.savefig('FCPLR100.svg')
-plt.savefig('FCPLR100.eps')
+plt.savefig('FMCPLR100.svg')
+plt.savefig('FMCPLR100.eps')
 plt.show()
 
 ### -------------------------------------------------------
@@ -229,8 +229,8 @@ plt.ylabel('SOC')
 plt.xticks(a)
 plt.xlabel ('Time')
 plt.legend(["CE: AHU","CE: AHU+Pump","Normal"],loc=3)
-plt.savefig('FCPLR075.svg')
-plt.savefig('FCPLR075.eps')
+plt.savefig('FMCPLR075.svg')
+plt.savefig('FMCPLR075.eps')
 plt.show()
 
 ### -------------------------------------------------------
@@ -259,8 +259,8 @@ plt.ylabel('SOC')
 plt.xticks(a)
 plt.xlabel ('Time')
 plt.legend(["CE: AHU","CE: AHU+Pump","Normal"],loc=3)
-plt.savefig('FCPLR050.svg')
-plt.savefig('FCPLR050.eps')
+plt.savefig('FMCPLR050.svg')
+plt.savefig('FMCPLR050.eps')
 plt.show()
 
 ### -------------------------------------------------------
@@ -289,6 +289,6 @@ plt.ylabel('SOC')
 plt.xticks(a)
 plt.xlabel ('Time')
 plt.legend(["CE: AHU","CE: AHU+Pump","Normal"],loc=3)
-plt.savefig('FCPLR025.svg')
-plt.savefig('FCPLR025.eps')
+plt.savefig('FMCPLR025.svg')
+plt.savefig('FMCPLR025.eps')
 plt.show()
