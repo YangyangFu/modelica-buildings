@@ -74,6 +74,17 @@ SOC_CriPum100 = int(tim_Nor)
 int = interpolate.interp1d(tim_CriPum100,TRooAir_CriPum100, kind='linear')
 TRooAir_CriPum100 = int(tim_Nor)
 
+#**** critical equipment: Pumps to AHU
+#*************************
+nameResCriPumAHU100 = "FMC_PumpToAHU_PLR1.mat"
+resCriPumAHU100 = Reader(path+nameResCriPumAHU100,"dymola")
+tim_CriPumAHU100, SOC_CriPumAHU100 = resCriPumAHU100.values("bat.SOC")
+tim_CriPumAHU100, TRooAir_CriPumAHU100 = resCriPumAHU100.values("roo.TRooAir")
+# interplote to every minute
+int = interpolate.interp1d(tim_CriPumAHU100,SOC_CriPumAHU100, kind='linear')
+SOC_CriPumAHU100 = int(tim_Nor)
+int = interpolate.interp1d(tim_CriPumAHU100,TRooAir_CriPumAHU100, kind='linear')
+TRooAir_CriPumAHU100 = int(tim_Nor)
 # ----------------------------------------------------------------------------
 ## PLR = 0.75
 # normal operation
@@ -102,7 +113,17 @@ SOC_CriPum075 = int(tim_Nor)
 int = interpolate.interp1d(tim_CriPum075,TRooAir_CriPum075, kind='linear')
 TRooAir_CriPum075 = int(tim_Nor)
 
-
+#**** critical equipment: Pumps to AHU
+#*************************
+nameResCriPumAHU075 = "FMC_PumpToAHU_PLR075.mat"
+resCriPumAHU075 = Reader(path+nameResCriPumAHU075,"dymola")
+tim_CriPumAHU075, SOC_CriPumAHU075 = resCriPumAHU075.values("bat.SOC")
+tim_CriPumAHU075, TRooAir_CriPumAHU075 = resCriPumAHU075.values("roo.TRooAir")
+# interplote to every minute
+int = interpolate.interp1d(tim_CriPumAHU075,SOC_CriPumAHU075, kind='linear')
+SOC_CriPumAHU075 = int(tim_Nor)
+int = interpolate.interp1d(tim_CriPumAHU075,TRooAir_CriPumAHU075, kind='linear')
+TRooAir_CriPumAHU075 = int(tim_Nor)
 # ----------------------------------------------------------------------------
 ## PLR = 0.50
 # normal operation
@@ -130,6 +151,20 @@ int = interpolate.interp1d(tim_CriPum050,SOC_CriPum050, kind='linear')
 SOC_CriPum050 = int(tim_Nor)
 int = interpolate.interp1d(tim_CriPum050,TRooAir_CriPum050, kind='linear')
 TRooAir_CriPum050 = int(tim_Nor)
+
+#**** critical equipment: Pumps to AHU
+#*************************
+nameResCriPumAHU050 = "FMC_PumpToAHU_PLR050.mat"
+resCriPumAHU050 = Reader(path+nameResCriPumAHU050,"dymola")
+tim_CriPumAHU050, SOC_CriPumAHU050 = resCriPumAHU050.values("bat.SOC")
+tim_CriPumAHU050, TRooAir_CriPumAHU050 = resCriPumAHU050.values("roo.TRooAir")
+# interplote to every minute
+int = interpolate.interp1d(tim_CriPumAHU050,SOC_CriPumAHU050, kind='linear')
+SOC_CriPumAHU050 = int(tim_Nor)
+int = interpolate.interp1d(tim_CriPumAHU050,TRooAir_CriPumAHU050, kind='linear')
+TRooAir_CriPumAHU050 = int(tim_Nor)
+
+
 # ----------------------------------------------------------------------------
 ## PLR = 0.25
 # normal operation
@@ -158,6 +193,17 @@ SOC_CriPum025 = int(tim_Nor)
 int = interpolate.interp1d(tim_CriPum025,TRooAir_CriPum025, kind='linear')
 TRooAir_CriPum025 = int(tim_Nor)
 
+#**** critical equipment: Pumps to AHU
+#*************************
+nameResCriPumAHU025 = "FMC_PumpToAHU_PLR025.mat"
+resCriPumAHU025 = Reader(path+nameResCriPumAHU025,"dymola")
+tim_CriPumAHU025, SOC_CriPumAHU025 = resCriPumAHU025.values("bat.SOC")
+tim_CriPumAHU025, TRooAir_CriPumAHU025 = resCriPumAHU025.values("roo.TRooAir")
+# interplote to every minute
+int = interpolate.interp1d(tim_CriPumAHU025,SOC_CriPumAHU025, kind='linear')
+SOC_CriPumAHU025 = int(tim_Nor)
+int = interpolate.interp1d(tim_CriPumAHU025,TRooAir_CriPumAHU025, kind='linear')
+TRooAir_CriPumAHU025 = int(tim_Nor)
 ### ------------------------------------------------------------------------------
 ###           setup time axis
 ### ------------------------------------------------------------------------------
@@ -181,24 +227,26 @@ plt.subplot(211)
 plt.plot(timeindex.time,TRooAir_CriAHU100-273.15,'k--o',markersize=6,markeredgecolor = 'k',
          markeredgewidth=1,markerfacecolor="none",alpha=0.8,markevery=range(0,len(timeindex),3))
 plt.plot(timeindex.time,TRooAir_CriPum100-273.15,'k-..',markersize=8,alpha=0.8,markevery=range(0,len(timeindex),3))
+plt.plot(timeindex.time,TRooAir_CriPumAHU100-273.15,'k:')
 plt.plot(timeindex.time,TRooAir_Nor-273.15,'k-',alpha=0.8)
 
 plt.ylabel('Room Temperature[$\circ$C]')
 plt.xticks(a,[]) # set location and ticklabel(none)
 plt.xlabel('')
 plt.grid(True)
-plt.legend(["CE: AHU","CE: AHU+Pump","Normal"])
+plt.legend(["CE: AHU","CE: AHU+Pump","C3","Normal"])
 
 plt.subplot(212)
 plt.plot(timeindex.time,SOC_CriAHU100,'k--o',markersize=6,markeredgecolor = 'k',
          markeredgewidth=1,markerfacecolor="none",alpha=0.8,markevery=range(0,len(timeindex),3))
 plt.plot(timeindex.time,SOC_CriPum100,'k-..',markersize=8,alpha=0.8,markevery=range(0,len(timeindex),3))
+plt.plot(timeindex.time,SOC_CriPumAHU100,'k:')
 plt.plot(timeindex.time,SOC_Nor*np.ones(len(timeindex)),'k-',alpha=0.8)
 plt.grid(True)
 plt.ylabel('SOC')
 plt.xticks(a)
 plt.xlabel ('Time')
-plt.legend(["CE: AHU","CE: AHU+Pump","Normal"],loc=3)
+plt.legend(["CE: AHU","CE: AHU+Pump","C3","Normal"],loc=3)
 plt.savefig('FMCPLR100.svg')
 plt.savefig('FMCPLR100.eps')
 plt.show()
@@ -211,24 +259,26 @@ plt.subplot(211)
 plt.plot(timeindex.time,TRooAir_CriAHU075-273.15,'k--o',markersize=6,markeredgecolor = 'k',
          markeredgewidth=1,markerfacecolor="none",alpha=0.8,markevery=range(0,len(timeindex),3))
 plt.plot(timeindex.time,TRooAir_CriPum075-273.15,'k-..',markersize=8,alpha=0.8,markevery=range(0,len(timeindex),3))
+plt.plot(timeindex.time,TRooAir_CriPumAHU075-273.15,'k:')
 plt.plot(timeindex.time,TRooAir_Nor-273.15,'k-',alpha=0.8)
 
 plt.ylabel('Room Temperature[$\circ$C]')
 plt.xticks(a,[]) # set location and ticklabel(none)
 plt.xlabel('')
 plt.grid(True)
-plt.legend(["CE: AHU","CE: AHU+Pump","Normal"])
+plt.legend(["CE: AHU","CE: AHU+Pump","C3","Normal"])
 
 plt.subplot(212)
 plt.plot(timeindex.time,SOC_CriAHU075,'k--o',markersize=6,markeredgecolor = 'k',
          markeredgewidth=1,markerfacecolor="none",alpha=0.8,markevery=range(0,len(timeindex),3))
 plt.plot(timeindex.time,SOC_CriPum075,'k-..',markersize=8,alpha=0.8,markevery=range(0,len(timeindex),3))
+plt.plot(timeindex.time,SOC_CriPumAHU075,'k:')
 plt.plot(timeindex.time,SOC_Nor*np.ones(len(timeindex)),'k-',alpha=0.8)
 plt.grid(True)
 plt.ylabel('SOC')
 plt.xticks(a)
 plt.xlabel ('Time')
-plt.legend(["CE: AHU","CE: AHU+Pump","Normal"],loc=3)
+plt.legend(["CE: AHU","CE: AHU+Pump","C3","Normal"],loc=3)
 plt.savefig('FMCPLR075.svg')
 plt.savefig('FMCPLR075.eps')
 plt.show()
@@ -241,24 +291,26 @@ plt.subplot(211)
 plt.plot(timeindex.time,TRooAir_CriAHU050-273.15,'k--o',markersize=6,markeredgecolor = 'k',
          markeredgewidth=1,markerfacecolor="none",alpha=0.8,markevery=range(0,len(timeindex),3))
 plt.plot(timeindex.time,TRooAir_CriPum050-273.15,'k-..',markersize=8,alpha=0.8,markevery=range(0,len(timeindex),3))
+plt.plot(timeindex.time,TRooAir_CriPumAHU050-273.15,'k:')
 plt.plot(timeindex.time,TRooAir_Nor-273.15,'k-',alpha=0.8)
 
 plt.ylabel('Room Temperature[$\circ$C]')
 plt.xticks(a,[]) # set location and ticklabel(none)
 plt.xlabel('')
 plt.grid(True)
-plt.legend(["CE: AHU","CE: AHU+Pump","Normal"])
+plt.legend(["CE: AHU","CE: AHU+Pump","C3","Normal"])
 
 plt.subplot(212)
 plt.plot(timeindex.time,SOC_CriAHU050,'k--o',markersize=6,markeredgecolor = 'k',
          markeredgewidth=1,markerfacecolor="none",alpha=0.8,markevery=range(0,len(timeindex),3))
 plt.plot(timeindex.time,SOC_CriPum050,'k-..',markersize=8,alpha=0.8,markevery=range(0,len(timeindex),3))
+plt.plot(timeindex.time,SOC_CriPumAHU050,'k:')
 plt.plot(timeindex.time,SOC_Nor*np.ones(len(timeindex)),'k-',alpha=0.8)
 plt.grid(True)
 plt.ylabel('SOC')
 plt.xticks(a)
 plt.xlabel ('Time')
-plt.legend(["CE: AHU","CE: AHU+Pump","Normal"],loc=3)
+plt.legend(["CE: AHU","CE: AHU+Pump","C3","Normal"],loc=3)
 plt.savefig('FMCPLR050.svg')
 plt.savefig('FMCPLR050.eps')
 plt.show()
@@ -271,24 +323,26 @@ plt.subplot(211)
 plt.plot(timeindex.time,TRooAir_CriAHU025-273.15,'k--o',markersize=6,markeredgecolor = 'k',
          markeredgewidth=1,markerfacecolor="none",alpha=0.8,markevery=range(0,len(timeindex),3))
 plt.plot(timeindex.time,TRooAir_CriPum025-273.15,'k-..',markersize=8,alpha=0.8,markevery=range(0,len(timeindex),3))
+plt.plot(timeindex.time,TRooAir_CriPumAHU025-273.15,'k:')
 plt.plot(timeindex.time,TRooAir_Nor-273.15,'k-',alpha=0.8)
 
 plt.ylabel('Room Temperature[$\circ$C]')
 plt.xticks(a,[]) # set location and ticklabel(none)
 plt.xlabel('')
 plt.grid(True)
-plt.legend(["CE: AHU","CE: AHU+Pump","Normal"])
+plt.legend(["CE: AHU","CE: AHU+Pump","C3","Normal"])
 
 plt.subplot(212)
 plt.plot(timeindex.time,SOC_CriAHU025,'k--o',markersize=6,markeredgecolor = 'k',
          markeredgewidth=1,markerfacecolor="none",alpha=0.8,markevery=range(0,len(timeindex),3))
 plt.plot(timeindex.time,SOC_CriPum025,'k-..',markersize=8,alpha=0.8,markevery=range(0,len(timeindex),3))
+plt.plot(timeindex.time,SOC_CriPumAHU025,'k:')
 plt.plot(timeindex.time,SOC_Nor*np.ones(len(timeindex)),'k-',alpha=0.8)
 plt.grid(True)
 plt.ylabel('SOC')
 plt.xticks(a)
 plt.xlabel ('Time')
-plt.legend(["CE: AHU","CE: AHU+Pump","Normal"],loc=3)
+plt.legend(["CE: AHU","CE: AHU+Pump","C3","Normal"],loc=3)
 plt.savefig('FMCPLR025.svg')
 plt.savefig('FMCPLR025.eps')
 plt.show()
