@@ -1,5 +1,5 @@
 within Buildings.Applications.DataCenters.ChillerCooled.Paper.Case2;
-model FMC_Pump_PLR025
+model FMC_PumpToAHU_PLR025
   import Buildings;
   extends Modelica.Icons.Example;
   extends
@@ -132,6 +132,9 @@ model FMC_Pump_PLR025
     annotation (Placement(transformation(extent={{358,182},{338,202}})));
   Modelica.Blocks.Logical.Or con
     annotation (Placement(transformation(extent={{314,210},{294,230}})));
+  Buildings.Controls.OBC.CDL.Continuous.LessEqualThreshold lesEquThr(threshold=
+        0.5)
+    annotation (Placement(transformation(extent={{354,294},{334,314}})));
   Buildings.Electrical.AC.ThreePhasesBalanced.Sources.Grid gri
     annotation (Placement(transformation(extent={{320,180},{300,200}})));
   Modelica.Blocks.Math.RealToBoolean criEqu "Critical equipment "
@@ -146,9 +149,6 @@ model FMC_Pump_PLR025
         dpSetPoi)*{1.2,1.1,1.0,0.6}))
     "Performance data for primary chilled water pump"
     annotation (Placement(transformation(extent={{-238,-200},{-218,-180}})));
-  Buildings.Controls.OBC.CDL.Continuous.LessEqualThreshold lesEquThr(threshold=
-        0)
-    annotation (Placement(transformation(extent={{354,294},{334,314}})));
   Modelica.Blocks.Logical.And powCri "Power all critical equipment"
     annotation (Placement(transformation(extent={{314,270},{294,290}})));
   Buildings.Controls.OBC.CDL.Logical.Switch swi
@@ -348,6 +348,7 @@ equation
       StartTime=18403200,
       StopTime=18576000,
       __Dymola_Algorithm="Cvode"),
-    __Dymola_Commands(file="Resources/Scripts/Dymola/Applications/DataCenters/ChillerCooled/Paper/Case2/FMC_Pump_PLR025.mos"
+    __Dymola_Commands(file=
+          "Resources/Scripts/Dymola/Applications/DataCenters/ChillerCooled/Paper/Case2/FMC_PumpToAHU_PLR025.mos"
         "Simulate and Plot"));
-end FMC_Pump_PLR025;
+end FMC_PumpToAHU_PLR025;

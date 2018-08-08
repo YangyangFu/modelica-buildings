@@ -1,5 +1,5 @@
 within Buildings.Applications.DataCenters.ChillerCooled.Paper.Case2;
-model FMC_Pump_PLR025
+model FC_PumpToAHU_PLR025
   import Buildings;
   extends Modelica.Icons.Example;
   extends
@@ -125,10 +125,10 @@ model FMC_Pump_PLR025
   Modelica.Blocks.Sources.Constant powCha(k=500000) "Charging power"
     annotation (Placement(transformation(extent={{300,-10},{320,10}})));
   Modelica.Blocks.Sources.BooleanStep booleanStep(startValue=true, startTime(
-        displayUnit="h") = 18540000)
+        displayUnit="h") = 30636000)
     annotation (Placement(transformation(extent={{360,218},{340,238}})));
-  Modelica.Blocks.Sources.BooleanStep booleanStep1(startTime(displayUnit="h")=
-         18541800)
+  Modelica.Blocks.Sources.BooleanStep booleanStep1(startTime(displayUnit="h")
+       = 30637800)
     annotation (Placement(transformation(extent={{358,182},{338,202}})));
   Modelica.Blocks.Logical.Or con
     annotation (Placement(transformation(extent={{314,210},{294,230}})));
@@ -147,7 +147,7 @@ model FMC_Pump_PLR025
     "Performance data for primary chilled water pump"
     annotation (Placement(transformation(extent={{-238,-200},{-218,-180}})));
   Buildings.Controls.OBC.CDL.Continuous.LessEqualThreshold lesEquThr(threshold=
-        0)
+        0.5)
     annotation (Placement(transformation(extent={{354,294},{334,314}})));
   Modelica.Blocks.Logical.And powCri "Power all critical equipment"
     annotation (Placement(transformation(extent={{314,270},{294,290}})));
@@ -348,6 +348,7 @@ equation
       StartTime=18403200,
       StopTime=18576000,
       __Dymola_Algorithm="Cvode"),
-    __Dymola_Commands(file="Resources/Scripts/Dymola/Applications/DataCenters/ChillerCooled/Paper/Case2/FMC_Pump_PLR025.mos"
+    __Dymola_Commands(file=
+          "Resources/Scripts/Dymola/Applications/DataCenters/ChillerCooled/Paper/Case2/FC_PumpToAHU_PLR025.mos"
         "Simulate and Plot"));
-end FMC_Pump_PLR025;
+end FC_PumpToAHU_PLR025;

@@ -95,10 +95,10 @@ partial model PartialDataCenter
     dp1_wse_nominal=dp1_wse_nominal,
     dp2_chi_nominal=dp2_chi_nominal,
     dp2_wse_nominal=dp2_wse_nominal,
-    use_inputFilter=false,
     energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
     use_controller=false,
-    perChi=perChi)
+    perChi=perChi,
+    use_inputFilter=true)
     "Chillers and waterside economizer"
     annotation (Placement(transformation(extent={{0,20},{20,40}})));
   Buildings.Fluid.Sources.Boundary_pT expVesCW(

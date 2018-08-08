@@ -6,7 +6,8 @@ model FC_Pump_PLR025
     Buildings.Applications.DataCenters.ChillerCooled.Paper.BaseClasses.PartialDataCenter(
     redeclare Buildings.Applications.DataCenters.ChillerCooled.Equipment.IntegratedPrimaryLoadSide chiWSE(
       addPowerToMedium=false,
-      perPum=perPumPri),
+      perPum=perPumPri,
+      use_inputFilter=true),
     roo(rooVol(mSenFac=25)),
     ahu(tauFan=10),
     val(use_inputFilter=true),
@@ -99,9 +100,9 @@ model FC_Pump_PLR025
   Buildings.Controls.OBC.CDL.Logical.Switch swiRea
     annotation (Placement(transformation(extent={{220,220},{200,240}})));
   Modelica.Blocks.Sources.Constant uni(k=1) "Unit"
-    annotation (Placement(transformation(extent={{260,240},{240,260}})));
+    annotation (Placement(transformation(extent={{280,240},{260,260}})));
   Modelica.Blocks.Sources.Constant zer(k=0) "Zero"
-    annotation (Placement(transformation(extent={{260,200},{240,220}})));
+    annotation (Placement(transformation(extent={{280,190},{260,210}})));
   Modelica.Blocks.Logical.And orChi
                                   [numChi]
     annotation (Placement(transformation(extent={{-100,130},{-80,150}})));
@@ -125,10 +126,10 @@ model FC_Pump_PLR025
     annotation (Placement(transformation(extent={{300,-10},{320,10}})));
   Modelica.Blocks.Sources.BooleanStep booleanStep(startValue=true, startTime(
         displayUnit="h") = 30636000)
-    annotation (Placement(transformation(extent={{360,242},{340,262}})));
-  Modelica.Blocks.Sources.BooleanStep booleanStep1(startTime(displayUnit="h")=
-         30637800)
-    annotation (Placement(transformation(extent={{360,210},{340,230}})));
+    annotation (Placement(transformation(extent={{360,218},{340,238}})));
+  Modelica.Blocks.Sources.BooleanStep booleanStep1(startTime(displayUnit="h")
+       = 30637800)
+    annotation (Placement(transformation(extent={{358,182},{338,202}})));
   Modelica.Blocks.Logical.Or con
     annotation (Placement(transformation(extent={{314,210},{294,230}})));
   Buildings.Electrical.AC.ThreePhasesBalanced.Sources.Grid gri
@@ -145,6 +146,16 @@ model FC_Pump_PLR025
         dpSetPoi)*{1.2,1.1,1.0,0.6}))
     "Performance data for primary chilled water pump"
     annotation (Placement(transformation(extent={{-238,-200},{-218,-180}})));
+  Buildings.Controls.OBC.CDL.Continuous.LessEqualThreshold lesEquThr(threshold=
+        0)
+    annotation (Placement(transformation(extent={{354,294},{334,314}})));
+  Modelica.Blocks.Logical.And powCri "Power all critical equipment"
+    annotation (Placement(transformation(extent={{314,270},{294,290}})));
+  Buildings.Controls.OBC.CDL.Logical.Switch swi
+    "Switch for outage and out of battery"
+    annotation (Placement(transformation(extent={{226,280},{206,300}})));
+  Modelica.Blocks.Logical.Not notCon "Not connected to grid"
+    annotation (Placement(transformation(extent={{294,242},{314,262}})));
 equation
   connect(TCHWSup.port_b, ahu.port_a1)
     annotation (Line(
@@ -171,10 +182,12 @@ equation
     connect(orChi[i].y, chiWSE.on[i]) annotation (Line(points={{-79,140},{-60,140},
             {-60,120},{-10,120},{-10,37.6},{-1.6,37.6}},
                                                      color={255,0,255}));
-    connect(uni.y, sigCWLoo[i].u1) annotation (Line(points={{239,250},{232,250},{232,
-          274},{-280,274},{-280,90},{-148,90},{-148,76},{-142,76}}, color={0,0,127}));
-    connect(uni.y, sigPumCHW[i].u1) annotation (Line(points={{239,250},{232,250},{
-          232,274},{-280,274},{-280,14},{-92,14},{-92,-4},{-82,-4}}, color={0,0,
+  connect(swi.y, sigCWLoo[i].u1) annotation (Line(points={{205,290},{202,290},{202,
+            278},{-186,278},{-186,92},{-148,92},{-148,76},{-142,76}},
+                                                                    color={0,0,127}));
+  connect(swi.y, sigPumCHW[i].u1) annotation (Line(points={{205,290},{202,290},{
+            202,278},{-186,278},{-186,16},{-90,16},{-90,-4},{-82,-4}},
+                                                                     color={0,0,
           127}));
 
    end for;
@@ -235,10 +248,12 @@ equation
     annotation (Line(points={{201,-88},{220,-88}},   color={0,0,127}));
   connect(conductor.terminal, dCDCConverter.terminal_p)
     annotation (Line(points={{240,-88},{252,-88}},   color={0,0,255}));
-  connect(uni.y, swiRea.u1) annotation (Line(points={{239,250},{232,250},{232,238},
-          {222,238}}, color={0,0,127}));
-  connect(zer.y, swiRea.u3) annotation (Line(points={{239,210},{232,210},{232,222},
-          {222,222}}, color={0,0,127}));
+  connect(uni.y, swiRea.u1) annotation (Line(points={{259,250},{232,250},{232,
+          238},{222,238}},
+                      color={0,0,127}));
+  connect(zer.y, swiRea.u3) annotation (Line(points={{259,200},{232,200},{232,
+          222},{222,222}},
+                      color={0,0,127}));
   connect(sigPumCHW.y, chiWSE.yPum)
     annotation (Line(points={{-59,-10},{-50,-10},
           {-50,25.6},{-1.6,25.6}}, color={0,0,127}));
@@ -260,9 +275,9 @@ equation
           {360,154},{316,154},{316,142}}, color={0,0,127}));
   connect(powCha.y, batCon.powCha) annotation (Line(points={{321,0},{358,0},{
           358,156},{312,156},{312,142}}, color={0,0,127}));
-  connect(booleanStep.y, con.u1) annotation (Line(points={{339,252},{328,252},{
+  connect(booleanStep.y, con.u1) annotation (Line(points={{339,228},{328,228},{
           328,220},{316,220}}, color={255,0,255}));
-  connect(booleanStep1.y, con.u2) annotation (Line(points={{339,220},{332,220},
+  connect(booleanStep1.y, con.u2) annotation (Line(points={{337,192},{332,192},
           {332,212},{316,212}}, color={255,0,255}));
   connect(con.y, swiRea.u2) annotation (Line(points={{293,220},{272,220},{272,
           230},{222,230}}, color={255,0,255}));
@@ -285,8 +300,6 @@ equation
           170},{272,170},{272,74},{316,74}}, color={0,120,120}));
   connect(pipCHW.port_b, chiWSE.port_a2) annotation (Line(points={{48,0},{38,0},
           {38,24},{20,24}}, color={0,127,255}));
-  connect(criEqu.u, uni.y) annotation (Line(points={{182,290},{232,290},{232,250},
-          {239,250}}, color={0,0,127}));
   connect(criEqu.y, orWSE.u2) annotation (Line(points={{159,290},{-112,290},{-112,
           102},{-102,102}}, color={255,0,255}));
   connect(sch.y, cooModCon.on) annotation (Line(points={{-319,230},{-212,230},{-212,
@@ -298,12 +311,28 @@ equation
   connect(wseSta.y, orWSE.u1)
     annotation (Line(points={{-139,110},{-102,110}}, color={255,0,255}));
 
-  connect(powPumCHW.y, criPow.u[3]) annotation (Line(points={{201,0},{210,0},{
-          210,22},{272,22},{272,40},{298,40}}, color={0,0,127}));
-  connect(powPumCW.y, criPow.u[4]) annotation (Line(points={{201,130},{210,130},
-          {210,62},{272,62},{272,37.2},{298,37.2}}, color={0,0,127}));
-  connect(powCooTow.y, criPow.u[5]) annotation (Line(points={{201,170},{214,170},
-          {214,66},{276,66},{276,34.4},{298,34.4}}, color={0,0,127}));
+  connect(powPumCHW.y, criPow.u[3]) annotation (Line(points={{201,0},{214,0},{
+          214,18},{280,18},{280,40},{298,40}}, color={0,0,127}));
+  connect(powPumCW.y, criPow.u[4]) annotation (Line(points={{201,130},{212,130},
+          {212,58},{278,58},{278,37.2},{298,37.2}}, color={0,0,127}));
+  connect(powCooTow.y, criPow.u[5]) annotation (Line(points={{201,170},{216,170},
+          {216,64},{284,64},{284,34.4},{298,34.4}}, color={0,0,127}));
+  connect(zer.y,swi. u1) annotation (Line(points={{259,200},{248,200},{248,298},
+          {228,298}}, color={0,0,127}));
+  connect(uni.y,swi. u3) annotation (Line(points={{259,250},{238,250},{238,282},
+          {228,282}}, color={0,0,127}));
+  connect(powCri.y,swi. u2) annotation (Line(points={{293,280},{272,280},{272,290},
+          {228,290}}, color={255,0,255}));
+  connect(notCon.y,powCri. u2) annotation (Line(points={{315,252},{328,252},{328,
+          272},{316,272}}, color={255,0,255}));
+  connect(lesEquThr.y,powCri. u1) annotation (Line(points={{333,304},{328,304},{
+          328,280},{316,280}}, color={255,0,255}));
+  connect(bat.SOC,lesEquThr. u) annotation (Line(points={{337,80},{368,80},{368,
+          304},{356,304}}, color={0,0,127}));
+  connect(con.y,notCon. u) annotation (Line(points={{293,220},{284,220},{284,252},
+          {292,252}}, color={255,0,255}));
+  connect(swi.y, criEqu.u)
+    annotation (Line(points={{205,290},{182,290}}, color={0,0,127}));
  annotation (Diagram(coordinateSystem(preserveAspectRatio=false,
     extent={{-380,-220},{260,220}}), graphics={Rectangle(
           extent={{154,326},{280,190}},
@@ -316,8 +345,8 @@ equation
           fillPattern=FillPattern.Solid,
           textString="Critical Equipment")}),
                                       experiment(
-      StartTime=30499200,
-      StopTime=30672000,
+      StartTime=18403200,
+      StopTime=18576000,
       __Dymola_Algorithm="Cvode"),
     __Dymola_Commands(file=
           "Resources/Scripts/Dymola/Applications/DataCenters/ChillerCooled/Paper/Case2/FC_Pump_PLR025.mos"
