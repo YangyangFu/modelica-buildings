@@ -27,7 +27,7 @@ simulator.log
 
 # Files in top-level directory
 #####################################
-/*.py
+#/*.py
 /*.sh
 /*.mos
 
