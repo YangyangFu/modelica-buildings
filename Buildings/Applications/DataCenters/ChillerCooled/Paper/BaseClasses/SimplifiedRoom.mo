@@ -17,7 +17,7 @@ model SimplifiedRoom "Simplified data center room"
     "Nominal mass flow rate";
   // interior mass
 
-  parameter Integer n = 1 "Number of RC-elements"
+  parameter Integer n = 2 "Number of RC-elements"
     annotation(Dialog(group="Mass"));
   parameter Modelica.SIunits.Area AInt= numUni*2.22 "Thermal mass area"
     annotation(Dialog(group="Mass"));
@@ -27,7 +27,7 @@ model SimplifiedRoom "Simplified data center room"
   parameter Modelica.SIunits.ThermalResistance RInt[n] = fill(1,n)
     "Vector of resistors, from port to capacitor"
       annotation(Dialog(group="Mass"));
-  parameter Modelica.SIunits.HeatCapacity CInt[n]=fill(15000/n,n)
+  parameter Modelica.SIunits.HeatCapacity CInt[n]=fill(numUni*15000/n,n)
     "Vector of heat capacitors, from port to center"
       annotation(Dialog(group="Mass"));
   parameter Integer numUni = 7089 "Number of IT equipment";
