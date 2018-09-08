@@ -8,11 +8,29 @@ model SimplifiedRoom "Simplified data center room"
       connectorSizing=true,
       tab="General",
       group="Ports"));
-  parameter Modelica.SIunits.Length rooLen "Length of the room";
-  parameter Modelica.SIunits.Length rooWid "Width of the room";
-  parameter Modelica.SIunits.Height rooHei "Height of the room";
+  parameter Modelica.SIunits.Length rooLen = 49 "Length of the room";
+  parameter Modelica.SIunits.Length rooWid = 20 "Width of the room";
+  parameter Modelica.SIunits.Height rooHei= 3.5 "Height of the room";
   parameter Modelica.SIunits.Power QRoo_flow
     "Heat generation of the computer room";
+  parameter Modelica.SIunits.MassFlowRate m_flow_nominal
+    "Nominal mass flow rate";
+  // interior mass
+
+  parameter Integer n = 1 "Number of RC-elements"
+    annotation(Dialog(group="Mass"));
+  parameter Modelica.SIunits.Area AInt= numUni*2.22 "Thermal mass area"
+    annotation(Dialog(group="Mass"));
+  parameter Modelica.SIunits.CoefficientOfHeatTransfer alphaInt = 0.2
+    "Convective coefficient of heat transfer of interior walls (indoor)"
+    annotation(Dialog(group="Mass"));
+  parameter Modelica.SIunits.ThermalResistance RInt[n] = fill(1,n)
+    "Vector of resistors, from port to capacitor"
+      annotation(Dialog(group="Mass"));
+  parameter Modelica.SIunits.HeatCapacity CInt[n]=fill(15000/n,n)
+    "Vector of heat capacitors, from port to center"
+      annotation(Dialog(group="Mass"));
+  parameter Integer numUni = 7089 "Number of IT equipment";
 
   Buildings.Fluid.MixingVolumes.MixingVolume rooVol(
     redeclare package Medium = Medium,
@@ -41,8 +59,7 @@ model SimplifiedRoom "Simplified data center room"
     duration=36000,
     startTime=0)
     annotation (Placement(transformation(extent={{-100,-10},{-80,10}})));
-  parameter Modelica.SIunits.MassFlowRate m_flow_nominal
-    "Nominal mass flow rate";
+
   Modelica.Thermal.HeatTransfer.Sensors.TemperatureSensor TAir
     "Room air temperature"
     annotation (Placement(transformation(extent={{40,-10},{60,10}})));
@@ -60,21 +77,18 @@ protected
     rotation=-90,
     origin={14,39})));
 public
-  ThermalZones.ReducedOrder.RC.BaseClasses.InteriorWall
-                           intWallRC(
-    final n=nInt,
+  ThermalZones.ReducedOrder.RC.BaseClasses.InteriorWall intMas(
+    final n=n,
     final RInt=RInt,
     final CInt=CInt,
-    final T_start=T_start) if AInt > 0 "RC-element for interior walls"
+    final T_start=273.15 + 20) if
+                              AInt > 0 "RC-element for interior mass"
     annotation (Placement(transformation(extent={{58,60},{78,82}})));
+
 equation
   connect(rooVol.ports, airPorts) annotation (Line(
       points={{-1,-30},{0,-30},{0,-100}},
       color={0,127,255},
-      smooth=Smooth.None));
-  connect(QSou.port, rooVol.heatPort) annotation (Line(
-      points={{-38,0},{-20,0},{-20,-20},{-11,-20}},
-      color={191,0,0},
       smooth=Smooth.None));
   connect(ramp.y, QSou.Q_flow) annotation (Line(
       points={{-79,0},{-58,0}},
@@ -85,12 +99,14 @@ equation
                              color={191,0,0}));
   connect(TAir.T, TRooAir) annotation (Line(points={{60,0},{76,0},{110,0}},
                color={0,0,127}));
-  connect(intWallRC.port_a, convIntWall.solid)
+  connect(intMas.port_a, convIntWall.solid)
     annotation (Line(points={{58,70},{24,70}}, color={191,0,0}));
   connect(convIntWall.fluid, rooVol.heatPort) annotation (Line(points={{4,70},{
           -18,70},{-18,-20},{-11,-20}}, color={191,0,0}));
   connect(alphaIntWall.y, convIntWall.Gc)
     annotation (Line(points={{14,44.5},{14,60}}, color={0,0,127}));
+  connect(QSou.port, intMas.port_a) annotation (Line(points={{-38,0},{-20,0},{-20,
+          92},{54,92},{54,70},{58,70}}, color={191,0,0}));
   annotation (
     Icon(coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},{100,
             100}}), graphics={Rectangle(
