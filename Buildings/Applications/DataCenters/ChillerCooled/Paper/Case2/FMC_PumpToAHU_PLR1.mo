@@ -8,7 +8,6 @@ model FMC_PumpToAHU_PLR1
       addPowerToMedium=false,
       perPum=perPumPri,
       use_inputFilter=true),
-    roo(rooVol(mSenFac=25)),
     ahu(tauFan=10),
     val(use_inputFilter=true),
     pumCW(use_inputFilter=true),
@@ -128,7 +127,7 @@ model FMC_PumpToAHU_PLR1
         displayUnit="h") = 18540000)
     annotation (Placement(transformation(extent={{360,218},{340,238}})));
   Modelica.Blocks.Sources.BooleanStep booleanStep1(startTime(displayUnit="h")=
-         18541800)
+         18540900)
     annotation (Placement(transformation(extent={{360,182},{340,202}})));
   Modelica.Blocks.Logical.Or con
     annotation (Placement(transformation(extent={{314,210},{294,230}})));
@@ -156,6 +155,12 @@ model FMC_PumpToAHU_PLR1
     annotation (Placement(transformation(extent={{320,270},{300,290}})));
   Modelica.Blocks.Logical.Not notCon "Not connected to grid"
     annotation (Placement(transformation(extent={{300,242},{320,262}})));
+  Buildings.Controls.OBC.CDL.Logical.Switch swi1
+    "Switch for outage and out of battery"
+    annotation (Placement(transformation(extent={{182,-170},{162,-150}})));
+  Modelica.Blocks.Sources.BooleanExpression runOut(y=bat.SOC <= 0.01 and not
+        con.y) "Runout of battery and not connected to grid"
+    annotation (Placement(transformation(extent={{240,-170},{220,-150}})));
 equation
   connect(TCHWSup.port_b, ahu.port_a1)
     annotation (Line(
@@ -328,6 +333,17 @@ equation
           {234,298}}, color={0,0,127}));
   connect(uni.y, swi.u3) annotation (Line(points={{259,252},{244,252},{244,282},
           {234,282}}, color={0,0,127}));
+  connect(swi1.y, filter.u)
+    annotation (Line(points={{161,-160},{122,-160}}, color={0,0,127}));
+  connect(zer.y, swi1.u1) annotation (Line(points={{259,200},{160,200},{160,
+          -126},{200,-126},{200,-152},{184,-152}}, color={0,0,127}));
+  connect(uni.y, swi1.u3) annotation (Line(points={{259,252},{248,252},{248,202},
+          {158,202},{158,-128},{198,-128},{198,-168},{184,-168}}, color={0,0,
+          127}));
+  connect(runOut.y, swi1.u2)
+    annotation (Line(points={{219,-160},{184,-160}}, color={255,0,255}));
+  connect(swi1.y, pro1.u1) annotation (Line(points={{161,-160},{146,-160},{146,
+          -218},{-368,-218},{-368,-132},{-92,-132}}, color={0,0,127}));
  annotation (Diagram(coordinateSystem(preserveAspectRatio=false,
     extent={{-380,-220},{260,220}}), graphics={Rectangle(
           extent={{154,326},{280,190}},
@@ -340,7 +356,7 @@ equation
           fillPattern=FillPattern.Solid,
           textString="Critical Equipment")}),
                                       experiment(
-      StartTime=18403200,
+      StartTime=12960000,
       StopTime=18576000,
       __Dymola_Algorithm="Cvode"),
     __Dymola_Commands(file=

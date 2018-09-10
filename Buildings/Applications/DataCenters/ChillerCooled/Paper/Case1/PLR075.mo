@@ -8,7 +8,6 @@ model PLR075 "Part load ratio is 0.75"
       addPowerToMedium=false,
       perPum=perPumPri,
       use_inputFilter=true),
-    roo(rooVol(mSenFac=25)),
     ahu(tauFan=10),
     val(use_inputFilter=true),
     pumCW(use_inputFilter=true),

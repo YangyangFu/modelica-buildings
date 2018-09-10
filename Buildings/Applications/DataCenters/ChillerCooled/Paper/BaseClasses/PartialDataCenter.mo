@@ -81,7 +81,7 @@ partial model PartialDataCenter
     "Differential pressure setpoint";
 
  // UPS
-  parameter Modelica.SIunits.Energy EMax = 1800*1.6*QRoo_flow_nominal "Maximum available charge";
+  parameter Modelica.SIunits.Energy EMax = 1.2*900*1.28*QRoo_flow_nominal "Maximum available charge";
 
   replaceable Buildings.Applications.DataCenters.ChillerCooled.Equipment.BaseClasses.PartialChillerWSE chiWSE(
     redeclare replaceable package Medium1 = MediumW,
@@ -167,7 +167,8 @@ partial model PartialDataCenter
     energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
     dp1_nominal=30000,
     perFan=perFan,
-    dp2_nominal=800)
+    dp2_nominal=800,
+    riseTimeFan=10)
     "Air handling unit"
     annotation (Placement(transformation(extent={{0,-130},{20,-110}})));
   Buildings.Fluid.Sensors.TemperatureTwoPort TCHWRet(
@@ -193,18 +194,12 @@ partial model PartialDataCenter
     annotation (Placement(transformation(extent={{10,-10},{-10,10}},
         rotation=90,
         origin={-50,-160})));
-  Buildings.Examples.ChillerPlant.BaseClasses.SimplifiedRoom roo(
+  Buildings.Applications.DataCenters.ChillerCooled.Paper.BaseClasses.SimplifiedRoomThermalMass
+    roo(
     redeclare replaceable package Medium = MediumA,
-    rooLen=50,
-    rooWid=30,
-    rooHei=3,
     m_flow_nominal=mAir_flow_nominal,
-    nPorts=2,
-    QRoo_flow=QRoo_flow)
-    "Room model"
-    annotation (Placement(transformation(
-        extent={{10,-10},{-10,10}},
-        origin={4,-180})));
+    nPorts=2)            "Room model" annotation (Placement(transformation(
+          extent={{10,-10},{-10,10}}, origin={4,-180})));
   Buildings.Fluid.Actuators.Valves.TwoWayLinear val[numChi](
     redeclare each package Medium = MediumW,
     each m_flow_nominal=m1_flow_chi_nominal,
@@ -337,6 +332,14 @@ partial model PartialDataCenter
         extent={{-10,-10},{10,10}},
         rotation=90,
         origin={32,-162})));
+  Buildings.Controls.OBC.CDL.Continuous.Product pro
+    annotation (Placement(transformation(extent={{80,-180},{60,-160}})));
+  Buildings.Controls.OBC.CDL.Continuous.Sources.Constant loa(k=QRoo_flow)
+    annotation (Placement(transformation(extent={{120,-200},{100,-180}})));
+  Buildings.Controls.OBC.CDL.Continuous.Product pro1
+    annotation (Placement(transformation(extent={{-90,-148},{-70,-128}})));
+  Modelica.Blocks.Continuous.Filter filter(f_cut=1/1)
+    annotation (Placement(transformation(extent={{120,-170},{100,-150}})));
 equation
   connect(chiWSE.port_b2, TCHWSup.port_a)
     annotation (Line(
@@ -518,10 +521,6 @@ equation
     annotation (Line(
       points={{-159,-160},{-150,-160},{-150,-110},{-142,-110}},
       color={0,0,127}));
-  connect(ahuFanSpeCon.y, ahu.uFan)
-    annotation (Line(
-      points={{-99,-160},{-80,-160},{-80,-124},{-1,-124}},
-      color={0,0,127}));
   connect(gai1.y, pumSpe.u_m) annotation (Line(points={{-221,-60},{-236,-60},{
           -236,-32}}, color={0,0,127}));
   connect(gai1.u, senRelPre.p_rel)
@@ -548,6 +547,16 @@ equation
           {32,-152}}, color={0,127,255}));
   connect(duc.port_a, roo.airPorts[2]) annotation (Line(points={{32,-172},{32,-196},
           {5.575,-196},{5.575,-188.7}}, color={0,127,255}));
+  connect(loa.y, pro.u2) annotation (Line(points={{99,-190},{94,-190},{94,-176},
+          {82,-176}}, color={0,0,127}));
+  connect(pro.y, roo.QRoo_flow) annotation (Line(points={{59,-170},{52,-170},{
+          52,-184},{24,-184},{24,-171.4},{16,-171.4}}, color={0,0,127}));
+  connect(ahuFanSpeCon.y, pro1.u2) annotation (Line(points={{-99,-160},{-98,
+          -160},{-98,-144},{-92,-144}}, color={0,0,127}));
+  connect(pro1.y, ahu.uFan) annotation (Line(points={{-69,-138},{-36,-138},{-36,
+          -124},{-1,-124}}, color={0,0,127}));
+  connect(filter.y, pro.u1) annotation (Line(points={{99,-160},{92,-160},{92,
+          -164},{82,-164}}, color={0,0,127}));
   annotation (Diagram(coordinateSystem(preserveAspectRatio=false,
     extent={{-360,-200},{160,220}})),
     Documentation(info="<html>

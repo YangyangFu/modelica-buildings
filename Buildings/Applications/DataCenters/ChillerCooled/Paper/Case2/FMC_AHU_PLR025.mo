@@ -8,7 +8,6 @@ model FMC_AHU_PLR025
       addPowerToMedium=false,
       perPum=perPumPri,
       use_inputFilter=true),
-    roo(rooVol(mSenFac=25)),
     ahu(tauFan=10),
     val(use_inputFilter=true),
     pumCW(use_inputFilter=true),
@@ -129,7 +128,7 @@ model FMC_AHU_PLR025
         displayUnit="h") = 18540000)
     annotation (Placement(transformation(extent={{360,242},{340,262}})));
   Modelica.Blocks.Sources.BooleanStep booleanStep1(startTime(displayUnit="h")=
-         18541800)
+         18540900)
     annotation (Placement(transformation(extent={{360,210},{340,230}})));
   Modelica.Blocks.Logical.Or con
     annotation (Placement(transformation(extent={{314,210},{294,230}})));
@@ -146,6 +145,12 @@ model FMC_AHU_PLR025
         dpSetPoi)*{1.2,1.1,1.0,0.6}))
     "Performance data for primary chilled water pump"
     annotation (Placement(transformation(extent={{-240,-200},{-220,-180}})));
+  Buildings.Controls.OBC.CDL.Logical.Switch swi1
+    "Switch for outage and out of battery"
+    annotation (Placement(transformation(extent={{182,-170},{162,-150}})));
+  Modelica.Blocks.Sources.BooleanExpression runOut(y=bat.SOC <= 0.01 and not
+        con.y) "Runout of battery and not connected to grid"
+    annotation (Placement(transformation(extent={{240,-170},{220,-150}})));
 equation
   connect(TCHWSup.port_b, ahu.port_a1)
     annotation (Line(
@@ -292,9 +297,20 @@ equation
           122}}, color={255,0,255}));
   connect(con.y, cooModCon.connected) annotation (Line(points={{293,220},{272,220},
           {272,276},{-206,276},{-206,122}}, color={255,0,255}));
+  connect(swi1.y, filter.u)
+    annotation (Line(points={{161,-160},{122,-160}}, color={0,0,127}));
+  connect(zer.y, swi1.u1) annotation (Line(points={{239,210},{160,210},{160,
+          -126},{200,-126},{200,-152},{184,-152}}, color={0,0,127}));
+  connect(uni.y, swi1.u3) annotation (Line(points={{239,250},{248,250},{248,202},
+          {158,202},{158,-128},{198,-128},{198,-168},{184,-168}}, color={0,0,
+          127}));
+  connect(runOut.y, swi1.u2)
+    annotation (Line(points={{219,-160},{184,-160}}, color={255,0,255}));
+  connect(swi1.y, pro1.u1) annotation (Line(points={{161,-160},{146,-160},{146,
+          -218},{-368,-218},{-368,-132},{-92,-132}}, color={0,0,127}));
   annotation (Diagram(coordinateSystem(preserveAspectRatio=false,
     extent={{-380,-220},{260,220}})), experiment(
-      StartTime=18403200,
+      StartTime=12960000,
       StopTime=18576000,
       __Dymola_Algorithm="Cvode"),
     __Dymola_Commands(file="Resources/Scripts/Dymola/Applications/DataCenters/ChillerCooled/Paper/Case2/FMC_AHU_PLR025.mos"

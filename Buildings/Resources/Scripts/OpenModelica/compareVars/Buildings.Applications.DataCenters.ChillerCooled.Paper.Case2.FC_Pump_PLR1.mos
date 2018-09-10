@@ -1,0 +1,10 @@
+compareVars :=
+  {
+    "loaCooTow.P",
+    "loaPowCW.P",
+    "loaChi.P",
+    "loaPumCHW.P",
+    "loaAHU.P",
+    "roo.TRooAir",
+    "TAirSup.T"
+  };

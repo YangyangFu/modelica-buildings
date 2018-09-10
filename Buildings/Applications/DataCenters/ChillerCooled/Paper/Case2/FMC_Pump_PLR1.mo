@@ -8,7 +8,6 @@ model FMC_Pump_PLR1
       addPowerToMedium=false,
       perPum=perPumPri,
       use_inputFilter=true),
-    roo(rooVol(mSenFac=25)),
     ahu(tauFan=10),
     val(use_inputFilter=true),
     pumCW(use_inputFilter=true),
@@ -128,7 +127,7 @@ model FMC_Pump_PLR1
         displayUnit="h") = 18540000)
     annotation (Placement(transformation(extent={{360,218},{340,238}})));
   Modelica.Blocks.Sources.BooleanStep booleanStep1(startTime(displayUnit="h")=
-         18541800)
+         18540900)
     annotation (Placement(transformation(extent={{360,182},{340,202}})));
   Modelica.Blocks.Logical.Or con
     annotation (Placement(transformation(extent={{314,210},{294,230}})));
@@ -150,7 +149,7 @@ model FMC_Pump_PLR1
     "Switch for outage and out of battery"
     annotation (Placement(transformation(extent={{232,280},{212,300}})));
   Buildings.Controls.OBC.CDL.Continuous.LessEqualThreshold lesEquThr(threshold=
-        0)
+        0.01)
     annotation (Placement(transformation(extent={{360,294},{340,314}})));
   Modelica.Blocks.Logical.And powCri "Power all critical equipment"
     annotation (Placement(transformation(extent={{320,270},{300,290}})));
@@ -328,6 +327,10 @@ equation
           {234,298}}, color={0,0,127}));
   connect(uni.y, swi.u3) annotation (Line(points={{259,252},{244,252},{244,282},
           {234,282}}, color={0,0,127}));
+  connect(swi.y, pro1.u1) annotation (Line(points={{211,290},{202,290},{202,310},
+          {-378,310},{-378,-132},{-92,-132}}, color={0,0,127}));
+  connect(filter.u, swi.y) annotation (Line(points={{122,-160},{380,-160},{380,
+          336},{202,336},{202,290},{211,290}}, color={0,0,127}));
  annotation (Diagram(coordinateSystem(preserveAspectRatio=false,
     extent={{-380,-220},{260,220}}), graphics={Rectangle(
           extent={{154,326},{280,190}},
@@ -340,7 +343,7 @@ equation
           fillPattern=FillPattern.Solid,
           textString="Critical Equipment")}),
                                       experiment(
-      StartTime=18403200,
+      StartTime=12960000,
       StopTime=18576000,
       __Dymola_Algorithm="Cvode"),
     __Dymola_Commands(file="Resources/Scripts/Dymola/Applications/DataCenters/ChillerCooled/Paper/Case2/FMC_Pump_PLR1.mos"

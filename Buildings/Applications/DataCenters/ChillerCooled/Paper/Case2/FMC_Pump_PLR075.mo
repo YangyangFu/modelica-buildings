@@ -8,7 +8,6 @@ model FMC_Pump_PLR075
       addPowerToMedium=false,
       perPum=perPumPri,
       use_inputFilter=true),
-    roo(rooVol(mSenFac=25)),
     ahu(tauFan=10),
     val(use_inputFilter=true),
     pumCW(use_inputFilter=true),
@@ -128,7 +127,7 @@ model FMC_Pump_PLR075
         displayUnit="h") = 18540000)
     annotation (Placement(transformation(extent={{360,220},{340,240}})));
   Modelica.Blocks.Sources.BooleanStep booleanStep1(startTime(displayUnit="h")=
-         18541800)
+         18540900)
     annotation (Placement(transformation(extent={{360,180},{340,200}})));
   Modelica.Blocks.Logical.Or con
     annotation (Placement(transformation(extent={{314,210},{294,230}})));
@@ -154,7 +153,7 @@ model FMC_Pump_PLR075
   Modelica.Blocks.Logical.Not notCon "Not connected to grid"
     annotation (Placement(transformation(extent={{294,242},{314,262}})));
   Buildings.Controls.OBC.CDL.Continuous.LessEqualThreshold lesEquThr(threshold=
-        0)
+        0.1)
     annotation (Placement(transformation(extent={{354,294},{334,314}})));
 equation
   connect(TCHWSup.port_b, ahu.port_a1)
@@ -331,6 +330,10 @@ equation
     annotation (Line(points={{205,290},{182,290}}, color={0,0,127}));
   connect(bat.SOC, lesEquThr.u) annotation (Line(points={{337,80},{368,80},{368,
           304},{356,304}}, color={0,0,127}));
+  connect(swi.y, pro1.u1) annotation (Line(points={{205,290},{202,290},{202,320},
+          {-366,320},{-366,-132},{-92,-132}}, color={0,0,127}));
+  connect(swi.y, filter.u) annotation (Line(points={{205,290},{202,290},{202,
+          332},{370,332},{370,-160},{122,-160}}, color={0,0,127}));
  annotation (Diagram(coordinateSystem(preserveAspectRatio=false,
     extent={{-380,-220},{260,220}}), graphics={Rectangle(
           extent={{154,326},{280,190}},
@@ -343,7 +346,7 @@ equation
           fillPattern=FillPattern.Solid,
           textString="Critical Equipment")}),
                                       experiment(
-      StartTime=18403200,
+      StartTime=12960000,
       StopTime=18576000,
       __Dymola_Algorithm="Cvode"),
     __Dymola_Commands(file=

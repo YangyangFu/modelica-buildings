@@ -1,7 +1,6 @@
 PartialDataCenter
 BatteryControl
 IdealSwitchOnePhase
-Examples
 IdealClosingSwitch
 ChillerStage
 ConstantSpeedPumpStage
@@ -9,3 +8,5 @@ CoolingMode
 Types
 wseStage
 SimplifiedRoom
+SimplifiedRoomThermalMass
+Examples
