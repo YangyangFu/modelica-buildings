@@ -8,7 +8,6 @@ model FC_PumpToAHU_PLR050
       addPowerToMedium=false,
       perPum=perPumPri,
       use_inputFilter=true),
-    ahu(tauFan=10),
     val(use_inputFilter=true),
     pumCW(use_inputFilter=true),
     PLR = 0.50);

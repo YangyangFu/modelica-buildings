@@ -17,15 +17,16 @@ from datetime import datetime
 from matplotlib import rcParams
 rcParams['font.family'] = 'sans-serif'
 rcParams['font.sans-serif'] = ['Times New Roman']
-rcParams['font.size'] = 12
+rcParams['font.size'] = 20
+rcParams['lines.linewidth'] = 1
 
 # change the working directory
-path = "c:/Users/fuya744/github/modelica-buildings/Buildings/"
+path = "c:/github/modelica-buildings/Buildings/"
 os.chdir(path)
 
 # set up interested period (outage in FC mode)
 ts = (8510*60-5)*60
-te = (8510.5*60+5)*60
+te = (8510.25*60+5)*60
 tim_Nor = np.arange(ts,te+1,60)
 
 # constant values
@@ -217,37 +218,41 @@ print len(datetimelist)
 timeindex = datetimelist[np.logical_and(t>=ts,t<=te)]
 print timeindex
 print timeindex.time
-a = timeindex.time[np.arange(5,len(timeindex.time)+1,10)]
+a = timeindex.time[np.arange(5,len(timeindex.time)+1,5)]
 print a
 
 ####-----------------------------------------------------------------------------
 ##              start to plot
 #### -----------------------------------------------------------------------------
+linestyles = [(0,(3,5,1,5,1,5)),(0,(2,1)),(0,(4,4)),(0,())]
+
 fig,ax=plt.subplots(2,1,figsize=(8,6))
 plt.subplot(211)
-plt.plot(timeindex.time,TRooAir_CriAHU100-273.15,'k--o',markersize=6,markeredgecolor = 'k',
+plt.plot(timeindex.time,TRooAir_CriAHU100-273.15,color = 'k',linestyle=linestyles[0],marker = 'o',markersize=12,markeredgecolor = 'k',
          markeredgewidth=1,markerfacecolor="none",alpha=0.8,markevery=range(0,len(timeindex),3))
-plt.plot(timeindex.time,TRooAir_CriPum100-273.15,'k-..',markersize=8,alpha=0.8,markevery=range(0,len(timeindex),3))
-plt.plot(timeindex.time,TRooAir_CriPumAHU100-273.15,'k:')
-plt.plot(timeindex.time,TRooAir_Nor-273.15,'k-',alpha=0.8)
+plt.plot(timeindex.time,TRooAir_CriPum100-273.15,color = 'k',linestyle=linestyles[1],marker = '.',markersize=14,alpha=0.8,markevery=range(0,len(timeindex),3))
+plt.plot(timeindex.time,TRooAir_CriPumAHU100-273.15,color = 'k',linestyle=linestyles[2],marker = 'v',markersize=12,markeredgecolor = 'k',
+         markeredgewidth=1,markerfacecolor="none",alpha=0.8,markevery=range(2,len(timeindex),3))
+plt.plot(timeindex.time,TRooAir_Nor-273.15,color = 'k',linestyle=linestyles[3],alpha=0.8)
 
 plt.ylabel('Room Temperature[$\circ$C]')
 plt.xticks(a,[]) # set location and ticklabel(none)
 plt.xlabel('')
 plt.grid(True)
-plt.legend(["CE: AHU","CE: AHU+Pump","C3","Normal"])
+plt.legend(["Option (a)","Option (b)","Option (c)","Normal"],fontsize=16)
 
 plt.subplot(212)
-plt.plot(timeindex.time,SOC_CriAHU100,'k--o',markersize=6,markeredgecolor = 'k',
+plt.plot(timeindex.time,SOC_CriAHU100,color = 'k',linestyle=linestyles[0],marker = 'o',markersize=12,markeredgecolor = 'k',
          markeredgewidth=1,markerfacecolor="none",alpha=0.8,markevery=range(0,len(timeindex),3))
-plt.plot(timeindex.time,SOC_CriPum100,'k-..',markersize=8,alpha=0.8,markevery=range(0,len(timeindex),3))
-plt.plot(timeindex.time,SOC_CriPumAHU100,'k:')
-plt.plot(timeindex.time,SOC_Nor*np.ones(len(timeindex)),'k-',alpha=0.8)
+plt.plot(timeindex.time,SOC_CriPum100,color = 'k',linestyle=linestyles[1],marker = '.',markersize=14,alpha=0.8,markevery=range(0,len(timeindex),3))
+plt.plot(timeindex.time,SOC_CriPumAHU100,color = 'k',linestyle=linestyles[2],marker = 'v',markersize=12,markeredgecolor = 'k',
+         markeredgewidth=1,markerfacecolor="none",alpha=0.8,markevery=range(2,len(timeindex),3))
+plt.plot(timeindex.time,SOC_Nor*np.ones(len(timeindex)),color = 'k',linestyle=linestyles[3],alpha=0.8)
 plt.grid(True)
 plt.ylabel('SOC')
-plt.xticks(a)
+plt.xticks(a,fontsize=16)
 plt.xlabel ('Time')
-plt.legend(["CE: AHU","CE: AHU+Pump","C3","Normal"],loc=3)
+plt.legend(["Option (a)","Option (b)","Option (c)","Normal"],loc=3,fontsize=16)
 plt.savefig('FCPLR100.svg')
 plt.savefig('FCPLR100.eps')
 plt.show()
@@ -257,61 +262,66 @@ plt.show()
 ###---------------------------------------------------------
 fig,ax=plt.subplots(2,1,figsize=(8,6))
 plt.subplot(211)
-plt.plot(timeindex.time,TRooAir_CriAHU075-273.15,'k--o',markersize=6,markeredgecolor = 'k',
+plt.plot(timeindex.time,TRooAir_CriAHU075-273.15,color = 'k',linestyle=linestyles[0],marker = 'o',markersize=12,markeredgecolor = 'k',
          markeredgewidth=1,markerfacecolor="none",alpha=0.8,markevery=range(0,len(timeindex),3))
-plt.plot(timeindex.time,TRooAir_CriPum075-273.15,'k-..',markersize=8,alpha=0.8,markevery=range(0,len(timeindex),3))
-plt.plot(timeindex.time,TRooAir_CriPumAHU075-273.15,'k:')
-plt.plot(timeindex.time,TRooAir_Nor-273.15,'k-',alpha=0.8)
+plt.plot(timeindex.time,TRooAir_CriPum075-273.15,color = 'k',linestyle=linestyles[1],marker = '.',markersize=14,alpha=0.8,markevery=range(0,len(timeindex),3))
+plt.plot(timeindex.time,TRooAir_CriPumAHU075-273.15,color = 'k',linestyle=linestyles[2],marker = 'v',markersize=12,markeredgecolor = 'k',
+         markeredgewidth=1,markerfacecolor="none",alpha=0.8,markevery=range(2,len(timeindex),3))
+plt.plot(timeindex.time,TRooAir_Nor-273.15,color = 'k',linestyle=linestyles[3],alpha=0.8)
 
 plt.ylabel('Room Temperature[$\circ$C]')
 plt.xticks(a,[]) # set location and ticklabel(none)
 plt.xlabel('')
 plt.grid(True)
-plt.legend(["CE: AHU","CE: AHU+Pump","C3","Normal"])
+plt.legend(["Option (a)","Option (b)","Option (c)","Normal"],fontsize=16)
 
 plt.subplot(212)
-plt.plot(timeindex.time,SOC_CriAHU075,'k--o',markersize=6,markeredgecolor = 'k',
+plt.plot(timeindex.time,SOC_CriAHU075,color = 'k',linestyle=linestyles[0],marker = 'o',markersize=12,markeredgecolor = 'k',
          markeredgewidth=1,markerfacecolor="none",alpha=0.8,markevery=range(0,len(timeindex),3))
-plt.plot(timeindex.time,SOC_CriPum075,'k-..',markersize=8,alpha=0.8,markevery=range(0,len(timeindex),3))
-plt.plot(timeindex.time,SOC_CriPumAHU075,'k:')
-plt.plot(timeindex.time,SOC_Nor*np.ones(len(timeindex)),'k-',alpha=0.8)
+plt.plot(timeindex.time,SOC_CriPum075,color = 'k',linestyle=linestyles[1],marker = '.',markersize=14,alpha=0.8,markevery=range(0,len(timeindex),3))
+plt.plot(timeindex.time,SOC_CriPumAHU075,color = 'k',linestyle=linestyles[2],marker = 'v',markersize=12,markeredgecolor = 'k',
+         markeredgewidth=1,markerfacecolor="none",alpha=0.8,markevery=range(2,len(timeindex),3))
+plt.plot(timeindex.time,SOC_Nor*np.ones(len(timeindex)),color = 'k',linestyle=linestyles[3],alpha=0.8)
 plt.grid(True)
 plt.ylabel('SOC')
-plt.xticks(a)
+plt.xticks(a,fontsize=16)
 plt.xlabel ('Time')
-plt.legend(["CE: AHU","CE: AHU+Pump","C3","Normal"],loc=3)
+plt.legend(["Option (a)","Option (b)","Option (c)","Normal"],loc=3,fontsize=16)
 plt.savefig('FCPLR075.svg')
 plt.savefig('FCPLR075.eps')
 plt.show()
+
 
 ### -------------------------------------------------------
 ###               plot for PLR = 0.50
 ###---------------------------------------------------------
 fig,ax=plt.subplots(2,1,figsize=(8,6))
 plt.subplot(211)
-plt.plot(timeindex.time,TRooAir_CriAHU050-273.15,'k--o',markersize=6,markeredgecolor = 'k',
+plt.plot(timeindex.time,TRooAir_CriAHU050-273.15,color = 'k',linestyle=linestyles[0],marker = 'o',markersize=12,markeredgecolor = 'k',
          markeredgewidth=1,markerfacecolor="none",alpha=0.8,markevery=range(0,len(timeindex),3))
-plt.plot(timeindex.time,TRooAir_CriPum050-273.15,'k-..',markersize=8,alpha=0.8,markevery=range(0,len(timeindex),3))
-plt.plot(timeindex.time,TRooAir_CriPumAHU050-273.15,'k:')
-plt.plot(timeindex.time,TRooAir_Nor-273.15,'k-',alpha=0.8)
+plt.plot(timeindex.time,TRooAir_CriPum050-273.15,color = 'k',linestyle=linestyles[1],marker = '.',markersize=14,alpha=0.8,markevery=range(0,len(timeindex),3))
+plt.plot(timeindex.time,TRooAir_CriPumAHU050-273.15,color = 'k',linestyle=linestyles[2],marker = 'v',markersize=12,markeredgecolor = 'k',
+         markeredgewidth=1,markerfacecolor="none",alpha=0.8,markevery=range(2,len(timeindex),3))
+plt.plot(timeindex.time,TRooAir_Nor-273.15,color = 'k',linestyle=linestyles[3],alpha=0.8)
 
 plt.ylabel('Room Temperature[$\circ$C]')
 plt.xticks(a,[]) # set location and ticklabel(none)
 plt.xlabel('')
 plt.grid(True)
-plt.legend(["CE: AHU","CE: AHU+Pump","C3","Normal"])
+plt.legend(["Option (a)","Option (b)","Option (c)","Normal"],fontsize=16)
 
 plt.subplot(212)
-plt.plot(timeindex.time,SOC_CriAHU050,'k--o',markersize=6,markeredgecolor = 'k',
+plt.plot(timeindex.time,SOC_CriAHU050,color = 'k',linestyle=linestyles[0],marker = 'o',markersize=12,markeredgecolor = 'k',
          markeredgewidth=1,markerfacecolor="none",alpha=0.8,markevery=range(0,len(timeindex),3))
-plt.plot(timeindex.time,SOC_CriPum050,'k-..',markersize=8,alpha=0.8,markevery=range(0,len(timeindex),3))
-plt.plot(timeindex.time,SOC_CriPumAHU050,'k:')
-plt.plot(timeindex.time,SOC_Nor*np.ones(len(timeindex)),'k-',alpha=0.8)
+plt.plot(timeindex.time,SOC_CriPum050,color = 'k',linestyle=linestyles[1],marker = '.',markersize=14,alpha=0.8,markevery=range(0,len(timeindex),3))
+plt.plot(timeindex.time,SOC_CriPumAHU050,color = 'k',linestyle=linestyles[2],marker = 'v',markersize=12,markeredgecolor = 'k',
+         markeredgewidth=1,markerfacecolor="none",alpha=0.8,markevery=range(2,len(timeindex),3))
+plt.plot(timeindex.time,SOC_Nor*np.ones(len(timeindex)),color = 'k',linestyle=linestyles[3],alpha=0.8)
 plt.grid(True)
 plt.ylabel('SOC')
-plt.xticks(a)
+plt.xticks(a,fontsize=16)
 plt.xlabel ('Time')
-plt.legend(["CE: AHU","CE: AHU+Pump","C3","Normal"],loc=3)
+plt.legend(["Option (a)","Option (b)","Option (c)","Normal"],loc=3,fontsize=16)
 plt.savefig('FCPLR050.svg')
 plt.savefig('FCPLR050.eps')
 plt.show()
@@ -321,29 +331,32 @@ plt.show()
 ###---------------------------------------------------------
 fig,ax=plt.subplots(2,1,figsize=(8,6))
 plt.subplot(211)
-plt.plot(timeindex.time,TRooAir_CriAHU025-273.15,'k--o',markersize=6,markeredgecolor = 'k',
+plt.plot(timeindex.time,TRooAir_CriAHU025-273.15,color = 'k',linestyle=linestyles[0],marker = 'o',markersize=12,markeredgecolor = 'k',
          markeredgewidth=1,markerfacecolor="none",alpha=0.8,markevery=range(0,len(timeindex),3))
-plt.plot(timeindex.time,TRooAir_CriPum025-273.15,'k-..',markersize=8,alpha=0.8,markevery=range(0,len(timeindex),3))
-plt.plot(timeindex.time,TRooAir_CriPumAHU025-273.15,'k:')
-plt.plot(timeindex.time,TRooAir_Nor-273.15,'k-',alpha=0.8)
+plt.plot(timeindex.time,TRooAir_CriPum025-273.15,color = 'k',linestyle=linestyles[1],marker = '.',markersize=14,alpha=0.8,markevery=range(0,len(timeindex),3))
+plt.plot(timeindex.time,TRooAir_CriPumAHU025-273.15,color = 'k',linestyle=linestyles[2],marker = 'v',markersize=12,markeredgecolor = 'k',
+         markeredgewidth=1,markerfacecolor="none",alpha=0.8,markevery=range(2,len(timeindex),3))
+plt.plot(timeindex.time,TRooAir_Nor-273.15,color = 'k',linestyle=linestyles[3],alpha=0.8)
 
 plt.ylabel('Room Temperature[$\circ$C]')
+plt.ylim([24,30])
 plt.xticks(a,[]) # set location and ticklabel(none)
 plt.xlabel('')
 plt.grid(True)
-plt.legend(["CE: AHU","CE: AHU+Pump","C3","Normal"])
+plt.legend(["Option (a)","Option (b)","Option (c)","Normal"],fontsize=16)
 
 plt.subplot(212)
-plt.plot(timeindex.time,SOC_CriAHU025,'k--o',markersize=6,markeredgecolor = 'k',
+plt.plot(timeindex.time,SOC_CriAHU025,color = 'k',linestyle=linestyles[0],marker = 'o',markersize=12,markeredgecolor = 'k',
          markeredgewidth=1,markerfacecolor="none",alpha=0.8,markevery=range(0,len(timeindex),3))
-plt.plot(timeindex.time,SOC_CriPum025,'k-..',markersize=8,alpha=0.8,markevery=range(0,len(timeindex),3))
-plt.plot(timeindex.time,SOC_CriPumAHU025,'k:')
-plt.plot(timeindex.time,SOC_Nor*np.ones(len(timeindex)),'k-',alpha=0.8)
+plt.plot(timeindex.time,SOC_CriPum025,color = 'k',linestyle=linestyles[1],marker = '.',markersize=14,alpha=0.8,markevery=range(0,len(timeindex),3))
+plt.plot(timeindex.time,SOC_CriPumAHU025,color = 'k',linestyle=linestyles[2],marker = 'v',markersize=12,markeredgecolor = 'k',
+         markeredgewidth=1,markerfacecolor="none",alpha=0.8,markevery=range(2,len(timeindex),3))
+plt.plot(timeindex.time,SOC_Nor*np.ones(len(timeindex)),color = 'k',linestyle=linestyles[3],alpha=0.8)
 plt.grid(True)
 plt.ylabel('SOC')
-plt.xticks(a)
+plt.xticks(a,fontsize=16)
 plt.xlabel ('Time')
-plt.legend(["CE: AHU","CE: AHU+Pump","C3","Normal"],loc=3)
+plt.legend(["Option (a)","Option (b)","Option (c)","Normal"],loc=3,fontsize=16)
 plt.savefig('FCPLR025.svg')
 plt.savefig('FCPLR025.eps')
 plt.show()

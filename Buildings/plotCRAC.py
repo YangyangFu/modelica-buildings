@@ -13,7 +13,7 @@ from datetime import datetime
 from matplotlib import rcParams
 rcParams['font.family'] = 'sans-serif'
 rcParams['font.sans-serif'] = ['Times New Roman']
-rcParams['font.size'] = 14
+rcParams['font.size'] = 20
 
 # change the working directory
 path = "C:/Github/modelica-buildings/Buildings/"
@@ -85,60 +85,60 @@ simEnd = pd.Timestamp(2018,1,2,0,0,0)
 datetimelist = pd.date_range(simStart,simEnd,freq = 'H')
 print datetimelist.time
 
-fig = plt.figure(figsize=(10,6))
-plt.plot(t,Tout_E,'k--o',markersize=6,markeredgecolor = 'k',
+fig = plt.figure(figsize=(14,8))
+plt.plot(t,Tout_E,'k--o',markersize=10,markeredgecolor = 'k',
          markeredgewidth=1,markerfacecolor="none",alpha=0.8,markevery=1.0/12)
-plt.plot(t,Tout_M-273.15,'k-..',markersize=8,alpha=0.8,markevery=1.0/12)
+plt.plot(t,Tout_M-273.15,'k-..',markersize=12,alpha=0.8,markevery=1.0/12)
 plt.grid(True)
 plt.ylabel('Temperature [$\circ$C]')
 plt.ylim([5,30])
-plt.xticks(np.arange(0,25,3)*3600,datetimelist.time[np.arange(0,25,3)], rotation=20,fontsize=12)
+plt.xticks(np.arange(0,25,3)*3600,datetimelist.time[np.arange(0,25,3)], rotation=20,fontsize=16)
 plt.xlabel ('Time')
-plt.legend(["EnergyPlus Model","Modelica Model"],loc=5)
+plt.legend(["EnergyPlus Model","Modelica Model"],loc=5,fontsize=16)
 plt.savefig('Figure7-1-Tout.eps')
 plt.savefig('Figure7-1-Tout.svg')
 plt.show()
 plt.close()
 
 
-fig = plt.figure(figsize=(10,6))
-plt.plot(t,Xout_E,'k--o',markersize=6,markeredgecolor = 'k',
+fig = plt.figure(figsize=(14,8))
+plt.plot(t,Xout_E,'k--o',markersize=10,markeredgecolor = 'k',
          markeredgewidth=1,markerfacecolor="none",alpha=0.8,markevery=1.0/12)
-plt.plot(t,Xout_M,'k-..',markersize=8,alpha=0.8,markevery=1.0/12)
+plt.plot(t,Xout_M,'k-..',markersize=12,alpha=0.8,markevery=1.0/12)
 plt.grid(True)
 plt.ylabel('Humidity [kg/kg]')
 plt.ylim([0.002,0.012])
-plt.xticks(np.arange(0,25,3)*3600,datetimelist.time[np.arange(0,25,3)], rotation=20,fontsize=12)
+plt.xticks(np.arange(0,25,3)*3600,datetimelist.time[np.arange(0,25,3)], rotation=20,fontsize=16)
 plt.xlabel ('Time')
-plt.legend(["EnergyPlus Model","Modelica Model"],loc=5)
+plt.legend(["EnergyPlus Model","Modelica Model"],loc=5,fontsize=16)
 plt.savefig("Figure7-2-Xout.eps")
 plt.savefig("Figure7-2-Xout.svg")
 plt.show()
 
-fig = plt.figure(figsize=(10,6))
-plt.plot(t,Q_E,'k--o',markersize=6,markeredgecolor = 'k',
+fig = plt.figure(figsize=(14,8))
+plt.plot(t,Q_E,'k--o',markersize=10,markeredgecolor = 'k',
          markeredgewidth=1,markerfacecolor="none",alpha=0.8,markevery=1./12)
-plt.plot(t,Q_M,'k-..',markersize=8,alpha=0.8,markevery=1./12)
+plt.plot(t,Q_M,'k-..',markersize=12,alpha=0.8,markevery=1./12)
 plt.grid(True)
 plt.ylabel('Heat Rate [W]')
 plt.ylim([-2000,8000])
-plt.xticks(np.arange(0,25,3)*3600,datetimelist.time[np.arange(0,25,3)], rotation=20,fontsize=12)
+plt.xticks(np.arange(0,25,3)*3600,datetimelist.time[np.arange(0,25,3)], rotation=20,fontsize=16)
 plt.xlabel ('Time')
-plt.legend(["EnergyPlus Model","Modelica Model"],loc=5)
+plt.legend(["EnergyPlus Model","Modelica Model"],loc=5,fontsize=16)
 plt.savefig("Figure7-3-Q.eps")
 plt.savefig("Figure7-3-Q.svg")
 plt.show()
 
-fig = plt.figure(figsize=(10,6))
-plt.plot(t,P_E,'k--o',markersize=6,markeredgecolor = 'k',
+fig = plt.figure(figsize=(14,8))
+plt.plot(t,P_E,'k--o',markersize=10,markeredgecolor = 'k',
          markeredgewidth=1,markerfacecolor="none",alpha=0.8,markevery=1./12)
-plt.plot(t,P_M,'k-..',markersize=8,alpha=0.8,markevery=1./12)
+plt.plot(t,P_M,'k-..',markersize=12,alpha=0.8,markevery=1./12)
 plt.grid(True)
 plt.ylabel('Power [W]')
 plt.ylim([-200,1200])
-plt.xticks(np.arange(0,25,3)*3600,datetimelist.time[np.arange(0,25,3)], rotation=20,fontsize=12)
+plt.xticks(np.arange(0,25,3)*3600,datetimelist.time[np.arange(0,25,3)], rotation=20,fontsize=16)
 plt.xlabel ('Time')
-plt.legend(["EnergyPlus Model","Modelica Model"],loc=5)
+plt.legend(["EnergyPlus Model","Modelica Model"],loc=5,fontsize=16)
 plt.savefig("Figure7-4-P.eps")
 plt.savefig("Figure7-4-P.svg")
 plt.show()

@@ -1,6 +1,5 @@
 within Buildings.Applications.DataCenters.ChillerCooled.Paper.Case2;
 model FC_PumpToAHU_PLR025
-  import Buildings;
   extends Modelica.Icons.Example;
   extends
     Buildings.Applications.DataCenters.ChillerCooled.Paper.BaseClasses.PartialDataCenter(
@@ -8,7 +7,6 @@ model FC_PumpToAHU_PLR025
       addPowerToMedium=false,
       perPum=perPumPri,
       use_inputFilter=true),
-    ahu(tauFan=10),
     val(use_inputFilter=true),
     pumCW(use_inputFilter=true),
     PLR = 0.25);
