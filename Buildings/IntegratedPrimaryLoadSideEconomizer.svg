@@ -5,7 +5,6 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
-   xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    viewBox="0 0 1447.000000 902.000000"
@@ -40,10 +39,10 @@
      inkscape:window-height="1017"
      id="namedview2812"
      showgrid="false"
-     inkscape:zoom="0.66547167"
-     inkscape:cx="1098.698"
-     inkscape:cy="307.96503"
-     inkscape:window-x="-8"
+     inkscape:zoom="0.39887273"
+     inkscape:cx="941.08143"
+     inkscape:cy="460.61531"
+     inkscape:window-x="1912"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
      inkscape:current-layer="svg2810" />
@@ -118,15 +117,6 @@
      font-family="Arial"
      text-anchor="middle"
      id="text14">FCTim</text>
-  <image
-     sodipodi:absref="C:\Github\modelica-buildings\Buildings\int.png"
-     xlink:href="int.png"
-     id="image16"
-     preserveAspectRatio="xMidYMid meet"
-     y="291.024"
-     x="1240.23"
-     height="19"
-     width="21" />
   <text
      x="1233.61"
      y="286.605"
@@ -368,15 +358,6 @@
      font-family="Arial"
      text-anchor="middle"
      id="text78">PMCTim</text>
-  <image
-     sodipodi:absref="C:\Github\modelica-buildings\Buildings\int.png"
-     xlink:href="int.png"
-     id="image80"
-     preserveAspectRatio="xMidYMid meet"
-     y="366.262"
-     x="1240.23"
-     height="19"
-     width="21" />
   <text
      x="1233.61"
      y="361.843"
@@ -422,15 +403,6 @@
      font-family="Arial"
      text-anchor="middle"
      id="text90">FMCHou</text>
-  <image
-     sodipodi:absref="C:\Github\modelica-buildings\Buildings\int.png"
-     xlink:href="int.png"
-     id="image92"
-     preserveAspectRatio="xMidYMid meet"
-     y="441.5"
-     x="1240.23"
-     height="19"
-     width="21" />
   <text
      x="1233.61"
      y="437.081"
@@ -4841,15 +4813,6 @@
      stroke-opacity="1"
      points="294.642857,168.857143 324.738095,168.857143"
      id="polyline1192" />
-  <text
-     x="309.69"
-     y="193.31"
-     fill="rgb(0,0,0)"
-     dominant-baseline="central"
-     font-size="10"
-     font-family="Arial"
-     text-anchor="middle"
-     id="text1194">k=TCHWSet</text>
   <rect
      fill="rgb(255,255,255)"
      stroke="rgb(0,0,127)"
@@ -7461,103 +7424,89 @@
      text-anchor="middle"
      id="text1902">cooModCon</text>
   <rect
-     fill="rgb(235,235,235)"
-     stroke="rgb(0,0,0)"
-     stroke-opacity="1"
-     x="178.024"
+     x="290.02399"
      y="255.381"
-     width="37.619"
+     width="37.618999"
      height="15.0476"
-     id="rect1904" />
+     id="rect1904"
+     style="fill:#ebebeb;stroke:#000000;stroke-opacity:1" />
   <rect
-     fill="rgb(172,168,153)"
-     stroke="none"
-     x="176.821"
-     y="254.178"
+     x="288.82098"
+     y="254.17799"
      width="1.20267"
-     height="16.2503"
-     id="rect1906" />
+     height="16.250299"
+     id="rect1906"
+     style="fill:#aca899;stroke:none" />
   <rect
-     fill="rgb(172,168,153)"
-     stroke="none"
-     x="176.821"
-     y="270.429"
-     width="38.8217"
+     x="288.82098"
+     y="270.42899"
+     width="38.821701"
      height="1.20267"
-     id="rect1908" />
+     id="rect1908"
+     style="fill:#aca899;stroke:none" />
   <rect
-     fill="rgb(172,168,153)"
-     stroke="none"
-     x="215.643"
+     x="327.64301"
      y="255.381"
      width="1.20267"
-     height="16.2503"
-     id="rect1910" />
+     height="16.250299"
+     id="rect1910"
+     style="fill:#aca899;stroke:none" />
   <rect
-     fill="rgb(172,168,153)"
-     stroke="none"
-     x="178.024"
-     y="254.178"
-     width="38.8217"
+     x="290.02399"
+     y="254.17799"
+     width="38.821701"
      height="1.20267"
-     id="rect1912" />
+     id="rect1912"
+     style="fill:#aca899;stroke:none" />
   <rect
-     fill="rgb(255,255,255)"
-     stroke="none"
-     x="178.024"
+     x="290.02399"
      y="255.381"
      width="1.804"
      height="15.0476"
-     id="rect1914" />
+     id="rect1914"
+     style="fill:#ffffff;stroke:none" />
   <rect
-     fill="rgb(255,255,255)"
-     stroke="none"
-     x="178.024"
+     x="290.02399"
      y="255.381"
-     width="37.619"
+     width="37.618999"
      height="1.804"
-     id="rect1916" />
+     id="rect1916"
+     style="fill:#ffffff;stroke:none" />
   <rect
-     fill="rgb(113,111,100)"
-     stroke="none"
-     x="214.44"
+     x="326.44"
      y="255.381"
      width="1.20267"
      height="15.0476"
-     id="rect1918" />
+     id="rect1918"
+     style="fill:#716f64;stroke:none" />
   <rect
-     fill="rgb(113,111,100)"
-     stroke="none"
-     x="178.024"
-     y="269.226"
-     width="37.619"
+     x="290.02399"
+     y="269.22601"
+     width="37.618999"
      height="1.20267"
-     id="rect1920" />
+     id="rect1920"
+     style="fill:#716f64;stroke:none" />
   <rect
-     fill="rgb(172,168,153)"
-     stroke="none"
-     x="213.238"
-     y="256.584"
+     x="325.23801"
+     y="256.58401"
      width="1.20267"
      height="12.6423"
-     id="rect1922" />
+     id="rect1922"
+     style="fill:#aca899;stroke:none" />
   <rect
-     fill="rgb(172,168,153)"
-     stroke="none"
-     x="179.226"
-     y="268.023"
-     width="35.2137"
+     x="291.22601"
+     y="268.02301"
+     width="35.213699"
      height="1.20267"
-     id="rect1924" />
+     id="rect1924"
+     style="fill:#aca899;stroke:none" />
   <text
-     x="195.893"
-     y="249.738"
-     fill="rgb(0,0,255)"
+     x="307.89301"
+     y="249.73801"
      dominant-baseline="central"
      font-size="10"
-     font-family="Arial"
-     text-anchor="middle"
-     id="text1928">towTApp</text>
+     id="text1928"
+     style="font-size:10px;font-family:Arial;dominant-baseline:central;text-anchor:middle;fill:#0000ff">towTApp</text>
   <rect
      fill="rgb(235,235,235)"
      stroke="rgb(0,0,0)"
@@ -7755,103 +7704,89 @@
      text-anchor="middle"
      id="text1980">yVal6</text>
   <rect
-     fill="rgb(235,235,235)"
-     stroke="rgb(0,0,0)"
-     stroke-opacity="1"
-     x="178.024"
+     x="290.02399"
      y="198.952"
-     width="37.619"
+     width="37.618999"
      height="15.0476"
-     id="rect1982" />
+     id="rect1982"
+     style="fill:#ebebeb;stroke:#000000;stroke-opacity:1" />
   <rect
-     fill="rgb(172,168,153)"
-     stroke="none"
-     x="176.821"
+     x="288.82098"
      y="197.75"
      width="1.20267"
-     height="16.2503"
-     id="rect1984" />
+     height="16.250299"
+     id="rect1984"
+     style="fill:#aca899;stroke:none" />
   <rect
-     fill="rgb(172,168,153)"
-     stroke="none"
-     x="176.821"
+     x="288.82098"
      y="214"
-     width="38.8217"
+     width="38.821701"
      height="1.20267"
-     id="rect1986" />
+     id="rect1986"
+     style="fill:#aca899;stroke:none" />
   <rect
-     fill="rgb(172,168,153)"
-     stroke="none"
-     x="215.643"
+     x="327.64301"
      y="198.952"
      width="1.20267"
-     height="16.2503"
-     id="rect1988" />
+     height="16.250299"
+     id="rect1988"
+     style="fill:#aca899;stroke:none" />
   <rect
-     fill="rgb(172,168,153)"
-     stroke="none"
-     x="178.024"
+     x="290.02399"
      y="197.75"
-     width="38.8217"
+     width="38.821701"
      height="1.20267"
-     id="rect1990" />
+     id="rect1990"
+     style="fill:#aca899;stroke:none" />
   <rect
-     fill="rgb(255,255,255)"
-     stroke="none"
-     x="178.024"
+     x="290.02399"
      y="198.952"
      width="1.804"
      height="15.0476"
-     id="rect1992" />
+     id="rect1992"
+     style="fill:#ffffff;stroke:none" />
   <rect
-     fill="rgb(255,255,255)"
-     stroke="none"
-     x="178.024"
+     x="290.02399"
      y="198.952"
-     width="37.619"
+     width="37.618999"
      height="1.804"
-     id="rect1994" />
+     id="rect1994"
+     style="fill:#ffffff;stroke:none" />
   <rect
-     fill="rgb(113,111,100)"
-     stroke="none"
-     x="214.44"
+     x="326.44"
      y="198.952"
      width="1.20267"
      height="15.0476"
-     id="rect1996" />
+     id="rect1996"
+     style="fill:#716f64;stroke:none" />
   <rect
-     fill="rgb(113,111,100)"
-     stroke="none"
-     x="178.024"
+     x="290.02399"
      y="212.797"
-     width="37.619"
+     width="37.618999"
      height="1.20267"
-     id="rect1998" />
+     id="rect1998"
+     style="fill:#716f64;stroke:none" />
   <rect
-     fill="rgb(172,168,153)"
-     stroke="none"
-     x="213.238"
+     x="325.23801"
      y="200.155"
      width="1.20267"
      height="12.6423"
-     id="rect2000" />
+     id="rect2000"
+     style="fill:#aca899;stroke:none" />
   <rect
-     fill="rgb(172,168,153)"
-     stroke="none"
-     x="179.226"
+     x="291.22601"
      y="211.595"
-     width="35.2137"
+     width="35.213699"
      height="1.20267"
-     id="rect2002" />
+     id="rect2002"
+     style="fill:#aca899;stroke:none" />
   <text
-     x="195.893"
+     x="307.89301"
      y="193.31"
-     fill="rgb(0,0,255)"
      dominant-baseline="central"
      font-size="10"
-     font-family="Arial"
-     text-anchor="middle"
-     id="text2006">cooLoaChi</text>
+     id="text2006"
+     style="font-size:10px;font-family:Arial;dominant-baseline:central;text-anchor:middle;fill:#0000ff">cooLoaChi</text>
   <polyline
      fill="none"
      stroke="rgb(255,255,255)"
@@ -7893,18 +7828,15 @@
      points="819.428571,405.857143 1058.309524,405.857143 1058.309524,93.619048 354.833333,93.619048 354.833333,270.428571 373.642857,270.428571"
      id="polyline2018" />
   <polyline
-     fill="none"
-     stroke="rgb(255,255,255)"
-     stroke-width="5"
-     stroke-opacity="1"
      points="217.523810,206.476190 456.404762,206.476190"
-     id="polyline2020" />
+     id="polyline2020"
+     transform="matrix(0.52327321,0,0,1,217.58038,0)"
+     style="fill:none;stroke:#ffffff;stroke-width:5;stroke-opacity:1" />
   <polyline
-     fill="none"
-     stroke="rgb(0,0,127)"
-     stroke-opacity="1"
      points="217.523810,206.476190 456.404762,206.476190"
-     id="polyline2022" />
+     id="polyline2022"
+     transform="matrix(0.52327321,0,0,1,217.58038,0)"
+     style="fill:none;stroke:#00007f;stroke-opacity:1" />
   <polyline
      fill="none"
      stroke="rgb(255,255,255)"
@@ -7933,18 +7865,15 @@
      points="330.380952,168.857143 362.357143,168.857143 362.357143,247.857143 373.642857,247.857143"
      id="polyline2030" />
   <polyline
-     fill="none"
-     stroke="rgb(255,255,255)"
-     stroke-width="5"
-     stroke-opacity="1"
      points="217.523810,262.904762 373.642857,262.904762"
-     id="polyline2032" />
+     id="polyline2032"
+     transform="matrix(0.27894485,0,0,1,269.4171,0)"
+     style="fill:none;stroke:#ffffff;stroke-width:5;stroke-opacity:1" />
   <polyline
-     fill="none"
-     stroke="rgb(0,0,127)"
-     stroke-opacity="1"
      points="217.523810,262.904762 373.642857,262.904762"
-     id="polyline2034" />
+     id="polyline2034"
+     transform="matrix(0.27894483,0,0,1,269.41711,0)"
+     style="fill:none;stroke:#00007f;stroke-opacity:1" />
   <polyline
      fill="none"
      stroke="rgb(255,255,255)"
@@ -11007,11 +10936,10 @@
      points="369.880952,251.619048 377.404762,255.380952 369.880952,259.142857 369.880952,251.619048"
      id="polygon2798" />
   <polygon
-     fill="rgb(255,255,255)"
-     stroke="rgb(0,0,127)"
-     stroke-opacity="1"
-     points="215.642857,261.023810 219.404762,262.904762 215.642857,264.785714 215.642857,261.023810"
-     id="polygon2800" />
+     points="219.40476,262.90476 215.64286,264.78571 215.64286,261.02381 "
+     id="polygon2800"
+     transform="translate(112)"
+     style="fill:#ffffff;stroke:#00007f;stroke-opacity:1" />
   <polygon
      fill="rgb(255,255,255)"
      stroke="rgb(0,0,127)"
@@ -11025,9 +10953,61 @@
      points="516.595238,422.785714 520.357143,424.666667 516.595238,426.547619 516.595238,422.785714"
      id="polygon2804" />
   <polygon
-     fill="rgb(255,255,255)"
-     stroke="rgb(0,0,127)"
-     stroke-opacity="1"
-     points="215.642857,204.595238 219.404762,206.476190 215.642857,208.357143 215.642857,204.595238"
-     id="polygon2806" />
+     points="215.64286,208.35714 215.64286,204.59524 219.40476,206.47619 "
+     id="polygon2806"
+     transform="translate(112)"
+     style="fill:#ffffff;stroke:#00007f;stroke-opacity:1" />
+  <rect
+     style="opacity:1;fill:none;fill-opacity:1;fill-rule:nonzero;stroke:#000002;stroke-width:3;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:6,6;stroke-dashoffset:0;stroke-opacity:0.99033813;paint-order:markers fill stroke"
+     id="rect5863"
+     width="391.48578"
+     height="791.27032"
+     x="664.33136"
+     y="55.991043" />
+  <rect
+     style="opacity:1;fill:none;fill-opacity:1;fill-rule:nonzero;stroke:#000002;stroke-width:3;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:6, 6;stroke-dashoffset:0;stroke-opacity:0.99033813;paint-order:markers fill stroke"
+     id="rect5863-7"
+     width="391.48578"
+     height="791.27032"
+     x="252.7661"
+     y="54.31028" />
+  <rect
+     style="opacity:1;fill:none;fill-opacity:1;fill-rule:nonzero;stroke:#000002;stroke-width:3;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:6,6;stroke-dashoffset:0;stroke-opacity:0.99033813;paint-order:markers fill stroke"
+     id="rect5863-7-5"
+     width="193.82425"
+     height="792.15826"
+     x="36.045097"
+     y="52.093575" />
+  <text
+     style="font-weight:bold;font-size:27px;font-family:Arial;dominant-baseline:central;text-anchor:middle;fill:#000000"
+     x="946.08881"
+     y="794.98883"
+     dominant-baseline="central"
+     font-size="27"
+     font-weight="bold"
+     id="text4-2">Cooling System</text>
+  <text
+     style="font-weight:bold;font-size:27px;font-family:Arial;dominant-baseline:central;text-anchor:middle;fill:#000000"
+     x="370.73816"
+     y="717.17462"
+     dominant-baseline="central"
+     font-size="27"
+     font-weight="bold"
+     id="text4-2-9">Control System</text>
+  <text
+     style="font-weight:bold;font-size:27px;font-family:Arial;dominant-baseline:central;text-anchor:middle;fill:#000000"
+     x="140.62637"
+     y="719.77972"
+     dominant-baseline="central"
+     font-size="27"
+     font-weight="bold"
+     id="text4-2-9-0">Boundary</text>
+  <text
+     style="font-weight:bold;font-size:27px;font-family:Arial;dominant-baseline:central;text-anchor:middle;fill:#000000"
+     x="138.32474"
+     y="755.96735"
+     dominant-baseline="central"
+     font-size="27"
+     font-weight="bold"
+     id="text4-2-9-0-3">Conditions</text>
 </svg>
