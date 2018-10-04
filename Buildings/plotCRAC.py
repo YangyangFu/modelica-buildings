@@ -86,6 +86,8 @@ simEnd = pd.Timestamp(2018,1,2,0,0,0)
 datetimelist = pd.date_range(simStart,simEnd,freq = 'H')
 print datetimelist.time
 
+print '===========================================================\n'
+print Tout_M-273.15
 
 linestyles = [(0,(3,5,1,5,1,5)),(0,(2,1))]
 

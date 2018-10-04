@@ -289,6 +289,11 @@ equation
           122}}, color={255,0,255}));
   connect(con.y, cooModCon.connected) annotation (Line(points={{293,220},{272,220},
           {272,276},{-206,276},{-206,122}}, color={255,0,255}));
+  connect(uni.y, pro1.u1) annotation (Line(points={{239,250},{232,250},{232,280},
+          {-368,280},{-368,-132},{-92,-132}}, color={0,0,127}));
+  connect(uni.y, filter.u) annotation (Line(points={{239,250},{232,250},{232,
+          280},{-366,280},{-366,-218},{152,-218},{152,-160},{122,-160}}, color=
+          {0,0,127}));
   annotation (Diagram(coordinateSystem(preserveAspectRatio=false,
     extent={{-380,-220},{260,220}})), experiment(
       StopTime=31536000,

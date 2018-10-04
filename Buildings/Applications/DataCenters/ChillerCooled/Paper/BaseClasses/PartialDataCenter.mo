@@ -53,9 +53,9 @@ partial model PartialDataCenter
     "Real heat generated in data center room";
 
   parameter Buildings.Fluid.Movers.Data.Generic perFan(
-    motorCooledByFluid=false, pressure(dp=1500*{1.461,1.455,1.407,1.329,1.234,1.126,
-          1.0,0.85,0.731}, V_flow=mAir_flow_nominal/1.29*{0,0.41,0.54,0.66,0.77,
-          0.89,1,1.12,1.19}))
+    motorCooledByFluid=false, pressure(V_flow=mAir_flow_nominal/1.29*{0,0.41,
+          0.54,0.66,0.77,0.89,1,1.12,1.19}, dp=1300*{1.461,1.455,1.407,1.329,
+          1.234,1.126,1.0,0.85,0.731}))
     "Performance data for the fan"
     annotation (Placement(transformation(extent={{-280,-200},{-260,-180}})));
 
@@ -114,7 +114,7 @@ partial model PartialDataCenter
     each dp_nominal=30000,
     each m_flow_nominal=m1_flow_chi_nominal,
     each TAirInWB_nominal(displayUnit="degC"),
-    each PFan_nominal=36000)
+    each PFan_nominal=20000)
     "Cooling tower"
     annotation (Placement(transformation(extent={{10,-10},{-10,10}},
       origin={10,140})));
@@ -167,8 +167,8 @@ partial model PartialDataCenter
     energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
     dp1_nominal=30000,
     perFan=perFan,
-    dp2_nominal=800,
-    riseTimeFan=5)
+    riseTimeFan=5,
+    dp2_nominal=1000)
     "Air handling unit"
     annotation (Placement(transformation(extent={{0,-130},{20,-110}})));
   Buildings.Fluid.Sensors.TemperatureTwoPort TCHWRet(
@@ -327,8 +327,8 @@ partial model PartialDataCenter
     annotation (Placement(transformation(extent={{-160,100},{-140,120}})));
   Buildings.Fluid.FixedResistances.PressureDrop duc(
     m_flow_nominal=mAir_flow_nominal,
-    dp_nominal=600,
-    redeclare package Medium = MediumA) annotation (Placement(transformation(
+    redeclare package Medium = MediumA,
+    dp_nominal=200)                     annotation (Placement(transformation(
         extent={{-10,-10},{10,10}},
         rotation=90,
         origin={32,-162})));
