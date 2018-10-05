@@ -56,3 +56,24 @@ print pue100
 print pue075 
 print pue050 
 print pue025
+
+dic={'PLR100':[pue100],'PLR075':[pue075],'PLR050':[pue050],'PLR025':[pue025]}
+
+df = pd.DataFrame(dic,index = ['PUE'])
+print df
+
+ax = plt.figure(figsize=(8, 6)).add_subplot(111)
+#df.plot(ax=ax, kind='bar', fill=False, legend=False,hatch='\\')
+ax.bar(0,df['PLR025'],width=0.4,fill=False,hatch='\\')
+ax.bar(1,df['PLR050'],width=0.4,fill=False,hatch='\\')
+ax.bar(2,df['PLR075'],width=0.4,fill=False,hatch='\\')
+ax.bar(3,df['PLR100'],width=0.4,fill=False,hatch='\\')
+plt.xticks([0,1,2,3],[0.25,0.50,0.75,1.00], rotation=0)
+#plt.ylim([0,1.2])
+#plt.legend(loc=1, ncol=3)
+ax.grid(axis='y',alpha=0.4)
+plt.xlabel('PLR')
+plt.ylabel('PUE')
+plt.savefig('pue.svg')
+plt.savefig('pue.eps')
+plt.show()
