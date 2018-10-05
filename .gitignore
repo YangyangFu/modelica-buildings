@@ -38,7 +38,7 @@ simulator.log
 
 # .mat output files #
 #####################
-#*.mat
+*.mat
 
 # Ignore certain sphinx-generated files #
 #########################################
