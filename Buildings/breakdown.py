@@ -23,12 +23,13 @@ sns.set(style='whitegrid')
 #rcParams['lines.linewidth'] = 1
 
 # change the working directory
-path = "c:/github/modelica-buildings/Buildings/"
+path =os.path.dirname(os.path.realpath(__file__))
+#path = "c:/github/modelica-buildings/Buildings/"
 os.chdir(path)
 
 # read results from Dymola
 nameRes= "PLR100" +".mat"
-res = Reader(path+nameRes,"dymola")
+res = Reader(path+'/'+nameRes,"dymola")
 ECooTow = -res.integral("loaCooTow.P")
 ECWPum = -res.integral("loaPowCW.P")
 EChi = -res.integral("loaChi.P")
@@ -52,8 +53,8 @@ patches[1].set_hatch('-')
 patches[2].set_hatch('\\')
 patches[3].set_hatch('.')
 
-plt.savefig(path+'breakdown.eps')
-plt.savefig(path+'breakdown.svg')
+plt.savefig(path+'/breakdown.eps')
+plt.savefig(path+'/breakdown.svg')
 plt.show()
 
 
