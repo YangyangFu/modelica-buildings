@@ -53,16 +53,16 @@ partial model PartialDataCenter
     "Real heat generated in data center room";
 
   parameter Buildings.Fluid.Movers.Data.Generic perFan(
-    motorCooledByFluid=false, pressure(V_flow=mAir_flow_nominal/1.29*{0,0.41,
-          0.54,0.66,0.77,0.89,1,1.12,1.19}, dp=1300*{1.461,1.455,1.407,1.329,
-          1.234,1.126,1.0,0.85,0.731}))
+    motorCooledByFluid=false, pressure(V_flow=mAir_flow_nominal/1.29*{0,0.41,0.54,
+          0.66,0.77,0.89,1,1.12,1.19}, dp=1300*{1.461,1.455,1.407,1.329,1.234,1.126,
+          1.0,0.85,0.731}))
     "Performance data for the fan"
     annotation (Placement(transformation(extent={{-280,-200},{-260,-180}})));
 
   parameter Modelica.SIunits.ThermalConductance UA_nominal=numChi*QEva_nominal/
      Buildings.Fluid.HeatExchangers.BaseClasses.lmtd(
         7,
-        15.8,
+        12,
         16,
         25)
     "Thermal conductance at nominal flow for sensible heat, used to compute time constant";
@@ -81,7 +81,7 @@ partial model PartialDataCenter
     "Differential pressure setpoint";
 
  // UPS
-  parameter Modelica.SIunits.Energy EMax = 1.2*900*1.28*QRoo_flow_nominal "Maximum available charge";
+  parameter Modelica.SIunits.Energy EMax = 900*1.51*QRoo_flow_nominal "Maximum available charge";
 
   replaceable Buildings.Applications.DataCenters.ChillerCooled.Equipment.BaseClasses.PartialChillerWSE chiWSE(
     redeclare replaceable package Medium1 = MediumW,
@@ -114,7 +114,7 @@ partial model PartialDataCenter
     each dp_nominal=30000,
     each m_flow_nominal=m1_flow_chi_nominal,
     each TAirInWB_nominal(displayUnit="degC"),
-    each PFan_nominal=20000)
+    each PFan_nominal=36000)
     "Cooling tower"
     annotation (Placement(transformation(extent={{10,-10},{-10,10}},
       origin={10,140})));
@@ -317,8 +317,8 @@ partial model PartialDataCenter
     lambdaIns=0.01,
     length=1000,
     m_flow_nominal=numChi*m2_flow_chi_nominal,
-    dp_nominal=80000,
-    v_nominal=1)
+    v_nominal=1,
+    dp_nominal=360000)
     annotation (Placement(transformation(extent={{68,-10},{48,10}})));
 
 
@@ -338,7 +338,7 @@ partial model PartialDataCenter
     annotation (Placement(transformation(extent={{120,-200},{100,-180}})));
   Buildings.Controls.OBC.CDL.Continuous.Product pro1
     annotation (Placement(transformation(extent={{-90,-148},{-70,-128}})));
-  Modelica.Blocks.Continuous.Filter filter(f_cut=1/0.5)
+  Modelica.Blocks.Continuous.Filter filter(f_cut=1/10)
     annotation (Placement(transformation(extent={{120,-170},{100,-150}})));
 equation
   connect(chiWSE.port_b2, TCHWSup.port_a)
