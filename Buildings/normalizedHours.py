@@ -21,7 +21,7 @@ rcParams['font.size'] = 16
 rcParams['lines.linewidth'] = 1
 
 # change the working directory
-path = "c:/github/modelica-buildings/Buildings/"
+path =os.path.dirname(os.path.realpath(__file__))
 os.chdir(path)
 
 # set up interested period (outage in FC mode)
@@ -35,7 +35,7 @@ t = np.arange(0,365*24*3600,60)
 
 #*************************
 name1 = "PLR100.mat"
-res1 = Reader(path+name1,"dymola")
+res1 = Reader(path+'/'+name1,"dymola")
 t1, cooMod1 = res1.values("cooModCon.y")
 fc1 = np.zeros([len(cooMod1)])
 print fc1 
@@ -67,7 +67,7 @@ fmc1_tim = sum(fmc1)/60
 
 ### PLR = 0.75
 name2 = "PLR075.mat"
-res2 = Reader(path+name2,"dymola")
+res2 = Reader(path+'/'+name2,"dymola")
 t2, cooMod2 = res2.values("cooModCon.y")
 fc2 = np.zeros([len(cooMod2)])
 pmc2 = np.zeros([len(cooMod2)])
@@ -94,7 +94,7 @@ fmc2_tim = sum(fmc2)/60
 
 ### PLR = 0.50
 name3 = "PLR050.mat"
-res3 = Reader(path+name3,"dymola")
+res3 = Reader(path+'/'+name3,"dymola")
 t3, cooMod3 = res3.values("cooModCon.y")
 fc3 = np.zeros([len(cooMod3)])
 pmc3 = np.zeros([len(cooMod3)])
@@ -120,7 +120,7 @@ fmc3_tim = sum(fmc3)/60
 
 ### PLR = 0.25
 name4 = "PLR025.mat"
-res4 = Reader(path+name4,"dymola")
+res4 = Reader(path+'/'+name4,"dymola")
 t4, cooMod4 = res4.values("cooModCon.y")
 fc4 = np.zeros([len(cooMod4)])
 pmc4 = np.zeros([len(cooMod4)])
