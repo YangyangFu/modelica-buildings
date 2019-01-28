@@ -1,0 +1,1231 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   viewBox="0 0 1546.000000 902.000000"
+   version="1.1"
+   id="svg314"
+   sodipodi:docname="VariableSpeed.svg"
+   inkscape:version="0.92.1 r15371">
+  <metadata
+     id="metadata320">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs318" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     id="namedview316"
+     showgrid="false"
+     inkscape:zoom="0.44042667"
+     inkscape:cx="393.80325"
+     inkscape:cy="744.93193"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg314" />
+  <rect
+     fill="rgb(240,240,245)"
+     stroke="blue"
+     stroke-opacity="1"
+     x="447"
+     y="69.7"
+     width="67.4"
+     height="67.4"
+     id="rect2" />
+  <rect
+     fill="rgb(172,168,153)"
+     stroke="none"
+     x="445.797"
+     y="68.4973"
+     width="1.20267"
+     height="68.6027"
+     id="rect4" />
+  <rect
+     fill="rgb(172,168,153)"
+     stroke="none"
+     x="445.797"
+     y="137.1"
+     width="68.6027"
+     height="1.20267"
+     id="rect6" />
+  <rect
+     fill="rgb(172,168,153)"
+     stroke="none"
+     x="514.4"
+     y="69.7"
+     width="1.20267"
+     height="68.6027"
+     id="rect8" />
+  <rect
+     fill="rgb(172,168,153)"
+     stroke="none"
+     x="447"
+     y="68.4973"
+     width="68.6027"
+     height="1.20267"
+     id="rect10" />
+  <rect
+     fill="rgb(255,255,255)"
+     stroke="none"
+     x="447"
+     y="69.7"
+     width="1.804"
+     height="67.4"
+     id="rect12" />
+  <rect
+     fill="rgb(255,255,255)"
+     stroke="none"
+     x="447"
+     y="69.7"
+     width="67.4"
+     height="1.804"
+     id="rect14" />
+  <rect
+     fill="rgb(113,111,100)"
+     stroke="none"
+     x="513.197"
+     y="69.7"
+     width="1.20267"
+     height="67.4"
+     id="rect16" />
+  <rect
+     fill="rgb(113,111,100)"
+     stroke="none"
+     x="447"
+     y="135.897"
+     width="67.4"
+     height="1.20267"
+     id="rect18" />
+  <rect
+     fill="rgb(172,168,153)"
+     stroke="none"
+     x="511.995"
+     y="70.9027"
+     width="1.20267"
+     height="64.9947"
+     id="rect20" />
+  <rect
+     fill="rgb(172,168,153)"
+     stroke="none"
+     x="448.203"
+     y="134.695"
+     width="64.9947"
+     height="1.20267"
+     id="rect22" />
+  <text
+     x="480.7"
+     y="84.44"
+     fill="rgb(0,0,255)"
+     dominant-baseline="central"
+     font-size="10"
+     font-family="Arial"
+     text-anchor="middle"
+     id="text24">datCoi</text>
+  <rect
+     fill="rgb(255,215,136)"
+     stroke="rgb(64,64,64)"
+     stroke-opacity="1"
+     rx="5.925"
+     ry="5.925"
+     x="457"
+     y="91.55"
+     width="47.4"
+     height="35.55"
+     id="rect26" />
+  <polyline
+     fill="none"
+     stroke="rgb(64,64,64)"
+     stroke-opacity="1"
+     points="457.000000,103.400000 504.400000,103.400000"
+     id="polyline28" />
+  <polyline
+     fill="none"
+     stroke="rgb(64,64,64)"
+     stroke-opacity="1"
+     points="457.000000,115.250000 504.400000,115.250000"
+     id="polyline30" />
+  <polyline
+     fill="none"
+     stroke="rgb(64,64,64)"
+     stroke-opacity="1"
+     points="480.700000,91.550000 480.700000,127.100000"
+     id="polyline32" />
+  <rect
+     fill="rgb(240,240,245)"
+     stroke="blue"
+     stroke-opacity="1"
+     x="723.5"
+     y="401.5"
+     width="99"
+     height="99"
+     id="rect34" />
+  <rect
+     fill="rgb(172,168,153)"
+     stroke="none"
+     x="722.297"
+     y="400.297"
+     width="1.20267"
+     height="100.203"
+     id="rect36" />
+  <rect
+     fill="rgb(172,168,153)"
+     stroke="none"
+     x="722.297"
+     y="500.5"
+     width="100.203"
+     height="1.20267"
+     id="rect38" />
+  <rect
+     fill="rgb(172,168,153)"
+     stroke="none"
+     x="822.5"
+     y="401.5"
+     width="1.20267"
+     height="100.203"
+     id="rect40" />
+  <rect
+     fill="rgb(172,168,153)"
+     stroke="none"
+     x="723.5"
+     y="400.297"
+     width="100.203"
+     height="1.20267"
+     id="rect42" />
+  <rect
+     fill="rgb(255,255,255)"
+     stroke="none"
+     x="723.5"
+     y="401.5"
+     width="1.804"
+     height="99"
+     id="rect44" />
+  <rect
+     fill="rgb(255,255,255)"
+     stroke="none"
+     x="723.5"
+     y="401.5"
+     width="99"
+     height="1.804"
+     id="rect46" />
+  <rect
+     fill="rgb(113,111,100)"
+     stroke="none"
+     x="821.297"
+     y="401.5"
+     width="1.20267"
+     height="99"
+     id="rect48" />
+  <rect
+     fill="rgb(113,111,100)"
+     stroke="none"
+     x="723.5"
+     y="499.297"
+     width="99"
+     height="1.20267"
+     id="rect50" />
+  <rect
+     fill="rgb(172,168,153)"
+     stroke="none"
+     x="820.095"
+     y="402.703"
+     width="1.20267"
+     height="96.5947"
+     id="rect52" />
+  <rect
+     fill="rgb(172,168,153)"
+     stroke="none"
+     x="724.703"
+     y="498.095"
+     width="96.5947"
+     height="1.20267"
+     id="rect54" />
+  <text
+     x="773.39502"
+     y="507.92999"
+     dominant-baseline="central"
+     font-size="16"
+     id="text56"
+     style="font-size:16px;font-family:Arial;dominant-baseline:central;text-anchor:middle;fill:#0000ff">eva</text>
+  <rect
+     fill="rgb(95,95,95)"
+     stroke="none"
+     stroke-opacity="1"
+     x="745.35"
+     y="427.3"
+     width="55.3"
+     height="47.4"
+     id="rect58" />
+  <rect
+     fill="rgb(0,0,255)"
+     stroke="none"
+     stroke-opacity="1"
+     x="733.105"
+     y="449.025"
+     width="79.395"
+     height="3.555"
+     id="rect60" />
+  <rect
+     fill="rgb(255,0,0)"
+     stroke="none"
+     stroke-opacity="1"
+     x="773"
+     y="449.025"
+     width="39.5"
+     height="3.555"
+     id="rect62" />
+  <rect
+     fill="rgb(95,95,95)"
+     stroke="none"
+     stroke-opacity="1"
+     x="626.85"
+     y="743.3"
+     width="55.3"
+     height="47.4"
+     id="rect76" />
+  <rect
+     fill="rgb(0,0,255)"
+     stroke="none"
+     stroke-opacity="1"
+     x="615"
+     y="765.025"
+     width="79.395"
+     height="3.555"
+     id="rect78" />
+  <rect
+     fill="rgb(255,0,0)"
+     stroke="none"
+     stroke-opacity="1"
+     x="615"
+     y="765.025"
+     width="39.5"
+     height="3.555"
+     id="rect80" />
+  <rect
+     fill="rgb(0,0,0)"
+     stroke="none"
+     stroke-opacity="1"
+     x="614.605"
+     y="763.84"
+     width="79.395"
+     height="5.135"
+     id="rect82" />
+  <polygon
+     fill="rgb(127,0,0)"
+     stroke="none"
+     stroke-opacity="1"
+     points="682.150000,790.700000 626.850000,743.300000 682.150000,743.300000 682.150000,790.700000"
+     id="polygon84" />
+  <polygon
+     fill="rgb(0,0,127)"
+     stroke="none"
+     stroke-opacity="1"
+     points="682.150000,790.700000 626.850000,743.300000 626.850000,790.700000 682.150000,790.700000"
+     id="polygon86" />
+  <rect
+     fill="rgb(0,0,127)"
+     stroke="none"
+     stroke-opacity="1"
+     x="615"
+     y="743.3"
+     width="11.85"
+     height="0.79"
+     id="rect88" />
+  <text
+     x="654.895"
+     y="783.59"
+     fill="rgb(255,255,255)"
+     dominant-baseline="central"
+     transform="rotate(-360 654.895,783.59)"
+     font-size="10"
+     font-family="Arial"
+     text-anchor="middle"
+     id="text90">Q=-datCoi.sta[nSta].nomVal.Q_flow_nominal*(1 + 1/datCoi.sta[nSta].nomVal.COP_nominal)</text>
+  <rect
+     fill="rgb(0,0,127)"
+     stroke="none"
+     stroke-opacity="1"
+     x="682.15"
+     y="743.3"
+     width="11.85"
+     height="0.79"
+     id="rect92" />
+  <text
+     x="694"
+     y="730.66"
+     fill="rgb(0,0,127)"
+     dominant-baseline="central"
+     transform="rotate(-360 694,730.66)"
+     font-size="11"
+     font-family="Arial"
+     text-anchor="middle"
+     id="text94">u</text>
+  <text
+     x="617.37"
+     y="734.61"
+     fill="rgb(0,0,127)"
+     dominant-baseline="central"
+     transform="rotate(-360 617.37,734.61)"
+     font-size="10"
+     font-family="Arial"
+     text-anchor="middle"
+     id="text96">Q_flow</text>
+  <rect
+     fill="rgb(235,235,235)"
+     stroke="rgb(0,0,0)"
+     stroke-opacity="1"
+     x="607.1"
+     y="672.2"
+     width="102.7"
+     height="31.6"
+     id="rect98" />
+  <rect
+     fill="rgb(172,168,153)"
+     stroke="none"
+     x="605.897"
+     y="670.997"
+     width="1.20267"
+     height="32.8027"
+     id="rect100" />
+  <rect
+     fill="rgb(172,168,153)"
+     stroke="none"
+     x="605.897"
+     y="703.8"
+     width="103.903"
+     height="1.20267"
+     id="rect102" />
+  <rect
+     fill="rgb(172,168,153)"
+     stroke="none"
+     x="709.8"
+     y="672.2"
+     width="1.20267"
+     height="32.8027"
+     id="rect104" />
+  <rect
+     fill="rgb(172,168,153)"
+     stroke="none"
+     x="607.1"
+     y="670.997"
+     width="103.903"
+     height="1.20267"
+     id="rect106" />
+  <rect
+     fill="rgb(255,255,255)"
+     stroke="none"
+     x="607.1"
+     y="672.2"
+     width="1.804"
+     height="31.6"
+     id="rect108" />
+  <rect
+     fill="rgb(255,255,255)"
+     stroke="none"
+     x="607.1"
+     y="672.2"
+     width="102.7"
+     height="1.804"
+     id="rect110" />
+  <rect
+     fill="rgb(113,111,100)"
+     stroke="none"
+     x="708.597"
+     y="672.2"
+     width="1.20267"
+     height="31.6"
+     id="rect112" />
+  <rect
+     fill="rgb(113,111,100)"
+     stroke="none"
+     x="607.1"
+     y="702.597"
+     width="102.7"
+     height="1.20267"
+     id="rect114" />
+  <rect
+     fill="rgb(172,168,153)"
+     stroke="none"
+     x="707.395"
+     y="673.403"
+     width="1.20267"
+     height="29.1947"
+     id="rect116" />
+  <rect
+     fill="rgb(172,168,153)"
+     stroke="none"
+     x="608.303"
+     y="701.395"
+     width="100.295"
+     height="1.20267"
+     id="rect118" />
+  <text
+     x="655.883"
+     y="660.35"
+     fill="rgb(0,0,255)"
+     dominant-baseline="central"
+     font-size="16"
+     font-family="Arial"
+     text-anchor="middle"
+     id="text122">u</text>
+  <text
+     x="891.105"
+     y="819.93"
+     fill="rgb(0,0,255)"
+     dominant-baseline="central"
+     transform="rotate(-360 891.105,819.93)"
+     font-size="16"
+     font-family="Arial"
+     text-anchor="middle"
+     id="text124">senMasFloCon</text>
+  <ellipse
+     fill="rgb(245,245,245)"
+     stroke="rgb(0,0,0)"
+     stroke-opacity="1"
+     transform=" rotate(-180 891.5 767)"
+     cx="891.5"
+     cy="767"
+     rx="27.65"
+     ry="27.65"
+     id="ellipse126" />
+  <polyline
+     fill="none"
+     stroke="rgb(0,0,0)"
+     stroke-opacity="1"
+     points="891.500000,739.350000 891.500000,751.200000"
+     id="polyline128" />
+  <polyline
+     fill="none"
+     stroke="rgb(0,0,0)"
+     stroke-opacity="1"
+     points="882.454500,754.044000 875.621000,744.366500"
+     id="polyline130" />
+  <polyline
+     fill="none"
+     stroke="rgb(0,0,0)"
+     stroke-opacity="1"
+     points="900.545500,754.044000 907.379000,744.366500"
+     id="polyline132" />
+  <polyline
+     fill="none"
+     stroke="rgb(0,0,0)"
+     stroke-opacity="1"
+     points="876.648000,761.588500 865.509000,757.559500"
+     id="polyline134" />
+  <polyline
+     fill="none"
+     stroke="rgb(0,0,0)"
+     stroke-opacity="1"
+     points="906.352000,761.588500 917.491000,757.559500"
+     id="polyline136" />
+  <ellipse
+     fill="transparent"
+     stroke="rgb(64,64,64)"
+     stroke-opacity="1"
+     transform=" rotate(-180 891.5 767)"
+     cx="891.5"
+     cy="767"
+     rx="4.74"
+     ry="4.74"
+     id="ellipse138" />
+  <polygon
+     fill="rgb(64,64,64)"
+     stroke="none"
+     stroke-opacity="1"
+     points="893.383591,766.406106 885.126709,744.159351 883.779379,742.513317 883.619836,744.634466 889.616409,767.593894 893.383591,766.406106"
+     id="polygon140" />
+  <ellipse
+     fill="rgb(64,64,64)"
+     stroke="none"
+     stroke-opacity="1"
+     transform=" rotate(-180 891.5 767)"
+     cx="891.5"
+     cy="767"
+     rx="2.765"
+     ry="2.765"
+     id="ellipse142" />
+  <polyline
+     fill="none"
+     stroke="rgb(0,128,255)"
+     stroke-opacity="1"
+     points="863.850000,767.000000 852.000000,767.000000"
+     id="polyline144" />
+  <text
+     x="859.11"
+     y="725.525"
+     fill="rgb(0,0,0)"
+     dominant-baseline="central"
+     transform="rotate(-360 859.11,725.525)"
+     font-size="12"
+     font-family="Arial"
+     text-anchor="middle"
+     id="text146">m_flow</text>
+  <polyline
+     fill="none"
+     stroke="rgb(0,0,127)"
+     stroke-opacity="1"
+     points="891.500000,727.500000 891.500000,739.350000"
+     id="polyline148" />
+  <polyline
+     fill="none"
+     stroke="rgb(0,128,255)"
+     stroke-opacity="1"
+     points="931.000000,767.000000 919.150000,767.000000"
+     id="polyline150" />
+  <rect
+     x="536"
+     y="385.32999"
+     width="79"
+     height="28.440001"
+     id="rect152"
+     style="fill:#ebebeb;stroke:#000000;stroke-opacity:1" />
+  <rect
+     x="534.797"
+     y="384.12701"
+     width="1.20267"
+     height="29.6427"
+     id="rect154"
+     style="fill:#aca899;stroke:none" />
+  <rect
+     x="534.797"
+     y="413.76999"
+     width="80.202698"
+     height="1.20267"
+     id="rect156"
+     style="fill:#aca899;stroke:none" />
+  <rect
+     x="615"
+     y="385.32999"
+     width="1.20267"
+     height="29.6427"
+     id="rect158"
+     style="fill:#aca899;stroke:none" />
+  <rect
+     x="536"
+     y="384.12701"
+     width="80.202698"
+     height="1.20267"
+     id="rect160"
+     style="fill:#aca899;stroke:none" />
+  <rect
+     x="536"
+     y="385.32999"
+     width="1.804"
+     height="28.440001"
+     id="rect162"
+     style="fill:#ffffff;stroke:none" />
+  <rect
+     x="536"
+     y="385.32999"
+     width="79"
+     height="1.804"
+     id="rect164"
+     style="fill:#ffffff;stroke:none" />
+  <rect
+     x="613.797"
+     y="385.32999"
+     width="1.20267"
+     height="28.440001"
+     id="rect166"
+     style="fill:#716f64;stroke:none" />
+  <rect
+     x="536"
+     y="412.56699"
+     width="79"
+     height="1.20267"
+     id="rect168"
+     style="fill:#716f64;stroke:none" />
+  <rect
+     x="612.59497"
+     y="386.53299"
+     width="1.20267"
+     height="26.0347"
+     id="rect170"
+     style="fill:#aca899;stroke:none" />
+  <rect
+     x="537.203"
+     y="411.36499"
+     width="76.594704"
+     height="1.20267"
+     id="rect172"
+     style="fill:#aca899;stroke:none" />
+  <text
+     x="575.5"
+     y="399.54999"
+     dominant-baseline="central"
+     font-size="11"
+     id="text174"
+     style="font-size:11px;font-family:Arial;dominant-baseline:central;text-anchor:middle;fill:#000000">TConEnt</text>
+  <text
+     x="573.52502"
+     y="374.66501"
+     dominant-baseline="central"
+     font-size="14"
+     id="text176"
+     style="font-size:14px;font-family:Arial;dominant-baseline:central;text-anchor:middle;fill:#0000ff">TConEntWat</text>
+  <polyline
+     fill="none"
+     stroke="rgb(255,255,255)"
+     stroke-width="5"
+     stroke-opacity="1"
+     points="714.935000,688.000000 741.400000,688.000000 741.400000,743.300000 701.900000,743.300000"
+     id="polyline178" />
+  <polyline
+     fill="none"
+     stroke="rgb(0,0,127)"
+     stroke-opacity="1"
+     points="714.935000,688.000000 741.400000,688.000000 741.400000,743.300000 701.900000,743.300000"
+     id="polyline180" />
+  <polyline
+     fill="none"
+     stroke="rgb(255,255,255)"
+     stroke-width="5"
+     stroke-opacity="1"
+     points="812.500000,451.000000 1168.000000,451.000000"
+     id="polyline182" />
+  <polyline
+     fill="none"
+     stroke="rgb(0,127,255)"
+     stroke-opacity="1"
+     points="812.500000,451.000000 1168.000000,451.000000"
+     id="polyline184" />
+  <polyline
+     fill="none"
+     stroke="rgb(255,255,255)"
+     stroke-width="5"
+     stroke-opacity="1"
+     points="733.500000,451.000000 733.500000,451.000000 378.000000,451.000000"
+     id="polyline186" />
+  <polyline
+     fill="none"
+     stroke="rgb(0,127,255)"
+     stroke-opacity="1"
+     points="733.500000,451.000000 733.500000,451.000000 378.000000,451.000000"
+     id="polyline188" />
+  <polyline
+     fill="none"
+     stroke="rgb(255,255,255)"
+     stroke-width="5"
+     stroke-opacity="1"
+     points="615.000000,767.000000 536.000000,767.000000 536.000000,846.000000"
+     id="polyline190" />
+  <polyline
+     fill="none"
+     stroke="rgb(0,127,255)"
+     stroke-opacity="1"
+     points="615.000000,767.000000 536.000000,767.000000 536.000000,846.000000"
+     id="polyline192" />
+  <polyline
+     fill="none"
+     stroke="rgb(255,255,255)"
+     stroke-width="5"
+     stroke-opacity="1"
+     points="816.450000,415.450000 931.000000,415.450000 931.000000,95.500000 1207.500000,95.500000"
+     id="polyline194" />
+  <polyline
+     fill="none"
+     stroke="rgb(0,0,127)"
+     stroke-opacity="1"
+     points="816.450000,415.450000 931.000000,415.450000 931.000000,95.500000 1207.500000,95.500000"
+     id="polyline196" />
+  <polyline
+     fill="none"
+     stroke="rgb(255,255,255)"
+     stroke-width="5"
+     stroke-opacity="1"
+     points="816.450000,423.350000 946.800000,423.350000 946.800000,214.000000 1207.500000,214.000000"
+     id="polyline198" />
+  <polyline
+     fill="none"
+     stroke="rgb(0,0,127)"
+     stroke-opacity="1"
+     points="816.450000,423.350000 946.800000,423.350000 946.800000,214.000000 1207.500000,214.000000"
+     id="polyline200" />
+  <polyline
+     fill="none"
+     stroke="rgb(255,255,255)"
+     stroke-width="5"
+     stroke-opacity="1"
+     points="816.450000,431.250000 962.600000,431.250000 962.600000,332.500000 1207.500000,332.500000"
+     id="polyline202" />
+  <polyline
+     fill="none"
+     stroke="rgb(0,0,127)"
+     stroke-opacity="1"
+     points="816.450000,431.250000 962.600000,431.250000 962.600000,332.500000 1207.500000,332.500000"
+     id="polyline204" />
+  <polyline
+     fill="none"
+     stroke="rgb(255,255,255)"
+     stroke-width="5"
+     stroke-opacity="1"
+     points="694.000000,767.000000 852.000000,767.000000"
+     id="polyline206" />
+  <polyline
+     fill="none"
+     stroke="rgb(0,127,255)"
+     stroke-opacity="1"
+     points="694.000000,767.000000 852.000000,767.000000"
+     id="polyline208" />
+  <polyline
+     fill="none"
+     stroke="rgb(255,255,255)"
+     stroke-width="5"
+     stroke-opacity="1"
+     points="891.500000,723.550000 891.500000,723.550000 891.500000,601.100000 891.500000,569.500000 694.000000,569.500000 694.000000,462.850000 729.550000,462.850000"
+     id="polyline210" />
+  <polyline
+     fill="none"
+     stroke="rgb(0,0,127)"
+     stroke-opacity="1"
+     points="891.500000,723.550000 891.500000,723.550000 891.500000,601.100000 891.500000,569.500000 694.000000,569.500000 694.000000,462.850000 729.550000,462.850000"
+     id="polyline212" />
+  <polyline
+     fill="none"
+     stroke="rgb(255,255,255)"
+     stroke-width="5"
+     stroke-opacity="1"
+     points="618.950000,407.550000 694.000000,407.550000 694.000000,435.200000 694.000000,435.200000 694.000000,439.150000 729.550000,439.150000"
+     id="polyline214" />
+  <polyline
+     points="618.950000,407.550000 694.000000,407.550000 694.000000,435.200000 694.000000,435.200000 694.000000,439.150000 729.550000,439.150000"
+     id="polyline216"
+     transform="matrix(1,0,0,1.2400869,0,-105.55419)"
+     style="fill:none;stroke:#00007f;stroke-opacity:1" />
+  <polyline
+     fill="none"
+     stroke="rgb(255,255,255)"
+     stroke-width="5"
+     stroke-opacity="1"
+     points="1010.000000,846.000000 1010.000000,846.000000 1010.000000,767.000000 931.000000,767.000000"
+     id="polyline218" />
+  <polyline
+     fill="none"
+     stroke="rgb(0,127,255)"
+     stroke-opacity="1"
+     points="1010.000000,846.000000 1010.000000,846.000000 1010.000000,767.000000 931.000000,767.000000"
+     id="polyline220" />
+  <polyline
+     fill="none"
+     stroke="rgb(255,255,255)"
+     stroke-width="5"
+     stroke-opacity="1"
+     points="330.600000,135.000000 417.500000,135.000000 417.500000,419.400000 729.550000,419.400000"
+     id="polyline222" />
+  <polyline
+     fill="none"
+     stroke="rgb(0,0,127)"
+     stroke-opacity="1"
+     points="330.600000,135.000000 417.500000,135.000000 417.500000,419.400000 729.550000,419.400000"
+     id="polyline224" />
+  <polygon
+     fill="rgb(255,255,255)"
+     stroke="rgb(0,0,127)"
+     stroke-opacity="1"
+     points="1168.000000,75.750000 1207.500000,95.500000 1168.000000,115.250000 1168.000000,75.750000"
+     id="polygon226" />
+  <text
+     x="1219.35"
+     y="61.925"
+     fill="rgb(0,0,127)"
+     dominant-baseline="central"
+     font-size="20"
+     font-family="Arial"
+     text-anchor="middle"
+     id="text228">P</text>
+  <polygon
+     fill="rgb(255,255,255)"
+     stroke="rgb(0,0,127)"
+     stroke-opacity="1"
+     points="1168.000000,194.250000 1207.500000,214.000000 1168.000000,233.750000 1168.000000,194.250000"
+     id="polygon230" />
+  <text
+     x="1219.35"
+     y="180.425"
+     fill="rgb(0,0,127)"
+     dominant-baseline="central"
+     font-size="20"
+     font-family="Arial"
+     text-anchor="middle"
+     id="text232">QEvaSen_flow</text>
+  <polygon
+     fill="rgb(255,255,255)"
+     stroke="rgb(0,0,127)"
+     stroke-opacity="1"
+     points="1168.000000,312.750000 1207.500000,332.500000 1168.000000,352.250000 1168.000000,312.750000"
+     id="polygon234" />
+  <text
+     x="1219.35"
+     y="298.925"
+     fill="rgb(0,0,127)"
+     dominant-baseline="central"
+     font-size="20"
+     font-family="Arial"
+     text-anchor="middle"
+     id="text236">QEvaLat_flow</text>
+  <ellipse
+     fill="rgb(0,127,255)"
+     stroke="rgb(0,0,0)"
+     stroke-opacity="1"
+     cx="378"
+     cy="451"
+     rx="15.8"
+     ry="15.8"
+     id="ellipse238" />
+  <text
+     x="378"
+     y="419.4"
+     fill="rgb(0,0,0)"
+     dominant-baseline="central"
+     font-size="24"
+     font-family="Arial"
+     text-anchor="middle"
+     id="text240">port_a</text>
+  <ellipse
+     fill="rgb(0,127,255)"
+     stroke="rgb(0,0,0)"
+     stroke-opacity="1"
+     transform=" rotate(-180 1168 451)"
+     cx="1168"
+     cy="451"
+     rx="15.8"
+     ry="15.8"
+     id="ellipse242" />
+  <ellipse
+     fill="rgb(255,255,255)"
+     stroke="rgb(0,127,255)"
+     stroke-opacity="1"
+     transform=" rotate(-180 1168 451)"
+     cx="1168"
+     cy="451"
+     rx="11.85"
+     ry="11.85"
+     id="ellipse244" />
+  <text
+     x="1168"
+     y="419.4"
+     fill="rgb(0,0,0)"
+     dominant-baseline="central"
+     transform="rotate(-360 1168,419.4)"
+     font-size="24"
+     font-family="Arial"
+     text-anchor="middle"
+     id="text246">port_b</text>
+  <ellipse
+     fill="rgb(0,127,255)"
+     stroke="rgb(0,0,0)"
+     stroke-opacity="1"
+     cx="1010"
+     cy="846"
+     rx="15.8"
+     ry="15.8"
+     id="ellipse248" />
+  <text
+     x="1090.2751"
+     y="816.00555"
+     dominant-baseline="central"
+     font-size="24"
+     id="text250"
+     style="font-size:24px;font-family:Arial;dominant-baseline:central;text-anchor:middle;fill:#000000">portCon_a</text>
+  <ellipse
+     fill="rgb(0,127,255)"
+     stroke="rgb(0,0,0)"
+     stroke-opacity="1"
+     transform=" rotate(-180 536 846)"
+     cx="536"
+     cy="846"
+     rx="15.8"
+     ry="15.8"
+     id="ellipse252" />
+  <ellipse
+     fill="rgb(255,255,255)"
+     stroke="rgb(0,127,255)"
+     stroke-opacity="1"
+     transform=" rotate(-180 536 846)"
+     cx="536"
+     cy="846"
+     rx="11.85"
+     ry="11.85"
+     id="ellipse254" />
+  <text
+     x="470.17435"
+     y="812.79449"
+     dominant-baseline="central"
+     font-size="24"
+     id="text256"
+     style="font-size:24px;font-family:Arial;dominant-baseline:central;text-anchor:middle;fill:#000000">portCon_b</text>
+  <ellipse
+     fill="rgb(0,127,255)"
+     stroke="rgb(0,127,255)"
+     stroke-opacity="1"
+     cx="733.5"
+     cy="451"
+     rx="3.95"
+     ry="3.95"
+     id="ellipse258" />
+  <ellipse
+     fill="rgb(0,127,255)"
+     stroke="rgb(0,0,0)"
+     stroke-opacity="1"
+     cx="733.5"
+     cy="451"
+     rx="3.95"
+     ry="3.95"
+     id="ellipse260" />
+  <ellipse
+     fill="rgb(0,127,255)"
+     stroke="rgb(0,127,255)"
+     stroke-opacity="1"
+     transform=" rotate(-180 812.5 451)"
+     cx="812.5"
+     cy="451"
+     rx="3.95"
+     ry="3.95"
+     id="ellipse262" />
+  <ellipse
+     fill="rgb(0,127,255)"
+     stroke="rgb(0,0,0)"
+     stroke-opacity="1"
+     transform=" rotate(-180 812.5 451)"
+     cx="812.5"
+     cy="451"
+     rx="3.95"
+     ry="3.95"
+     id="ellipse264" />
+  <ellipse
+     fill="rgb(255,255,255)"
+     stroke="rgb(0,127,255)"
+     stroke-opacity="1"
+     transform=" rotate(-180 812.5 451)"
+     cx="812.5"
+     cy="451"
+     rx="3.16"
+     ry="3.16"
+     id="ellipse266" />
+  <polygon
+     fill="rgb(0,0,127)"
+     stroke="rgb(0,0,127)"
+     stroke-opacity="1"
+     points="725.600000,435.200000 733.500000,439.150000 725.600000,443.100000 725.600000,435.200000"
+     id="polygon268" />
+  <polygon
+     fill="rgb(0,0,127)"
+     stroke="rgb(0,0,127)"
+     stroke-opacity="1"
+     points="725.600000,458.900000 733.500000,462.850000 725.600000,466.800000 725.600000,458.900000"
+     id="polygon270" />
+  <polygon
+     fill="rgb(255,255,255)"
+     stroke="rgb(0,0,127)"
+     stroke-opacity="1"
+     points="812.500000,411.500000 820.400000,415.450000 812.500000,419.400000 812.500000,411.500000"
+     id="polygon272" />
+  <polygon
+     fill="rgb(255,255,255)"
+     stroke="rgb(0,0,127)"
+     stroke-opacity="1"
+     points="812.500000,419.400000 820.400000,423.350000 812.500000,427.300000 812.500000,419.400000"
+     id="polygon274" />
+  <polygon
+     fill="rgb(255,255,255)"
+     stroke="rgb(0,0,127)"
+     stroke-opacity="1"
+     points="812.500000,427.300000 820.400000,431.250000 812.500000,435.200000 812.500000,427.300000"
+     id="polygon276" />
+  <polygon
+     fill="rgb(0,0,127)"
+     stroke="rgb(0,0,127)"
+     stroke-opacity="1"
+     points="725.600000,415.450000 733.500000,419.400000 725.600000,423.350000 725.600000,415.450000"
+     id="polygon278" />
+  <ellipse
+     fill="rgb(0,127,255)"
+     stroke="rgb(0,127,255)"
+     stroke-opacity="1"
+     transform=" rotate(-180 694 767)"
+     cx="694"
+     cy="767"
+     rx="3.95"
+     ry="3.95"
+     id="ellipse280" />
+  <ellipse
+     fill="rgb(0,127,255)"
+     stroke="rgb(0,0,0)"
+     stroke-opacity="1"
+     transform=" rotate(-180 694 767)"
+     cx="694"
+     cy="767"
+     rx="3.95"
+     ry="3.95"
+     id="ellipse282" />
+  <ellipse
+     fill="rgb(0,127,255)"
+     stroke="rgb(0,127,255)"
+     stroke-opacity="1"
+     cx="615"
+     cy="767"
+     rx="3.95"
+     ry="3.95"
+     id="ellipse284" />
+  <ellipse
+     fill="rgb(0,127,255)"
+     stroke="rgb(0,0,0)"
+     stroke-opacity="1"
+     cx="615"
+     cy="767"
+     rx="3.95"
+     ry="3.95"
+     id="ellipse286" />
+  <ellipse
+     fill="rgb(255,255,255)"
+     stroke="rgb(0,127,255)"
+     stroke-opacity="1"
+     cx="615"
+     cy="767"
+     rx="3.16"
+     ry="3.16"
+     id="ellipse288" />
+  <polygon
+     fill="rgb(0,0,127)"
+     stroke="rgb(0,0,127)"
+     stroke-opacity="1"
+     points="709.800000,735.400000 694.000000,743.300000 709.800000,751.200000 709.800000,735.400000"
+     id="polygon290" />
+  <polygon
+     fill="rgb(255,255,255)"
+     stroke="rgb(0,0,127)"
+     stroke-opacity="1"
+     points="615.000000,739.350000 607.100000,743.300000 615.000000,747.250000 615.000000,739.350000"
+     id="polygon292" />
+  <polygon
+     fill="rgb(255,255,255)"
+     stroke="rgb(0,0,127)"
+     stroke-opacity="1"
+     points="709.800000,684.050000 720.070000,688.000000 709.800000,691.950000 709.800000,684.050000"
+     id="polygon294" />
+  <ellipse
+     fill="rgb(0,127,255)"
+     stroke="rgb(0,127,255)"
+     stroke-opacity="1"
+     transform=" rotate(-180 931 767)"
+     cx="931"
+     cy="767"
+     rx="3.95"
+     ry="3.95"
+     id="ellipse296" />
+  <ellipse
+     fill="rgb(0,127,255)"
+     stroke="rgb(0,0,0)"
+     stroke-opacity="1"
+     transform=" rotate(-180 931 767)"
+     cx="931"
+     cy="767"
+     rx="3.95"
+     ry="3.95"
+     id="ellipse298" />
+  <ellipse
+     fill="rgb(0,127,255)"
+     stroke="rgb(0,127,255)"
+     stroke-opacity="1"
+     cx="852"
+     cy="767"
+     rx="3.95"
+     ry="3.95"
+     id="ellipse300" />
+  <ellipse
+     fill="rgb(0,127,255)"
+     stroke="rgb(0,0,0)"
+     stroke-opacity="1"
+     cx="852"
+     cy="767"
+     rx="3.95"
+     ry="3.95"
+     id="ellipse302" />
+  <ellipse
+     fill="rgb(255,255,255)"
+     stroke="rgb(0,127,255)"
+     stroke-opacity="1"
+     cx="852"
+     cy="767"
+     rx="3.16"
+     ry="3.16"
+     id="ellipse304" />
+  <polygon
+     fill="rgb(255,255,255)"
+     stroke="rgb(0,0,127)"
+     stroke-opacity="1"
+     points="887.550000,727.500000 891.500000,719.600000 895.450000,727.500000 887.550000,727.500000"
+     id="polygon306" />
+  <polygon
+     points="622.9,407.55 615,411.105 615,403.995 "
+     id="polygon308"
+     transform="translate(0,-8)"
+     style="fill:#ffffff;stroke:#00007f;stroke-opacity:1" />
+  <polygon
+     fill="rgb(0,0,127)"
+     stroke="rgb(0,0,127)"
+     stroke-opacity="1"
+     points="330.600000,111.300000 378.000000,135.000000 330.600000,158.700000 330.600000,111.300000"
+     id="polygon310" />
+  <text
+     x="325.86"
+     y="100.635"
+     fill="rgb(0,0,127)"
+     dominant-baseline="central"
+     font-size="12"
+     font-family="Arial"
+     text-anchor="middle"
+     id="text312">speRat</text>
+  <text
+     xml:space="preserve"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:32px;line-height:1.25;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+     x="701.59241"
+     y="370.69702"
+     id="text4799"><tspan
+       sodipodi:role="line"
+       id="tspan4797"
+       x="701.59241"
+       y="370.69702">Evaporator</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:32px;line-height:1.25;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+     x="596.02673"
+     y="837.65027"
+     id="text4799-9"><tspan
+       sodipodi:role="line"
+       id="tspan4797-6"
+       x="596.02673"
+       y="837.65027">Condenser</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:32px;line-height:1.25;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+     x="235.14346"
+     y="192.31433"
+     id="text4799-92"><tspan
+       sodipodi:role="line"
+       id="tspan4797-0"
+       x="235.14346"
+       y="192.31433">Speed Ratio</tspan></text>
+</svg>
