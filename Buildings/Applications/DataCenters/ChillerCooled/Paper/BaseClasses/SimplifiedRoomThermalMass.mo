@@ -1,5 +1,6 @@
 within Buildings.Applications.DataCenters.ChillerCooled.Paper.BaseClasses;
 model SimplifiedRoomThermalMass "Simplified data center room with thermal mass"
+  import Buildings;
   extends Buildings.BaseClasses.BaseIcon;
   replaceable package Medium = Modelica.Media.Interfaces.PartialMedium
     "Medium model";
@@ -71,9 +72,9 @@ model SimplifiedRoomThermalMass "Simplified data center room with thermal mass"
                                                                     AInt > 0
     "Coefficient of convective heat transfer for interior walls" annotation (
       Placement(transformation(
-        extent={{10,-10},{-10,10}},
-        rotation=-90,
-        origin={10,10})));
+        extent={{-10,-10},{10,10}},
+        rotation=0,
+        origin={-70,-30})));
 
   ThermalZones.ReducedOrder.RC.BaseClasses.ExteriorWall intMas(
     final n=n,
@@ -85,9 +86,15 @@ model SimplifiedRoomThermalMass "Simplified data center room with thermal mass"
 
   Modelica.Blocks.Interfaces.RealInput QRoo_flow "Load"
     annotation (Placement(transformation(extent={{-140,66},{-100,106}})));
+  Buildings.Controls.OBC.CDL.Continuous.GreaterThreshold greThr(threshold=1e-4)
+    annotation (Placement(transformation(extent={{-80,0},{-60,20}})));
+  Buildings.Controls.OBC.CDL.Conversions.BooleanToReal booToRea
+    annotation (Placement(transformation(extent={{-50,0},{-30,20}})));
+  Buildings.Controls.OBC.CDL.Continuous.Product pro
+    annotation (Placement(transformation(extent={{-14,-30},{6,-10}})));
 equation
   connect(rooVol.ports, airPorts) annotation (Line(
-      points={{51,-10},{0,-10},{0,-100}},
+      points={{51,-10},{50,-10},{50,-60},{0,-60},{0,-100}},
       color={0,127,255},
       smooth=Smooth.None));
   connect(TAir.port, rooVol.heatPort) annotation (Line(points={{60,20},{34,20},{
@@ -98,12 +105,20 @@ equation
     annotation (Line(points={{-10,40},{0,40}}, color={191,0,0}));
   connect(convIntWall2.fluid, rooVol.heatPort)
     annotation (Line(points={{20,40},{30,40},{30,0},{41,0}}, color={191,0,0}));
-  connect(alphaIntWall2.y, convIntWall2.Gc)
-    annotation (Line(points={{10,21},{10,30}}, color={0,0,127}));
   connect(QSou.port, intMas.port_b) annotation (Line(points={{-38,86},{-34,86},{
           -34,40},{-30,40}}, color={191,0,0}));
   connect(QSou.Q_flow, QRoo_flow)
     annotation (Line(points={{-58,86},{-120,86}}, color={0,0,127}));
+  connect(QRoo_flow, greThr.u) annotation (Line(points={{-120,86},{-90,86},{-90,
+          10},{-82,10}}, color={0,0,127}));
+  connect(greThr.y, booToRea.u)
+    annotation (Line(points={{-59,10},{-52,10}}, color={255,0,255}));
+  connect(booToRea.y, pro.u1) annotation (Line(points={{-29,10},{-26,10},{-26,
+          -14},{-16,-14}}, color={0,0,127}));
+  connect(alphaIntWall2.y, pro.u2) annotation (Line(points={{-59,-30},{-24,-30},
+          {-24,-26},{-16,-26}}, color={0,0,127}));
+  connect(pro.y, convIntWall2.Gc)
+    annotation (Line(points={{7,-20},{10,-20},{10,30}}, color={0,0,127}));
   annotation (defaultComponentName="roo",
     Icon(coordinateSystem(preserveAspectRatio=true, extent={{-100,-100},{100,
             100}}), graphics={Rectangle(

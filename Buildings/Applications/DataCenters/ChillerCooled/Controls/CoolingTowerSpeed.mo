@@ -1,5 +1,6 @@
 within Buildings.Applications.DataCenters.ChillerCooled.Controls;
 model CoolingTowerSpeed "Controller for the fan speed in cooling towers"
+  import Buildings;
   extends Modelica.Blocks.Icons.Block;
 
   parameter Modelica.Blocks.Types.SimpleController controllerType=
@@ -78,9 +79,10 @@ model CoolingTowerSpeed "Controller for the fan speed in cooling towers"
     reverseAction=reverseAction)
     "PID controller"
     annotation (Placement(transformation(extent={{20,-50},{40,-30}})));
-  Modelica.Blocks.Math.IntegerToBoolean fmcMod(threshold=3)
+  Buildings.Controls.OBC.CDL.Integers.Equal
+                                        fmcMod
     "Fully mechanical cooling mode"
-    annotation (Placement(transformation(extent={{-80,30},{-60,50}})));
+    annotation (Placement(transformation(extent={{-80,40},{-60,60}})));
 
 protected
   Modelica.Blocks.Logical.Switch swi1
@@ -95,6 +97,10 @@ protected
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},
         origin={74,0})));
 
+public
+  Modelica.Blocks.Sources.IntegerExpression fmc(y=Integer(Buildings.Applications.DataCenters.ChillerCooled.Paper.BaseClasses.Types.CoolingModes
+        .FullMechanical))
+    annotation (Placement(transformation(extent={{-100,10},{-80,30}})));
 equation
   connect(TCWSupSet, swi1.u1)
     annotation (Line(points={{-120,80},{-48,80},{-48,48},{-32,48}},
@@ -106,7 +112,7 @@ equation
     annotation (Line(points={{-9,40},{0,40},{0,-40},{18,-40}},
                  color={0,0,127}));
   connect(fmcMod.y, swi2.u2)
-    annotation (Line(points={{-59,40},{-54,40},{-54,-66},{-42,-66}},
+    annotation (Line(points={{-59,50},{-54,50},{-54,-66},{-42,-66}},
                       color={255,0,255}));
   connect(TCWSup, swi2.u1)
     annotation (Line(points={{-120,-40},{-50,-40},{-50,-58},{-42,-58}},
@@ -126,11 +132,12 @@ equation
   connect(swi3.y, y)
     annotation (Line(points={{85,0},{110,0}}, color={0,0,127}));
   connect(fmcMod.y, swi1.u2)
-    annotation (Line(points={{-59,40},{-32,40}},
+    annotation (Line(points={{-59,50},{-46,50},{-46,40},{-32,40}},
                      color={255,0,255}));
-  connect(cooMod, fmcMod.u)
-    annotation (Line(points={{-120,40},{-102,40},{-82,
-          40}}, color={255,127,0}));
+  connect(cooMod, fmcMod.u1) annotation (Line(points={{-120,40},{-94,40},{-94,
+          50},{-82,50}}, color={255,127,0}));
+  connect(fmc.y, fmcMod.u2) annotation (Line(points={{-79,20},{-70,20},{-70,36},
+          {-90,36},{-90,42},{-82,42}}, color={255,127,0}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,
             -100},{100,80}})),    Documentation(info="<html>
 <p>This model describes a simple cooling tower speed controller for

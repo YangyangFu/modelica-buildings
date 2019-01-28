@@ -168,7 +168,8 @@ partial model PartialDataCenter
     dp1_nominal=30000,
     perFan=perFan,
     riseTimeFan=5,
-    dp2_nominal=1000)
+    dp2_nominal=1000,
+    use_inputFilterFan=false)
     "Air handling unit"
     annotation (Placement(transformation(extent={{0,-130},{20,-110}})));
   Buildings.Fluid.Sensors.TemperatureTwoPort TCHWRet(
@@ -338,7 +339,7 @@ partial model PartialDataCenter
     annotation (Placement(transformation(extent={{120,-200},{100,-180}})));
   Buildings.Controls.OBC.CDL.Continuous.Product pro1
     annotation (Placement(transformation(extent={{-90,-148},{-70,-128}})));
-  Modelica.Blocks.Continuous.Filter filter(f_cut=1/10)
+  Modelica.Blocks.Continuous.Filter filter(f_cut=1/0.01)
     annotation (Placement(transformation(extent={{120,-170},{100,-150}})));
 equation
   connect(chiWSE.port_b2, TCHWSup.port_a)
