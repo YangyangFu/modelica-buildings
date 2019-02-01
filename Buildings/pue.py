@@ -16,7 +16,7 @@ from datetime import datetime
 from matplotlib import rcParams
 rcParams['font.family'] = 'sans-serif'
 rcParams['font.sans-serif'] = ['Times New Roman']
-rcParams['font.size'] = 20
+rcParams['font.size'] = 16
 rcParams['lines.linewidth'] = 1
 
 # change the working directory
@@ -62,7 +62,7 @@ dic={'PLR100':[pue100],'PLR075':[pue075],'PLR050':[pue050],'PLR025':[pue025]}
 df = pd.DataFrame(dic,index = ['PUE'])
 print df
 
-ax = plt.figure(figsize=(8, 6)).add_subplot(111)
+ax = plt.figure(figsize=(9, 5)).add_subplot(111)
 #df.plot(ax=ax, kind='bar', fill=False, legend=False,hatch='\\')
 ax.bar(0,df['PLR025'],width=0.4,fill=False,hatch='\\')
 ax.bar(1,df['PLR050'],width=0.4,fill=False,hatch='\\')
@@ -75,6 +75,7 @@ ax.grid(axis='y',alpha=0.4)
 plt.xlabel('PLR')
 plt.ylabel('PUE')
 plt.savefig('pue.svg')
+plt.savefig('pue.png')
 plt.savefig('pue.eps')
 plt.show()
 
@@ -126,17 +127,45 @@ breaks=pd.DataFrame({"ahu":[EAHU025,EAHU050,EAHU075,EAHU100],
 print breaks
 
 #plot
-fig = plt.figure(figsize=(8,6),facecolor='none')
-plt.plot(breaks.index,breaks["ahu"],"k-")
-plt.plot(breaks.index,breaks["chwp"],"k--")
-plt.plot(breaks.index,breaks["chiller"],"k-o")
-plt.plot(breaks.index,breaks["cwp"],"k-^")
-plt.plot(breaks.index,breaks["ct"],"k-d")
-plt.legend(["AHU","Chilled Water Pump","Chiller","Condenser Water Pump","Cooling Tower"],loc=2,fontsize=15)
+fig = plt.figure(figsize=(9,5),facecolor='none')
+plt.plot(breaks.index,breaks["ahu"],"k-o",markersize=12,markerfacecolor='w', markeredgecolor='k')
+plt.plot(breaks.index,breaks["chiller"],"k-^",markersize=12,markerfacecolor='w', markeredgecolor='k')
+plt.plot(breaks.index,breaks["chwp"],"k-d",markersize=12,markerfacecolor='w', markeredgecolor='k')
+plt.plot(breaks.index,breaks["cwp"],"k--o",markersize=12,markerfacecolor='w', markeredgecolor='k')
+plt.plot(breaks.index,breaks["ct"],"k--^",markersize=12,markerfacecolor='w', markeredgecolor='k')
+plt.legend(["AHU","Chiller","Chilled Water Pump","Condenser Water Pump","Cooling Tower"],bbox_to_anchor=(0., 0.9, 1.0, .2),ncol=3, mode="expand", borderaxespad=0.,fontsize=12)
 plt.xticks([0.25,0.50,0.75,1.00])
 plt.xlabel("PLR")
 plt.ylabel("Energy [MWh]")
 plt.grid(color='k', linestyle=':', linewidth=0.6)
 plt.savefig('breakall.svg')
+plt.savefig('breakall.png')
 plt.savefig('breakall.eps')
+plt.show(True)
+
+
+# plot 3 for the efficiency
+breaks.iloc[0] = breaks.iloc[0]/(EIT025/3600000000)
+breaks.iloc[1] = breaks.iloc[1]/(EIT050/3600000000)
+breaks.iloc[2] = breaks.iloc[2]/(EIT075/3600000000)
+breaks.iloc[3] = breaks.iloc[3]/(EIT100/3600000000)
+eff = breaks
+print eff
+
+#plot
+fig = plt.figure(figsize=(9,5),facecolor='none')
+plt.plot(eff.index,eff["ahu"],"k-o",markersize=12,markerfacecolor='w', markeredgecolor='k')
+plt.plot(eff.index,eff["chiller"],"k-^",markersize=12,markerfacecolor='w', markeredgecolor='k')
+plt.plot(eff.index,eff["chwp"],"k-d",markersize=12,markerfacecolor='w', markeredgecolor='k')
+plt.plot(eff.index,eff["cwp"],"k--o",markersize=12,markerfacecolor='w', markeredgecolor='k')
+plt.plot(eff.index,eff["ct"],"k--^",markersize=12,markerfacecolor='w', markeredgecolor='k')
+plt.plot(eff.index,eff.sum(axis=1),"k-",linewidth=3)
+plt.legend(["AHU","Chiller","Chilled Water Pump","Condenser Water Pump","Cooling Tower","Total Cooling"],bbox_to_anchor=(0., 0.9, 1.0, .2),ncol=3, mode="expand", borderaxespad=0.,fontsize=12)
+plt.xticks([0.25,0.50,0.75,1.00])
+plt.xlabel("PLR")
+plt.ylabel("Normalized Energy",ha="center")
+plt.grid(color='k', linestyle=':', linewidth=0.6)
+plt.savefig('eff.svg')
+plt.savefig('eff.png')
+plt.savefig('eff.eps')
 plt.show(True)
