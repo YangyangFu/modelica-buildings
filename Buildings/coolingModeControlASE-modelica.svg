@@ -1,0 +1,972 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   viewBox="0 0 1447.000000 903.000000"
+   version="1.1"
+   id="svg228"
+   sodipodi:docname="coolingModeControlASE-modelica.svg"
+   inkscape:version="0.92.1 r15371">
+  <metadata
+     id="metadata234">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs232" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     id="namedview230"
+     showgrid="false"
+     inkscape:zoom="0.47815545"
+     inkscape:cx="887.18689"
+     inkscape:cy="296.58861"
+     inkscape:window-x="1912"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg228" />
+  <rect
+     fill="rgb(0,0,0)"
+     stroke="rgb(0,0,0)"
+     stroke-opacity="1"
+     x="374.3"
+     y="307.455"
+     width="87.3"
+     height="8.73"
+     id="rect2" />
+  <polyline
+     fill="none"
+     stroke="rgb(0,0,0)"
+     stroke-opacity="1"
+     points="417.950000,298.725000 417.950000,307.455000"
+     id="polyline4" />
+  <text
+     x="474.695"
+     y="311.82"
+     fill="rgb(0,0,255)"
+     dominant-baseline="central"
+     transform="rotate(-270 474.695,311.82)"
+     font-size="10"
+     font-family="Arial"
+     text-anchor="middle"
+     id="text6">con1</text>
+  <text
+     x="432.136"
+     y="359.835"
+     fill="rgb(0,0,0)"
+     dominant-baseline="central"
+     transform="rotate(-270 432.136,359.835)"
+     font-size="10"
+     font-family="Arial"
+     text-anchor="middle"
+     id="text8">tWai</text>
+  <text
+     x="360.114"
+     y="311.82"
+     fill="rgb(0,0,0)"
+     dominant-baseline="central"
+     transform="rotate(-270 360.114,311.82)"
+     font-size="10"
+     font-family="Arial"
+     text-anchor="middle"
+     id="text10">TOutDryBul &gt; TSupSet + dT</text>
+  <text
+     x="535.805"
+     y="451.5"
+     fill="rgb(0,0,255)"
+     dominant-baseline="central"
+     transform="rotate(-270 535.805,451.5)"
+     font-size="10"
+     font-family="Arial"
+     text-anchor="middle"
+     id="text12">parMecCoo</text>
+  <rect
+     fill="rgb(255,255,255)"
+     stroke="rgb(0,0,0)"
+     stroke-opacity="1"
+     x="548.9"
+     y="407.85"
+     width="87.3"
+     height="87.3"
+     id="rect14" />
+  <text
+     x="628.779"
+     y="451.937"
+     fill="rgb(0,0,0)"
+     dominant-baseline="central"
+     transform="rotate(-270 628.779,451.937)"
+     font-size="10"
+     font-family="Arial"
+     text-anchor="middle"
+     id="text16">active</text>
+  <text
+     x="535.805"
+     y="189.6"
+     fill="rgb(0,0,255)"
+     dominant-baseline="central"
+     transform="rotate(-270 535.805,189.6)"
+     font-size="10"
+     font-family="Arial"
+     text-anchor="middle"
+     id="text18">freCoo</text>
+  <rect
+     fill="rgb(255,255,255)"
+     stroke="rgb(0,0,0)"
+     stroke-opacity="1"
+     x="548.9"
+     y="145.95"
+     width="87.3"
+     height="87.3"
+     id="rect20" />
+  <text
+     x="618.303"
+     y="190.036"
+     fill="rgb(0,0,0)"
+     dominant-baseline="central"
+     transform="rotate(-270 618.303,190.036)"
+     font-size="10"
+     font-family="Arial"
+     text-anchor="middle"
+     id="text22">active</text>
+  <rect
+     fill="none"
+     stroke="rgb(0,0,0)"
+     stroke-opacity="1"
+     x="557.63"
+     y="154.68"
+     width="69.84"
+     height="69.84"
+     id="rect24" />
+  <text
+     x="535.805"
+     y="713.4"
+     fill="rgb(0,0,255)"
+     dominant-baseline="central"
+     transform="rotate(-270 535.805,713.4)"
+     font-size="10"
+     font-family="Arial"
+     text-anchor="middle"
+     id="text26">fulMecCoo</text>
+  <rect
+     fill="rgb(255,255,255)"
+     stroke="rgb(0,0,0)"
+     stroke-opacity="1"
+     x="548.9"
+     y="669.75"
+     width="87.3"
+     height="87.3"
+     id="rect28" />
+  <text
+     x="628.779"
+     y="713.837"
+     fill="rgb(0,0,0)"
+     dominant-baseline="central"
+     transform="rotate(-270 628.779,713.837)"
+     font-size="10"
+     font-family="Arial"
+     text-anchor="middle"
+     id="text30">active</text>
+  <rect
+     fill="rgb(0,0,0)"
+     stroke="rgb(0,0,0)"
+     stroke-opacity="1"
+     x="374.3"
+     y="578.085"
+     width="87.3"
+     height="8.73"
+     id="rect32" />
+  <polyline
+     fill="none"
+     stroke="rgb(0,0,0)"
+     stroke-opacity="1"
+     points="417.950000,569.355000 417.950000,578.085000"
+     id="polyline34" />
+  <text
+     x="474.695"
+     y="582.45"
+     fill="rgb(0,0,255)"
+     dominant-baseline="central"
+     transform="rotate(-270 474.695,582.45)"
+     font-size="10"
+     font-family="Arial"
+     text-anchor="middle"
+     id="text36">con2</text>
+  <text
+     x="432.136"
+     y="630.465"
+     fill="rgb(0,0,0)"
+     dominant-baseline="central"
+     transform="rotate(-270 432.136,630.465)"
+     font-size="10"
+     font-family="Arial"
+     text-anchor="middle"
+     id="text38">tWai</text>
+  <text
+     x="360.114"
+     y="582.45"
+     fill="rgb(0,0,0)"
+     dominant-baseline="central"
+     transform="rotate(-270 360.114,582.45)"
+     font-size="10"
+     font-family="Arial"
+     text-anchor="middle"
+     id="text40">TOutDryBul &gt; TRet + dT</text>
+  <rect
+     fill="rgb(0,0,0)"
+     stroke="rgb(0,0,0)"
+     stroke-opacity="1"
+     x="679.85"
+     y="604.275"
+     width="87.3"
+     height="8.73"
+     id="rect42" />
+  <polyline
+     fill="none"
+     stroke="rgb(0,0,0)"
+     stroke-opacity="1"
+     points="723.500000,621.735000 723.500000,613.005000"
+     id="polyline44" />
+  <text
+     x="780.245"
+     y="608.64"
+     fill="rgb(0,0,255)"
+     dominant-baseline="central"
+     transform="rotate(-90 780.245,608.64)"
+     font-size="10"
+     font-family="Arial"
+     text-anchor="middle"
+     id="text46">con3</text>
+  <text
+     x="737.686"
+     y="560.625"
+     fill="rgb(0,0,0)"
+     dominant-baseline="central"
+     transform="rotate(-90 737.686,560.625)"
+     font-size="10"
+     font-family="Arial"
+     text-anchor="middle"
+     id="text48">tWai</text>
+  <text
+     x="665.664"
+     y="608.64"
+     fill="rgb(0,0,0)"
+     dominant-baseline="central"
+     transform="rotate(-90 665.664,608.64)"
+     font-size="10"
+     font-family="Arial"
+     text-anchor="middle"
+     id="text50">TOutDryBul &lt; TRet - dT</text>
+  <rect
+     fill="rgb(0,0,0)"
+     stroke="rgb(0,0,0)"
+     stroke-opacity="1"
+     x="767.15"
+     y="359.835"
+     width="87.3"
+     height="8.73"
+     id="rect52" />
+  <polyline
+     fill="none"
+     stroke="rgb(0,0,0)"
+     stroke-opacity="1"
+     points="810.800000,377.295000 810.800000,368.565000"
+     id="polyline54" />
+  <text
+     x="867.545"
+     y="364.2"
+     fill="rgb(0,0,255)"
+     dominant-baseline="central"
+     transform="rotate(-90 867.545,364.2)"
+     font-size="10"
+     font-family="Arial"
+     text-anchor="middle"
+     id="text56">con4</text>
+  <text
+     x="824.986"
+     y="316.185"
+     fill="rgb(0,0,0)"
+     dominant-baseline="central"
+     transform="rotate(-90 824.986,316.185)"
+     font-size="10"
+     font-family="Arial"
+     text-anchor="middle"
+     id="text58">tWai</text>
+  <text
+     x="752.964"
+     y="364.2"
+     fill="rgb(0,0,0)"
+     dominant-baseline="central"
+     transform="rotate(-90 752.964,364.2)"
+     font-size="10"
+     font-family="Arial"
+     text-anchor="middle"
+     id="text60">TOutDryBul &lt; TSupSet - dT</text>
+  <text
+     x="1029.05"
+     y="89.205"
+     fill="rgb(0,0,255)"
+     dominant-baseline="central"
+     font-size="17"
+     font-family="Arial"
+     text-anchor="middle"
+     id="text62">stateGraphRoot</text>
+  <rect
+     fill="none"
+     stroke="rgb(0,0,0)"
+     stroke-opacity="1"
+     x="985.4"
+     y="102.3"
+     width="87.3"
+     height="87.3"
+     id="rect64" />
+  <text
+     x="1029.92"
+     y="121.506"
+     fill="rgb(0,0,0)"
+     dominant-baseline="central"
+     font-size="19"
+     font-family="Arial"
+     text-anchor="middle"
+     id="text66">root</text>
+  <rect
+     fill="none"
+     stroke="rgb(0,0,0)"
+     stroke-opacity="1"
+     x="993.257"
+     y="148.569"
+     width="16.587"
+     height="14.841"
+     id="rect68" />
+  <polyline
+     fill="none"
+     stroke="rgb(0,0,0)"
+     stroke-opacity="1"
+     points="1029.050000,141.585000 1029.050000,172.140000"
+     id="polyline70" />
+  <rect
+     fill="none"
+     stroke="rgb(0,0,0)"
+     stroke-opacity="1"
+     x="1050"
+     y="148.569"
+     width="16.587"
+     height="14.841"
+     id="rect72" />
+  <polygon
+     fill="rgb(0,0,0)"
+     stroke="rgb(0,0,0)"
+     stroke-opacity="1"
+     points="1023.812000,152.934000 1029.050000,155.553000 1023.812000,158.172000 1023.812000,152.934000"
+     id="polygon74" />
+  <polyline
+     fill="none"
+     stroke="rgb(0,0,0)"
+     stroke-opacity="1"
+     points="1009.844000,155.553000 1023.812000,155.553000"
+     id="polyline76" />
+  <polygon
+     fill="rgb(0,0,0)"
+     stroke="rgb(0,0,0)"
+     stroke-opacity="1"
+     points="1044.764000,152.934000 1050.002000,155.553000 1044.764000,158.172000 1044.764000,152.934000"
+     id="polygon78" />
+  <polyline
+     fill="none"
+     stroke="rgb(0,0,0)"
+     stroke-opacity="1"
+     points="1029.050000,155.553000 1044.764000,155.553000"
+     id="polyline80" />
+  <text
+     x="1123.33"
+     y="460.667"
+     fill="rgb(0,0,0)"
+     dominant-baseline="central"
+     font-size="10"
+     font-family="Arial"
+     text-anchor="middle"
+     id="text82" />
+  <text
+     x="961.82898"
+     y="468.52399"
+     dominant-baseline="central"
+     font-size="10"
+     id="text84"
+     style="font-size:10px;font-family:Arial;dominant-baseline:central;text-anchor:middle;fill:#000000">else: pre(y)</text>
+  <rect
+     x="909.44897"
+     y="441.02399"
+     width="104.76"
+     height="20.952"
+     id="rect86"
+     style="fill:#ffd5aa;stroke:#000000;stroke-opacity:1" />
+  <rect
+     x="908.24896"
+     y="439.82001"
+     width="1.204"
+     height="22.156"
+     id="rect88"
+     style="fill:#aca899;stroke:none" />
+  <rect
+     x="908.24896"
+     y="461.97601"
+     width="105.964"
+     height="1.204"
+     id="rect90"
+     style="fill:#aca899;stroke:none" />
+  <rect
+     x="1014.209"
+     y="441.02399"
+     width="1.204"
+     height="22.156"
+     id="rect92"
+     style="fill:#aca899;stroke:none" />
+  <rect
+     x="909.44897"
+     y="439.82001"
+     width="105.964"
+     height="1.204"
+     id="rect94"
+     style="fill:#aca899;stroke:none" />
+  <rect
+     x="909.44897"
+     y="441.02399"
+     width="1.806"
+     height="20.952"
+     id="rect96"
+     style="fill:#ffffff;stroke:none" />
+  <rect
+     x="909.44897"
+     y="441.02399"
+     width="104.76"
+     height="1.806"
+     id="rect98"
+     style="fill:#ffffff;stroke:none" />
+  <rect
+     x="1013.009"
+     y="441.02399"
+     width="1.204"
+     height="20.952"
+     id="rect100"
+     style="fill:#716f64;stroke:none" />
+  <rect
+     x="909.44897"
+     y="460.772"
+     width="104.76"
+     height="1.204"
+     id="rect102"
+     style="fill:#716f64;stroke:none" />
+  <rect
+     x="1011.799"
+     y="442.228"
+     width="1.204"
+     height="18.544001"
+     id="rect104"
+     style="fill:#aca899;stroke:none" />
+  <rect
+     x="910.64899"
+     y="459.56799"
+     width="102.352"
+     height="1.204"
+     id="rect106"
+     style="fill:#aca899;stroke:none" />
+  <text
+     x="961.82898"
+     y="433.16699"
+     dominant-baseline="central"
+     font-size="10"
+     id="text108"
+     style="font-size:10px;font-family:Arial;dominant-baseline:central;text-anchor:middle;fill:#0000ff">swi</text>
+  <polyline
+     fill="none"
+     stroke="rgb(255,255,255)"
+     stroke-width="5"
+     stroke-opacity="1"
+     points="592.550000,235.432500 592.550000,276.900000 417.950000,276.900000 417.950000,294.360000"
+     id="polyline112" />
+  <polyline
+     fill="none"
+     stroke="rgb(0,0,0)"
+     stroke-dasharray="4,2"
+     stroke-opacity="1"
+     points="592.550000,235.432500 592.550000,276.900000 417.950000,276.900000 417.950000,294.360000"
+     id="polyline114" />
+  <polyline
+     fill="none"
+     stroke="rgb(255,255,255)"
+     stroke-width="5"
+     stroke-opacity="1"
+     points="417.950000,318.367500 417.950000,338.010000 590.367500,338.010000 590.367500,403.485000"
+     id="polyline116" />
+  <polyline
+     fill="none"
+     stroke="rgb(0,0,0)"
+     stroke-dasharray="4,2"
+     stroke-opacity="1"
+     points="417.950000,318.367500 417.950000,338.010000 590.367500,338.010000 590.367500,403.485000"
+     id="polyline118" />
+  <polyline
+     fill="none"
+     stroke="rgb(255,255,255)"
+     stroke-width="5"
+     stroke-opacity="1"
+     points="417.950000,564.990000 417.950000,538.800000 591.458750,538.800000 591.458750,497.332500"
+     id="polyline120" />
+  <polyline
+     fill="none"
+     stroke="rgb(0,0,0)"
+     stroke-dasharray="4,2"
+     stroke-opacity="1"
+     points="417.950000,564.990000 417.950000,538.800000 591.458750,538.800000 591.458750,497.332500"
+     id="polyline122" />
+  <polyline
+     fill="none"
+     stroke="rgb(255,255,255)"
+     stroke-width="5"
+     stroke-opacity="1"
+     points="417.950000,588.997500 417.950000,608.640000 592.550000,608.640000 592.550000,665.385000"
+     id="polyline124" />
+  <polyline
+     fill="none"
+     stroke="rgb(0,0,0)"
+     stroke-dasharray="4,2"
+     stroke-opacity="1"
+     points="417.950000,588.997500 417.950000,608.640000 592.550000,608.640000 592.550000,665.385000"
+     id="polyline126" />
+  <polyline
+     fill="none"
+     stroke="rgb(255,255,255)"
+     stroke-width="5"
+     stroke-opacity="1"
+     points="592.550000,759.232500 592.550000,800.700000 723.500000,800.700000 723.500000,713.400000 723.500000,713.400000 723.500000,626.100000"
+     id="polyline128" />
+  <polyline
+     fill="none"
+     stroke="rgb(0,0,0)"
+     stroke-dasharray="4,2"
+     stroke-opacity="1"
+     points="592.550000,759.232500 592.550000,800.700000 723.500000,800.700000 723.500000,713.400000 723.500000,713.400000 723.500000,626.100000"
+     id="polyline130" />
+  <polyline
+     fill="none"
+     stroke="rgb(255,255,255)"
+     stroke-width="5"
+     stroke-opacity="1"
+     points="810.800000,357.652500 810.800000,111.030000 592.550000,111.030000 592.550000,141.585000"
+     id="polyline132" />
+  <polyline
+     fill="none"
+     stroke="rgb(0,0,0)"
+     stroke-dasharray="4,2"
+     stroke-opacity="1"
+     points="810.800000,357.652500 810.800000,111.030000 592.550000,111.030000 592.550000,141.585000"
+     id="polyline134" />
+  <polyline
+     fill="none"
+     stroke="rgb(255,255,255)"
+     stroke-width="5"
+     stroke-opacity="1"
+     points="723.500000,602.092500 723.500000,338.010000 594.732500,338.010000 594.732500,403.485000"
+     id="polyline136" />
+  <polyline
+     fill="none"
+     stroke="rgb(0,0,0)"
+     stroke-dasharray="4,2"
+     stroke-opacity="1"
+     points="723.500000,602.092500 723.500000,338.010000 594.732500,338.010000 594.732500,403.485000"
+     id="polyline138" />
+  <polyline
+     fill="none"
+     stroke="rgb(255,255,255)"
+     stroke-width="5"
+     stroke-opacity="1"
+     points="810.800000,381.660000 810.800000,538.800000 593.641250,538.800000 593.641250,497.332500"
+     id="polyline140" />
+  <polyline
+     fill="none"
+     stroke="rgb(0,0,0)"
+     stroke-dasharray="4,2"
+     stroke-opacity="1"
+     points="810.800000,381.660000 810.800000,538.800000 593.641250,538.800000 593.641250,497.332500"
+     id="polyline142" />
+  <polyline
+     points="640.565000,451.500000 836.990000,451.500000 836.990000,451.500000 1002.860000,451.500000"
+     id="polyline148"
+     transform="matrix(0.74232371,0,0,1,165.05841,0)"
+     style="fill:none;stroke:#ffffff;stroke-width:5;stroke-opacity:1" />
+  <polyline
+     points="640.565000,451.500000 836.990000,451.500000 836.990000,451.500000 1002.860000,451.500000"
+     id="polyline150"
+     transform="matrix(0.74232369,0,0,1,165.05843,0)"
+     style="fill:none;stroke:#ff00ff;stroke-dasharray:none;stroke-opacity:1;stroke-width:0.92852441;stroke-miterlimit:4" />
+  <polyline
+     points="640.565000,713.400000 898.100000,713.400000 898.100000,456.738000 1002.860000,456.738000"
+     id="polyline152"
+     transform="matrix(0.7138082,0,0,1,183.32445,0)"
+     style="fill:none;stroke:#ffffff;stroke-width:5;stroke-opacity:1" />
+  <polyline
+     fill="none"
+     stroke="rgb(255,255,255)"
+     stroke-width="5"
+     stroke-opacity="1"
+     points="1203.650000,451.500000 1110.239000,451.500000"
+     id="polyline156" />
+  <polyline
+     points="1203.650000,451.500000 1110.239000,451.500000"
+     id="polyline158"
+     transform="translate(-93.411)"
+     style="fill:none;stroke:#ff7f00;stroke-opacity:1" />
+  <polygon
+     points="199.7,495.15 199.7,407.85 287,451.5 "
+     id="polygon160"
+     transform="translate(66)"
+     style="fill:#00007f;stroke:#00007f;stroke-opacity:1" />
+  <text
+     x="256.97"
+     y="388.207"
+     dominant-baseline="central"
+     font-size="22"
+     id="text162"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333302px;font-family:Arial;-inkscape-font-specification:'Arial, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;writing-mode:lr-tb;dominant-baseline:central;text-anchor:middle;fill:#00007f">TOutDryBul</text>
+  <polygon
+     points="199.7,713.4 199.7,626.1 287,669.75 "
+     id="polygon164"
+     transform="translate(66)"
+     style="fill:#00007f;stroke:#00007f;stroke-opacity:1" />
+  <text
+     x="256.97"
+     y="606.45697"
+     dominant-baseline="central"
+     font-size="22"
+     id="text166"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333302px;font-family:Arial;-inkscape-font-specification:'Arial, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;writing-mode:lr-tb;dominant-baseline:central;text-anchor:middle;fill:#00007f">TRet</text>
+  <polygon
+     points="199.7,276.9 199.7,189.6 287,233.25 "
+     id="polygon168"
+     transform="translate(66)"
+     style="fill:#00007f;stroke:#00007f;stroke-opacity:1" />
+  <text
+     x="256.97"
+     y="169.957"
+     dominant-baseline="central"
+     font-size="22"
+     id="text170"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.33333302px;font-family:Arial;-inkscape-font-specification:'Arial, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;writing-mode:lr-tb;dominant-baseline:central;text-anchor:middle;fill:#00007f">TSupSet</text>
+  <polygon
+     points="1160,473.325 1160,429.675 1203.65,451.5 "
+     id="polygon172"
+     transform="translate(-93.411)"
+     style="fill:#ffffff;stroke:#ff7f00;stroke-opacity:1" />
+  <text
+     x="1123.339"
+     y="414.39801"
+     dominant-baseline="central"
+     font-size="22"
+     id="text174"
+     style="font-size:22px;font-family:Arial;dominant-baseline:central;text-anchor:middle;fill:#ff7f00">y</text>
+  <polygon
+     fill="rgb(0,0,0)"
+     stroke="rgb(0,0,0)"
+     stroke-opacity="1"
+     points="422.315000,289.995000 417.950000,298.725000 413.585000,289.995000 422.315000,289.995000"
+     id="polygon176" />
+  <rect
+     fill="rgb(255,255,255)"
+     stroke="rgb(0,0,0)"
+     stroke-opacity="1"
+     x="415.767"
+     y="316.185"
+     width="4.365"
+     height="4.365"
+     id="rect178" />
+  <polygon
+     fill="rgb(0,0,0)"
+     stroke="rgb(0,0,0)"
+     stroke-opacity="1"
+     points="596.915000,399.120000 592.550000,407.850000 588.185000,399.120000 596.915000,399.120000"
+     id="polygon180" />
+  <polygon
+     fill="rgb(0,0,0)"
+     stroke="rgb(0,0,0)"
+     stroke-opacity="1"
+     points="596.915000,399.120000 592.550000,407.850000 588.185000,399.120000 596.915000,399.120000"
+     id="polygon182" />
+  <rect
+     fill="rgb(255,255,255)"
+     stroke="rgb(0,0,0)"
+     stroke-opacity="1"
+     x="590.367"
+     y="495.15"
+     width="4.365"
+     height="4.365"
+     id="rect184" />
+  <rect
+     fill="rgb(255,255,255)"
+     stroke="rgb(0,0,0)"
+     stroke-opacity="1"
+     x="590.367"
+     y="495.15"
+     width="4.365"
+     height="4.365"
+     id="rect186" />
+  <polygon
+     fill="rgb(255,255,255)"
+     stroke="rgb(255,0,255)"
+     stroke-opacity="1"
+     points="636.200000,455.865000 644.930000,451.500000 636.200000,447.135000 636.200000,455.865000"
+     id="polygon188" />
+  <polygon
+     fill="rgb(0,0,0)"
+     stroke="rgb(0,0,0)"
+     stroke-opacity="1"
+     points="596.915000,137.220000 592.550000,145.950000 588.185000,137.220000 596.915000,137.220000"
+     id="polygon190" />
+  <polygon
+     fill="rgb(0,0,0)"
+     stroke="rgb(0,0,0)"
+     stroke-opacity="1"
+     points="596.915000,137.220000 592.550000,145.950000 588.185000,137.220000 596.915000,137.220000"
+     id="polygon192" />
+  <rect
+     fill="rgb(255,255,255)"
+     stroke="rgb(0,0,0)"
+     stroke-opacity="1"
+     x="590.367"
+     y="233.25"
+     width="4.365"
+     height="4.365"
+     id="rect194" />
+  <rect
+     fill="rgb(255,255,255)"
+     stroke="rgb(0,0,0)"
+     stroke-opacity="1"
+     x="590.367"
+     y="233.25"
+     width="4.365"
+     height="4.365"
+     id="rect196" />
+  <polygon
+     fill="rgb(255,255,255)"
+     stroke="rgb(255,0,255)"
+     stroke-opacity="1"
+     points="636.200000,193.965000 644.930000,189.600000 636.200000,185.235000 636.200000,193.965000"
+     id="polygon198" />
+  <polygon
+     fill="rgb(0,0,0)"
+     stroke="rgb(0,0,0)"
+     stroke-opacity="1"
+     points="596.915000,661.020000 592.550000,669.750000 588.185000,661.020000 596.915000,661.020000"
+     id="polygon200" />
+  <polygon
+     fill="rgb(0,0,0)"
+     stroke="rgb(0,0,0)"
+     stroke-opacity="1"
+     points="596.915000,661.020000 592.550000,669.750000 588.185000,661.020000 596.915000,661.020000"
+     id="polygon202" />
+  <rect
+     fill="rgb(255,255,255)"
+     stroke="rgb(0,0,0)"
+     stroke-opacity="1"
+     x="590.367"
+     y="757.05"
+     width="4.365"
+     height="4.365"
+     id="rect204" />
+  <rect
+     fill="rgb(255,255,255)"
+     stroke="rgb(0,0,0)"
+     stroke-opacity="1"
+     x="590.367"
+     y="757.05"
+     width="4.365"
+     height="4.365"
+     id="rect206" />
+  <polygon
+     fill="rgb(255,255,255)"
+     stroke="rgb(255,0,255)"
+     stroke-opacity="1"
+     points="636.200000,717.765000 644.930000,713.400000 636.200000,709.035000 636.200000,717.765000"
+     id="polygon208" />
+  <polygon
+     fill="rgb(0,0,0)"
+     stroke="rgb(0,0,0)"
+     stroke-opacity="1"
+     points="422.315000,560.625000 417.950000,569.355000 413.585000,560.625000 422.315000,560.625000"
+     id="polygon210" />
+  <rect
+     fill="rgb(255,255,255)"
+     stroke="rgb(0,0,0)"
+     stroke-opacity="1"
+     x="415.767"
+     y="586.815"
+     width="4.365"
+     height="4.365"
+     id="rect212" />
+  <polygon
+     fill="rgb(0,0,0)"
+     stroke="rgb(0,0,0)"
+     stroke-opacity="1"
+     points="727.865000,630.465000 723.500000,621.735000 719.135000,630.465000 727.865000,630.465000"
+     id="polygon214" />
+  <rect
+     fill="rgb(255,255,255)"
+     stroke="rgb(0,0,0)"
+     stroke-opacity="1"
+     x="721.317"
+     y="599.91"
+     width="4.365"
+     height="4.365"
+     id="rect216" />
+  <polygon
+     fill="rgb(0,0,0)"
+     stroke="rgb(0,0,0)"
+     stroke-opacity="1"
+     points="815.165000,386.025000 810.800000,377.295000 806.435000,386.025000 815.165000,386.025000"
+     id="polygon218" />
+  <rect
+     fill="rgb(255,255,255)"
+     stroke="rgb(0,0,0)"
+     stroke-opacity="1"
+     x="808.618"
+     y="355.47"
+     width="4.365"
+     height="4.365"
+     id="rect220" />
+  <ellipse
+     cx="909.44897"
+     cy="451.5"
+     rx="2.619"
+     ry="7.8569999"
+     id="ellipse222"
+     style="fill:#ff00ff;stroke:#ff00ff;stroke-opacity:1" />
+  <ellipse
+     cx="909.44897"
+     cy="451.5"
+     rx="2.619"
+     ry="7.8569999"
+     id="ellipse224"
+     style="fill:#ff00ff;stroke:#ff00ff;stroke-opacity:1" />
+  <polygon
+     points="1107.62,454.119 1107.62,448.881 1112.858,451.5 "
+     id="polygon226"
+     transform="translate(-93.411)"
+     style="fill:#ffffff;stroke:#ff7f00;stroke-opacity:1" />
+  <text
+     xml:space="preserve"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:21.33333397px;line-height:1.25;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+     x="169.29143"
+     y="217.90135"
+     id="text4721-4"><tspan
+       sodipodi:role="line"
+       x="171.9581"
+       y="217.90135"
+       id="tspan4777">Supply Air </tspan><tspan
+       sodipodi:role="line"
+       x="169.29143"
+       y="244.56802"
+       id="tspan4723">Temperature Setpoint</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:21.33333333px;line-height:1.25;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;"
+     x="169.83057"
+     y="438.91483"
+     id="text4721-4-1"><tspan
+       sodipodi:role="line"
+       x="172.16389"
+       y="438.91483"
+       id="tspan4777-8">Outdoor Air Dry </tspan><tspan
+       sodipodi:role="line"
+       x="172.16389"
+       y="462.24817"
+       id="tspan4723-6">Bulb Temperature </tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:21.33333333px;line-height:1.25;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;"
+     x="176.35179"
+     y="658.86572"
+     id="text4721-4-1-1"><tspan
+       sodipodi:role="line"
+       x="178.68512"
+       y="658.86572"
+       id="tspan4777-8-4">Return Air Dry </tspan><tspan
+       sodipodi:role="line"
+       x="178.68512"
+       y="682.19904"
+       id="tspan4723-6-1">Bulb Temperature </tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:24px;line-height:1.25;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+     x="426.74597"
+     y="191.73196"
+     id="text4721"><tspan
+       sodipodi:role="line"
+       id="tspan4719"
+       x="426.74597"
+       y="191.73196">FC Mode</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:24px;line-height:1.25;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+     x="410.0939"
+     y="457.03046"
+     id="text4721-9"><tspan
+       sodipodi:role="line"
+       id="tspan4719-3"
+       x="410.0939"
+       y="457.03046">PMC Mode</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:24px;line-height:1.25;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none"
+     x="409.23532"
+     y="721.41382"
+     id="text4721-9-6"><tspan
+       sodipodi:role="line"
+       id="tspan4719-3-1"
+       x="409.23532"
+       y="721.41382">FMC Mode</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:21.33333397px;line-height:1.25;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+     x="1075.4467"
+     y="512.56488"
+     id="text4721-9-5"><tspan
+       sodipodi:role="line"
+       id="tspan4719-3-7"
+       x="1075.4467"
+       y="512.56488">Cooling Mode</tspan><tspan
+       sodipodi:role="line"
+       x="1075.4467"
+       y="539.23157"
+       id="tspan4901">Signal</tspan></text>
+  <path
+     style="fill:none;stroke:#ff00ff;stroke-width:0.8;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+     d="m 644.93,713.4 229.16231,0.0169 V 451.51685 L 909.50517,451.5"
+     id="path4797"
+     inkscape:connector-curvature="0"
+     sodipodi:nodetypes="cccc" />
+  <path
+     style="fill:none;stroke:#ff00ff;stroke-width:0.8;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+     d="M 644.92981,189.59591 H 872.9802 l 1.11211,261.92094 37.85504,-0.0722"
+     id="path4799"
+     inkscape:connector-curvature="0"
+     sodipodi:nodetypes="cccc" />
+</svg>
