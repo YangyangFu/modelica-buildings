@@ -1,0 +1,1 @@
+python ../bin/runUnitTests.py -s Buildings.Applications.DataCenters.ChillerCooled.Equipment.Validation
