@@ -1,5 +1,5 @@
 within Buildings.Applications.DataCenters.ChillerCooled.Paper.Case4;
-model FC_Pump_PLR050_RDC_Time
+model FC_Pump_PLR075_RDC_Time
   import Buildings;
   extends Modelica.Icons.Example;
   extends
@@ -433,4 +433,4 @@ equation
     __Dymola_Commands(file=
           "Resources/Scripts/Dymola/Applications/DataCenters/ChillerCooled/Paper/Case2/FC_Pump_PLR1.mos"
         "Simulate and Plot"));
-end FC_Pump_PLR050_RDC_Time;
+end FC_Pump_PLR075_RDC_Time;

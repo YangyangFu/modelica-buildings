@@ -1,5 +1,5 @@
-within Buildings.Applications.DataCenters.ChillerCooled.Paper.Case4;
-model FC_Pump_PLR050_RDC
+within Buildings.Applications.DataCenters.ChillerCooled.Paper.Case2;
+model FC_Pump_PLR075_Time
   import Buildings;
   extends Modelica.Icons.Example;
   extends
@@ -10,8 +10,7 @@ model FC_Pump_PLR050_RDC
       use_inputFilter=true),
     val(use_inputFilter=true),
     pumCW(use_inputFilter=true),
-    PLR = 0.75,
-    weaData(HSou=Buildings.BoundaryConditions.Types.RadiationDataSource.Input_HGloHor_HDifHor));
+    PLR = 0.75);
 
   Buildings.Applications.DataCenters.ChillerCooled.Paper.BaseClasses.CoolingMode
     cooModCon(
@@ -77,14 +76,14 @@ model FC_Pump_PLR050_RDC
   Modelica.Blocks.Sources.RealExpression powIT(y(unit="W") = -roo.QRoo_flow)
     "Power in IT equipment"
     annotation (Placement(transformation(extent={{180,-98},{200,-78}})));
-  Electrical.AC.ThreePhasesBalanced.Conversion.ACDCConverter conACDC(
-      conversionFactor=380/120, eta=0.95)
+  Electrical.AC.ThreePhasesBalanced.Conversion.ACDCConverter conACDC(eta=0.95,
+      conversionFactor=380/120)
     annotation (Placement(transformation(extent={{308,-98},{288,-78}})));
   Electrical.DC.Conversion.DCDCConverter dCDCConverter(
     VHigh=380,
     VLow=12,
-    ground_1=false,
-    eta=0.96)
+    eta=0.96,
+    ground_1=false)
     annotation (Placement(transformation(extent={{272,-98},{252,-78}})));
   Electrical.AC.ThreePhasesBalanced.Conversion.ACACTransformer traACAC(
     VHigh=480,
@@ -99,7 +98,7 @@ model FC_Pump_PLR050_RDC
   Buildings.Controls.OBC.CDL.Logical.Switch swiRea
     annotation (Placement(transformation(extent={{220,220},{200,240}})));
   Modelica.Blocks.Sources.Constant uni(k=1) "Unit"
-    annotation (Placement(transformation(extent={{280,242},{260,262}})));
+    annotation (Placement(transformation(extent={{280,240},{260,260}})));
   Modelica.Blocks.Sources.Constant zer(k=0) "Zero"
     annotation (Placement(transformation(extent={{280,190},{260,210}})));
   Modelica.Blocks.Logical.And orChi
@@ -110,9 +109,9 @@ model FC_Pump_PLR050_RDC
   Modelica.Blocks.Logical.And orWSE
     annotation (Placement(transformation(extent={{-100,100},{-80,120}})));
   Buildings.Electrical.AC.ThreePhasesBalanced.Storage.Battery bat(
+    SOC_start=0,
     V_nominal=480,
-    EMax=EMax,
-    SOC_start=1)
+    EMax=EMax)
     annotation (Placement(transformation(extent={{316,64},{336,84}})));
   Buildings.Applications.DataCenters.ChillerCooled.Paper.BaseClasses.BatteryControl
     batCon(SOCLow=0.01, SOCHig=0.99) annotation (Placement(transformation(
@@ -125,10 +124,10 @@ model FC_Pump_PLR050_RDC
     annotation (Placement(transformation(extent={{300,-10},{320,10}})));
   Modelica.Blocks.Sources.BooleanStep booleanStep(startValue=true, startTime(
         displayUnit="h") = 31492800)
-    annotation (Placement(transformation(extent={{360,218},{340,238}})));
-  Modelica.Blocks.Sources.BooleanStep booleanStep1(startTime(displayUnit="h")=
-         31493700)
-    annotation (Placement(transformation(extent={{360,182},{340,202}})));
+    annotation (Placement(transformation(extent={{360,220},{340,240}})));
+  Modelica.Blocks.Sources.BooleanStep booleanStep1(startTime(displayUnit="h")
+       = 31496400)
+    annotation (Placement(transformation(extent={{360,180},{340,200}})));
   Modelica.Blocks.Logical.Or con
     annotation (Placement(transformation(extent={{314,210},{294,230}})));
   Buildings.Electrical.AC.ThreePhasesBalanced.Sources.Grid gri
@@ -147,66 +146,20 @@ model FC_Pump_PLR050_RDC
     annotation (Placement(transformation(extent={{-238,-200},{-218,-180}})));
   Buildings.Controls.OBC.CDL.Logical.Switch swi
     "Switch for outage and out of battery"
-    annotation (Placement(transformation(extent={{232,280},{212,300}})));
+    annotation (Placement(transformation(extent={{226,280},{206,300}})));
+  Modelica.Blocks.Logical.And powCri "Power all critical equipment"
+    annotation (Placement(transformation(extent={{314,270},{294,290}})));
+  Modelica.Blocks.Logical.Not notCon "Not connected to grid"
+    annotation (Placement(transformation(extent={{294,242},{314,262}})));
   Buildings.Controls.OBC.CDL.Continuous.LessEqualThreshold lesEquThr(threshold=
         0)
-    annotation (Placement(transformation(extent={{360,294},{340,314}})));
-  Modelica.Blocks.Logical.And powCri "Power all critical equipment"
-    annotation (Placement(transformation(extent={{320,270},{300,290}})));
-  Modelica.Blocks.Logical.Not notCon "Not connected to grid"
-    annotation (Placement(transformation(extent={{300,242},{320,262}})));
+    annotation (Placement(transformation(extent={{354,294},{334,314}})));
   Buildings.Controls.OBC.CDL.Logical.Switch swi1
     "Switch for outage and out of battery"
     annotation (Placement(transformation(extent={{182,-170},{162,-150}})));
   Modelica.Blocks.Sources.BooleanExpression runOut(y=bat.SOC <= 0.01 and not
         con.y) "Runout of battery and not connected to grid"
     annotation (Placement(transformation(extent={{240,-170},{220,-150}})));
-  Buildings.Controls.OBC.CDL.Continuous.Add add2
-    annotation (Placement(transformation(extent={{380,32},{400,52}})));
-  Buildings.Utilities.Math.SmoothMin smoothMin(deltaX=1e-3)
-    annotation (Placement(transformation(extent={{420,30},{440,50}})));
-  Modelica.Blocks.Sources.Constant noPow(k=0) "No power"
-    annotation (Placement(transformation(extent={{380,-20},{400,0}})));
-  Buildings.Electrical.AC.ThreePhasesBalanced.Sources.PVSimpleOriented
-                                                             pv(
-    V_nominal=480,
-    A=1000e3/800/0.12,
-    til=0.34906585039887,
-    lat=0.65798912800186,
-    azi=-0.78539816339745)
-    annotation (Placement(transformation(extent={{420,180},{440,200}})));
-  Buildings.Electrical.AC.ThreePhasesBalanced.Sensors.GeneralizedSensor sen
-    annotation (Placement(transformation(
-        extent={{-10,-10},{10,10}},
-        rotation=-90,
-        origin={362,-70})));
-  Modelica.Blocks.Sources.RealExpression powRack(y(unit="W") = -sen.S[1])
-    "Power in the racks"
-    annotation (Placement(transformation(extent={{180,-78},{200,-58}})));
-  Modelica.Blocks.Sources.CombiTimeTable DHI(
-    tableOnFile=true,
-    table=fill(
-        0.0,
-        0,
-        2),
-    tableName="table",
-    extrapolation=Modelica.Blocks.Types.Extrapolation.Periodic,
-    fileName=ModelicaServices.ExternalReferences.loadResource(
-        "modelica://Buildings/Resources/weatherdata/difHorIrrSBS.txt"))
-                       "Direct horizontal irradiance"
-    annotation (Placement(transformation(extent={{-400,-60},{-380,-40}})));
-  Modelica.Blocks.Sources.CombiTimeTable GHI(
-    tableOnFile=true,
-    table=fill(
-        0.0,
-        0,
-        2),
-    tableName="table",
-    extrapolation=Modelica.Blocks.Types.Extrapolation.Periodic,
-    fileName=ModelicaServices.ExternalReferences.loadResource(
-        "modelica://Buildings/Resources/weatherdata/gloHorIrrSBS.txt"))
-    "Horizontal global radiation"
-    annotation (Placement(transformation(extent={{-400,-90},{-380,-70}})));
 equation
   connect(TCHWSup.port_b, ahu.port_a1)
     annotation (Line(
@@ -233,10 +186,12 @@ equation
     connect(orChi[i].y, chiWSE.on[i]) annotation (Line(points={{-79,140},{-60,140},
             {-60,120},{-10,120},{-10,37.6},{-1.6,37.6}},
                                                      color={255,0,255}));
-  connect(swi.y, sigCWLoo[i].u1) annotation (Line(points={{211,290},{202,290},{202,
-          278},{-186,278},{-186,92},{-148,92},{-148,76},{-142,76}}, color={0,0,127}));
-  connect(swi.y, sigPumCHW[i].u1) annotation (Line(points={{211,290},{202,290},{
-          202,278},{-186,278},{-186,16},{-90,16},{-90,-4},{-82,-4}}, color={0,0,
+  connect(swi.y, sigCWLoo[i].u1) annotation (Line(points={{205,290},{202,290},{
+            202,278},{-186,278},{-186,92},{-148,92},{-148,76},{-142,76}},
+                                                                    color={0,0,127}));
+  connect(swi.y, sigPumCHW[i].u1) annotation (Line(points={{205,290},{202,290},
+            {202,278},{-186,278},{-186,16},{-90,16},{-90,-4},{-82,-4}},
+                                                                     color={0,0,
           127}));
 
    end for;
@@ -297,7 +252,7 @@ equation
     annotation (Line(points={{201,-88},{220,-88}},   color={0,0,127}));
   connect(conductor.terminal, dCDCConverter.terminal_p)
     annotation (Line(points={{240,-88},{252,-88}},   color={0,0,255}));
-  connect(uni.y, swiRea.u1) annotation (Line(points={{259,252},{232,252},{232,238},
+  connect(uni.y, swiRea.u1) annotation (Line(points={{259,250},{238,250},{238,238},
           {222,238}}, color={0,0,127}));
   connect(zer.y, swiRea.u3) annotation (Line(points={{259,200},{232,200},{232,222},
           {222,222}}, color={0,0,127}));
@@ -316,11 +271,15 @@ equation
           158},{304,158},{304,142}}, color={0,0,127}));
   connect(powAHU.y, criPow.u[1]) annotation (Line(points={{201,-40},{212,-40},{
           212,-16},{276,-16},{276,45.6},{298,45.6}}, color={0,0,127}));
+  connect(powIT.y, criPow.u[2]) annotation (Line(points={{201,-88},{212,-88},{
+          212,-58},{278,-58},{278,42.8},{298,42.8}}, color={0,0,127}));
+  connect(criPow.y, batCon.powDis) annotation (Line(points={{321.7,40},{360,40},
+          {360,154},{316,154},{316,142}}, color={0,0,127}));
   connect(powCha.y, batCon.powCha) annotation (Line(points={{321,0},{358,0},{
           358,156},{312,156},{312,142}}, color={0,0,127}));
-  connect(booleanStep.y, con.u1) annotation (Line(points={{339,228},{328,228},{328,
+  connect(booleanStep.y, con.u1) annotation (Line(points={{339,230},{328,230},{328,
           220},{316,220}},     color={255,0,255}));
-  connect(booleanStep1.y, con.u2) annotation (Line(points={{339,192},{332,192},{
+  connect(booleanStep1.y, con.u2) annotation (Line(points={{339,190},{332,190},{
           332,212},{316,212}},  color={255,0,255}));
   connect(con.y, swiRea.u2) annotation (Line(points={{293,220},{272,220},{272,
           230},{222,230}}, color={255,0,255}));
@@ -336,6 +295,9 @@ equation
           {310,170},{260,170},{260,0},{240,0}}, color={0,120,120}));
   connect(gri.terminal, loaAHU.terminal) annotation (Line(points={{310,180},{
           310,170},{260,170},{260,-40},{240,-40}}, color={0,120,120}));
+  connect(gri.terminal, traACAC.terminal_n) annotation (Line(points={{310,180},
+          {310,170},{260,170},{260,-40},{362,-40},{362,-88},{350,-88}}, color={
+          0,120,120}));
   connect(gri.terminal, bat.terminal) annotation (Line(points={{310,180},{310,
           170},{272,170},{272,74},{316,74}}, color={0,120,120}));
   connect(pipCHW.port_b, chiWSE.port_a2) annotation (Line(points={{48,0},{38,0},
@@ -350,70 +312,40 @@ equation
           110},{-172,116},{-162,116}}, color={255,127,0}));
   connect(wseSta.y, orWSE.u1)
     annotation (Line(points={{-139,110},{-102,110}}, color={255,0,255}));
-  connect(powPumCHW.y, criPow.u[2]) annotation (Line(points={{201,0},{212,0},{
-          212,24},{274,24},{274,42.8},{298,42.8}},
-                                           color={0,0,127}));
-  connect(powPumCW.y, criPow.u[3]) annotation (Line(points={{201,130},{214,130},
-          {214,64},{282,64},{282,40},{298,40}},     color={0,0,127}));
-  connect(powCooTow.y, criPow.u[4]) annotation (Line(points={{201,170},{206,170},
-          {206,60},{286,60},{286,37.2},{298,37.2}}, color={0,0,127}));
-  connect(bat.SOC, lesEquThr.u) annotation (Line(points={{337,80},{376,80},{376,
-          304},{362,304}}, color={0,0,127}));
-  connect(lesEquThr.y, powCri.u1) annotation (Line(points={{339,304},{334,304},{
-          334,280},{322,280}}, color={255,0,255}));
-  connect(con.y, notCon.u) annotation (Line(points={{293,220},{290,220},{290,252},
-          {298,252}}, color={255,0,255}));
-  connect(notCon.y, powCri.u2) annotation (Line(points={{321,252},{334,252},{334,
-          272},{322,272}}, color={255,0,255}));
-  connect(powCri.y, swi.u2) annotation (Line(points={{299,280},{278,280},{278,290},
-          {234,290}}, color={255,0,255}));
+
+  connect(powPumCHW.y, criPow.u[3]) annotation (Line(points={{201,0},{212,0},{
+          212,20},{284,20},{284,40},{298,40}}, color={0,0,127}));
+  connect(powPumCW.y, criPow.u[4]) annotation (Line(points={{201,130},{212,130},
+          {212,60},{276,60},{276,37.2},{298,37.2}}, color={0,0,127}));
+  connect(powCooTow.y, criPow.u[5]) annotation (Line(points={{201,170},{214,170},
+          {214,62},{278,62},{278,34.4},{298,34.4}}, color={0,0,127}));
+  connect(lesEquThr.y,powCri. u1) annotation (Line(points={{333,304},{328,304},{
+          328,280},{316,280}}, color={255,0,255}));
+  connect(notCon.y,powCri. u2) annotation (Line(points={{315,252},{328,252},{328,
+          272},{316,272}}, color={255,0,255}));
+  connect(con.y,notCon. u) annotation (Line(points={{293,220},{284,220},{284,252},
+          {292,252}}, color={255,0,255}));
+  connect(powCri.y,swi. u2) annotation (Line(points={{293,280},{272,280},{272,290},
+          {228,290}}, color={255,0,255}));
+  connect(uni.y,swi. u3) annotation (Line(points={{259,250},{238,250},{238,282},
+          {228,282}}, color={0,0,127}));
+  connect(zer.y,swi. u1) annotation (Line(points={{259,200},{248,200},{248,298},
+          {228,298}}, color={0,0,127}));
   connect(swi.y, criEqu.u)
-    annotation (Line(points={{211,290},{182,290}}, color={0,0,127}));
-  connect(zer.y, swi.u1) annotation (Line(points={{259,200},{254,200},{254,298},
-          {234,298}}, color={0,0,127}));
-  connect(uni.y, swi.u3) annotation (Line(points={{259,252},{244,252},{244,282},
-          {234,282}}, color={0,0,127}));
+    annotation (Line(points={{205,290},{182,290}}, color={0,0,127}));
+  connect(bat.SOC, lesEquThr.u) annotation (Line(points={{337,80},{368,80},{368,
+          304},{356,304}}, color={0,0,127}));
   connect(swi1.y, filter.u)
     annotation (Line(points={{161,-160},{122,-160}}, color={0,0,127}));
   connect(zer.y, swi1.u1) annotation (Line(points={{259,200},{160,200},{160,
           -126},{200,-126},{200,-152},{184,-152}}, color={0,0,127}));
-  connect(uni.y, swi1.u3) annotation (Line(points={{259,252},{248,252},{248,202},
+  connect(uni.y, swi1.u3) annotation (Line(points={{259,250},{248,250},{248,202},
           {158,202},{158,-128},{198,-128},{198,-168},{184,-168}}, color={0,0,
           127}));
   connect(runOut.y, swi1.u2)
     annotation (Line(points={{219,-160},{184,-160}}, color={255,0,255}));
   connect(swi1.y, pro1.u1) annotation (Line(points={{161,-160},{146,-160},{146,
           -218},{-368,-218},{-368,-132},{-92,-132}}, color={0,0,127}));
-  connect(criPow.y,add2. u1) annotation (Line(points={{321.7,40},{352,40},{352,48},
-          {378,48}}, color={0,0,127}));
-  connect(pv.P,add2. u2) annotation (Line(points={{441,197},{452,197},{452,20},{
-          368,20},{368,36},{378,36}}, color={0,0,127}));
-  connect(noPow.y,smoothMin. u2) annotation (Line(points={{401,-10},{410,-10},{410,
-          34},{418,34}}, color={0,0,127}));
-  connect(add2.y,smoothMin. u1) annotation (Line(points={{401,42},{410,42},{410,
-          46},{418,46}}, color={0,0,127}));
-  connect(smoothMin.y, batCon.powDis) annotation (Line(points={{441,40},{446,40},
-          {446,154},{316,154},{316,142}}, color={0,0,127}));
-  connect(pv.terminal, gri.terminal) annotation (Line(points={{420,190},{386,190},
-          {386,170},{310,170},{310,180}}, color={0,120,120}));
-  connect(weaBus.TWetBul, pv.weaBus) annotation (Line(
-      points={{-328,-20},{-328,-22},{-344,-22},{-344,286},{430,286},{430,199}},
-      color={255,204,51},
-      thickness=0.5), Text(
-      string="%first",
-      index=-1,
-      extent={{-6,3},{-6,3}}));
-
-  connect(gri.terminal, sen.terminal_n) annotation (Line(points={{310,180},{310,
-          170},{260,170},{260,-40},{362,-40},{362,-60}}, color={0,120,120}));
-  connect(sen.terminal_p, traACAC.terminal_n) annotation (Line(points={{362,-80},
-          {362,-88},{350,-88}}, color={0,120,120}));
-  connect(powRack.y, criPow.u[5]) annotation (Line(points={{201,-68},{278,-68},
-          {278,34.4},{298,34.4}}, color={0,0,127}));
-  connect(DHI.y[1], weaData.HDifHor_in) annotation (Line(points={{-379,-50},{
-          -368,-50},{-368,-77.6},{-361,-77.6}}, color={0,0,127}));
-  connect(GHI.y[1], weaData.HGloHor_in) annotation (Line(points={{-379,-80},{
-          -368,-80},{-368,-83},{-361,-83}}, color={0,0,127}));
  annotation (Diagram(coordinateSystem(preserveAspectRatio=false,
     extent={{-380,-220},{260,220}}), graphics={Rectangle(
           extent={{154,326},{280,190}},
@@ -426,11 +358,10 @@ equation
           fillPattern=FillPattern.Solid,
           textString="Critical Equipment")}),
                                       experiment(
-      StartTime=25920000,
-      StopTime=31536000,
-      Interval=10.0000224,
+      StartTime=24192000,
+      StopTime=30672000,
       __Dymola_Algorithm="Cvode"),
     __Dymola_Commands(file=
-          "Resources/Scripts/Dymola/Applications/DataCenters/ChillerCooled/Paper/Case2/FC_Pump_PLR1.mos"
+          "Resources/Scripts/Dymola/Applications/DataCenters/ChillerCooled/Paper/Case2/FC_Pump_PLR075.mos"
         "Simulate and Plot"));
-end FC_Pump_PLR050_RDC;
+end FC_Pump_PLR075_Time;
