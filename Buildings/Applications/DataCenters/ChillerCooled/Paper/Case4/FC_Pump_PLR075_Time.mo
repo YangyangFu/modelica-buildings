@@ -1,5 +1,5 @@
 within Buildings.Applications.DataCenters.ChillerCooled.Paper.Case4;
-model FC_Pump_PLR050_RDC
+model FC_Pump_PLR075_Time
   import Buildings;
   extends Modelica.Icons.Example;
   extends
@@ -10,8 +10,7 @@ model FC_Pump_PLR050_RDC
       use_inputFilter=true),
     val(use_inputFilter=true),
     pumCW(use_inputFilter=true),
-    PLR = 0.75,
-    weaData(HSou=Buildings.BoundaryConditions.Types.RadiationDataSource.Input_HGloHor_HDifHor));
+    PLR = 0.75);
 
   Buildings.Applications.DataCenters.ChillerCooled.Paper.BaseClasses.CoolingMode
     cooModCon(
@@ -110,9 +109,9 @@ model FC_Pump_PLR050_RDC
   Modelica.Blocks.Logical.And orWSE
     annotation (Placement(transformation(extent={{-100,100},{-80,120}})));
   Buildings.Electrical.AC.ThreePhasesBalanced.Storage.Battery bat(
+    SOC_start=0,
     V_nominal=480,
-    EMax=EMax,
-    SOC_start=1)
+    EMax=EMax)
     annotation (Placement(transformation(extent={{316,64},{336,84}})));
   Buildings.Applications.DataCenters.ChillerCooled.Paper.BaseClasses.BatteryControl
     batCon(SOCLow=0.01, SOCHig=0.99) annotation (Placement(transformation(
@@ -126,8 +125,8 @@ model FC_Pump_PLR050_RDC
   Modelica.Blocks.Sources.BooleanStep booleanStep(startValue=true, startTime(
         displayUnit="h") = 31492800)
     annotation (Placement(transformation(extent={{360,218},{340,238}})));
-  Modelica.Blocks.Sources.BooleanStep booleanStep1(startTime(displayUnit="h")=
-         31493700)
+  Modelica.Blocks.Sources.BooleanStep booleanStep1(startTime(displayUnit="h")
+       = 31496400)
     annotation (Placement(transformation(extent={{360,182},{340,202}})));
   Modelica.Blocks.Logical.Or con
     annotation (Placement(transformation(extent={{314,210},{294,230}})));
@@ -183,30 +182,6 @@ model FC_Pump_PLR050_RDC
   Modelica.Blocks.Sources.RealExpression powRack(y(unit="W") = -sen.S[1])
     "Power in the racks"
     annotation (Placement(transformation(extent={{180,-78},{200,-58}})));
-  Modelica.Blocks.Sources.CombiTimeTable DHI(
-    tableOnFile=true,
-    table=fill(
-        0.0,
-        0,
-        2),
-    tableName="table",
-    extrapolation=Modelica.Blocks.Types.Extrapolation.Periodic,
-    fileName=ModelicaServices.ExternalReferences.loadResource(
-        "modelica://Buildings/Resources/weatherdata/difHorIrrSBS.txt"))
-                       "Direct horizontal irradiance"
-    annotation (Placement(transformation(extent={{-400,-60},{-380,-40}})));
-  Modelica.Blocks.Sources.CombiTimeTable GHI(
-    tableOnFile=true,
-    table=fill(
-        0.0,
-        0,
-        2),
-    tableName="table",
-    extrapolation=Modelica.Blocks.Types.Extrapolation.Periodic,
-    fileName=ModelicaServices.ExternalReferences.loadResource(
-        "modelica://Buildings/Resources/weatherdata/gloHorIrrSBS.txt"))
-    "Horizontal global radiation"
-    annotation (Placement(transformation(extent={{-400,-90},{-380,-70}})));
 equation
   connect(TCHWSup.port_b, ahu.port_a1)
     annotation (Line(
@@ -410,10 +385,6 @@ equation
           {362,-88},{350,-88}}, color={0,120,120}));
   connect(powRack.y, criPow.u[5]) annotation (Line(points={{201,-68},{278,-68},
           {278,34.4},{298,34.4}}, color={0,0,127}));
-  connect(DHI.y[1], weaData.HDifHor_in) annotation (Line(points={{-379,-50},{
-          -368,-50},{-368,-77.6},{-361,-77.6}}, color={0,0,127}));
-  connect(GHI.y[1], weaData.HGloHor_in) annotation (Line(points={{-379,-80},{
-          -368,-80},{-368,-83},{-361,-83}}, color={0,0,127}));
  annotation (Diagram(coordinateSystem(preserveAspectRatio=false,
     extent={{-380,-220},{260,220}}), graphics={Rectangle(
           extent={{154,326},{280,190}},
@@ -426,11 +397,10 @@ equation
           fillPattern=FillPattern.Solid,
           textString="Critical Equipment")}),
                                       experiment(
-      StartTime=25920000,
-      StopTime=31536000,
-      Interval=10.0000224,
+      StartTime=24192000,
+      StopTime=30672000,
       __Dymola_Algorithm="Cvode"),
     __Dymola_Commands(file=
           "Resources/Scripts/Dymola/Applications/DataCenters/ChillerCooled/Paper/Case2/FC_Pump_PLR1.mos"
         "Simulate and Plot"));
-end FC_Pump_PLR050_RDC;
+end FC_Pump_PLR075_Time;

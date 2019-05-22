@@ -1,5 +1,5 @@
 within Buildings.Applications.DataCenters.ChillerCooled.Paper.Case4;
-model FC_Pump_PLR050_RDC
+model FC_Pump_PLR050_RDC_Time
   import Buildings;
   extends Modelica.Icons.Example;
   extends
@@ -112,7 +112,7 @@ model FC_Pump_PLR050_RDC
   Buildings.Electrical.AC.ThreePhasesBalanced.Storage.Battery bat(
     V_nominal=480,
     EMax=EMax,
-    SOC_start=1)
+    SOC_start=0)
     annotation (Placement(transformation(extent={{316,64},{336,84}})));
   Buildings.Applications.DataCenters.ChillerCooled.Paper.BaseClasses.BatteryControl
     batCon(SOCLow=0.01, SOCHig=0.99) annotation (Placement(transformation(
@@ -126,8 +126,8 @@ model FC_Pump_PLR050_RDC
   Modelica.Blocks.Sources.BooleanStep booleanStep(startValue=true, startTime(
         displayUnit="h") = 31492800)
     annotation (Placement(transformation(extent={{360,218},{340,238}})));
-  Modelica.Blocks.Sources.BooleanStep booleanStep1(startTime(displayUnit="h")=
-         31493700)
+  Modelica.Blocks.Sources.BooleanStep booleanStep1(startTime(displayUnit="h")
+       = 31496400)
     annotation (Placement(transformation(extent={{360,182},{340,202}})));
   Modelica.Blocks.Logical.Or con
     annotation (Placement(transformation(extent={{314,210},{294,230}})));
@@ -433,4 +433,4 @@ equation
     __Dymola_Commands(file=
           "Resources/Scripts/Dymola/Applications/DataCenters/ChillerCooled/Paper/Case2/FC_Pump_PLR1.mos"
         "Simulate and Plot"));
-end FC_Pump_PLR050_RDC;
+end FC_Pump_PLR050_RDC_Time;
