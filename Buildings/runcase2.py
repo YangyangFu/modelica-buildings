@@ -30,8 +30,8 @@ import os
 path = os.path.dirname(os.path.abspath(__file__))
 
 ## Set simulation parameters
-startTime = 300*24*3600
-stopTime = 365*24*3600
+startTime = 150*24*3600
+stopTime = 215*24*3600
 solver = "dassl"
 tolerance = 0.0001
 
@@ -67,15 +67,15 @@ def main():
 
 	# main loop for exhaustive search
 	# sweeping parameters
-	case = 'FC'
+	case = 'FMC'
 	scaPV = [0,0.2,0.4,0.6,0.8,1.0]
 	PLR = [0.25,0.5,0.75,1.0]
 	for i in range(len(scaPV)):
 		for j in range(len(PLR)):
 			# need determine the model
 			# name the model based on cases
-			modelName = case + str(scaPV[i])+str(PLR[j])
-			model = "Buildings.Applications.DataCenters.ChillerCooled.Paper.Case4.FC_Pump_RDC_Time"
+			modelName = case + '_pv'+str(scaPV[i])+'_plr'+str(PLR[j])
+			model = "Buildings.Applications.DataCenters.ChillerCooled.Paper.Case4.FMC_Pump_RDC_Time"
 			# simulator in buildingspy
 			s = Simulator(model, "dymola", outDirectory+'/'+modelName)	
 			#s.addParameters({'weaFilNam': weaFil})

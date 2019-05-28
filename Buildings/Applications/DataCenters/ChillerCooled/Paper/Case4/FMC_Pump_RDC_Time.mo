@@ -1,5 +1,5 @@
 within Buildings.Applications.DataCenters.ChillerCooled.Paper.Case4;
-model FC_Pump_PLR075_RDC_Time
+model FMC_Pump_RDC_Time
   import Buildings;
   extends Modelica.Icons.Example;
   extends
@@ -12,6 +12,11 @@ model FC_Pump_PLR075_RDC_Time
     pumCW(use_inputFilter=true),
     PLR = 0.75,
     weaData(HSou=Buildings.BoundaryConditions.Types.RadiationDataSource.Input_HGloHor_HDifHor));
+
+  parameter Modelica.SIunits.Power totPow = 1.5*QRoo_flow_nominal "Totall design power of the DC at design condition";
+  parameter Real scaPV = 0.2 "Design percentage of the PV system";
+  parameter Modelica.SIunits.Area A=scaPV*totPow/solRad/0.12 "Net surface area";
+  parameter Real solRad = 1000;
 
   Buildings.Applications.DataCenters.ChillerCooled.Paper.BaseClasses.CoolingMode
     cooModCon(
@@ -124,10 +129,10 @@ model FC_Pump_PLR075_RDC_Time
   Modelica.Blocks.Sources.Constant powCha(k=500000) "Charging power"
     annotation (Placement(transformation(extent={{300,-10},{320,10}})));
   Modelica.Blocks.Sources.BooleanStep booleanStep(startValue=true, startTime(
-        displayUnit="h") = 31492800)
+        displayUnit="h") = 18540000)
     annotation (Placement(transformation(extent={{360,218},{340,238}})));
   Modelica.Blocks.Sources.BooleanStep booleanStep1(startTime(displayUnit="h")=
-         31496400)
+         18554400)
     annotation (Placement(transformation(extent={{360,182},{340,202}})));
   Modelica.Blocks.Logical.Or con
     annotation (Placement(transformation(extent={{314,210},{294,230}})));
@@ -167,13 +172,10 @@ model FC_Pump_PLR075_RDC_Time
     annotation (Placement(transformation(extent={{420,30},{440,50}})));
   Modelica.Blocks.Sources.Constant noPow(k=0) "No power"
     annotation (Placement(transformation(extent={{380,-20},{400,0}})));
-  Buildings.Electrical.AC.ThreePhasesBalanced.Sources.PVSimpleOriented
+  Buildings.Applications.DataCenters.ChillerCooled.Paper.BaseClasses.PVSimple
                                                              pv(
     V_nominal=480,
-    A=1000e3/800/0.12,
-    til=0.34906585039887,
-    lat=0.65798912800186,
-    azi=-0.78539816339745)
+    A=A)
     annotation (Placement(transformation(extent={{420,180},{440,200}})));
   Buildings.Electrical.AC.ThreePhasesBalanced.Sensors.GeneralizedSensor sen
     annotation (Placement(transformation(
@@ -207,6 +209,10 @@ model FC_Pump_PLR075_RDC_Time
         "modelica://Buildings/Resources/weatherdata/gloHorIrrSBS.txt"))
     "Horizontal global radiation"
     annotation (Placement(transformation(extent={{-400,-90},{-380,-70}})));
+
+  Modelica.Blocks.Sources.Constant ideRad(k=solRad)
+    "Ideal total solar radiation after titled"
+    annotation (Placement(transformation(extent={{480,220},{460,240}})));
 equation
   connect(TCHWSup.port_b, ahu.port_a1)
     annotation (Line(
@@ -315,7 +321,7 @@ equation
   connect(bat.SOC, batCon.SOC) annotation (Line(points={{337,80},{356,80},{356,
           158},{304,158},{304,142}}, color={0,0,127}));
   connect(powAHU.y, criPow.u[1]) annotation (Line(points={{201,-40},{212,-40},{
-          212,-16},{276,-16},{276,45.6},{298,45.6}}, color={0,0,127}));
+          212,-16},{276,-16},{276,41.6},{298,41.6}}, color={0,0,127}));
   connect(powCha.y, batCon.powCha) annotation (Line(points={{321,0},{358,0},{
           358,156},{312,156},{312,142}}, color={0,0,127}));
   connect(booleanStep.y, con.u1) annotation (Line(points={{339,228},{328,228},{328,
@@ -351,12 +357,12 @@ equation
   connect(wseSta.y, orWSE.u1)
     annotation (Line(points={{-139,110},{-102,110}}, color={255,0,255}));
   connect(powPumCHW.y, criPow.u[2]) annotation (Line(points={{201,0},{212,0},{
-          212,24},{274,24},{274,42.8},{298,42.8}},
+          212,24},{274,24},{274,40.8},{298,40.8}},
                                            color={0,0,127}));
   connect(powPumCW.y, criPow.u[3]) annotation (Line(points={{201,130},{214,130},
           {214,64},{282,64},{282,40},{298,40}},     color={0,0,127}));
   connect(powCooTow.y, criPow.u[4]) annotation (Line(points={{201,170},{206,170},
-          {206,60},{286,60},{286,37.2},{298,37.2}}, color={0,0,127}));
+          {206,60},{286,60},{286,39.2},{298,39.2}}, color={0,0,127}));
   connect(bat.SOC, lesEquThr.u) annotation (Line(points={{337,80},{376,80},{376,
           304},{362,304}}, color={0,0,127}));
   connect(lesEquThr.y, powCri.u1) annotation (Line(points={{339,304},{334,304},{
@@ -384,7 +390,7 @@ equation
     annotation (Line(points={{219,-160},{184,-160}}, color={255,0,255}));
   connect(swi1.y, pro1.u1) annotation (Line(points={{161,-160},{146,-160},{146,
           -218},{-368,-218},{-368,-132},{-92,-132}}, color={0,0,127}));
-  connect(criPow.y,add2. u1) annotation (Line(points={{321.7,40},{352,40},{352,48},
+  connect(criPow.y,add2. u1) annotation (Line(points={{321,40},{352,40},{352,48},
           {378,48}}, color={0,0,127}));
   connect(pv.P,add2. u2) annotation (Line(points={{441,197},{452,197},{452,20},{
           368,20},{368,36},{378,36}}, color={0,0,127}));
@@ -396,24 +402,19 @@ equation
           {446,154},{316,154},{316,142}}, color={0,0,127}));
   connect(pv.terminal, gri.terminal) annotation (Line(points={{420,190},{386,190},
           {386,170},{310,170},{310,180}}, color={0,120,120}));
-  connect(weaBus.TWetBul, pv.weaBus) annotation (Line(
-      points={{-328,-20},{-328,-22},{-344,-22},{-344,286},{430,286},{430,199}},
-      color={255,204,51},
-      thickness=0.5), Text(
-      string="%first",
-      index=-1,
-      extent={{-6,3},{-6,3}}));
 
   connect(gri.terminal, sen.terminal_n) annotation (Line(points={{310,180},{310,
           170},{260,170},{260,-40},{362,-40},{362,-60}}, color={0,120,120}));
   connect(sen.terminal_p, traACAC.terminal_n) annotation (Line(points={{362,-80},
           {362,-88},{350,-88}}, color={0,120,120}));
   connect(powRack.y, criPow.u[5]) annotation (Line(points={{201,-68},{278,-68},
-          {278,34.4},{298,34.4}}, color={0,0,127}));
+          {278,38.4},{298,38.4}}, color={0,0,127}));
   connect(DHI.y[1], weaData.HDifHor_in) annotation (Line(points={{-379,-50},{
           -368,-50},{-368,-77.6},{-361,-77.6}}, color={0,0,127}));
   connect(GHI.y[1], weaData.HGloHor_in) annotation (Line(points={{-379,-80},{
           -368,-80},{-368,-83},{-361,-83}}, color={0,0,127}));
+  connect(ideRad.y, pv.G)
+    annotation (Line(points={{459,230},{430,230},{430,202}}, color={0,0,127}));
  annotation (Diagram(coordinateSystem(preserveAspectRatio=false,
     extent={{-380,-220},{260,220}}), graphics={Rectangle(
           extent={{154,326},{280,190}},
@@ -433,4 +434,4 @@ equation
     __Dymola_Commands(file=
           "Resources/Scripts/Dymola/Applications/DataCenters/ChillerCooled/Paper/Case2/FC_Pump_PLR1.mos"
         "Simulate and Plot"));
-end FC_Pump_PLR075_RDC_Time;
+end FMC_Pump_RDC_Time;
