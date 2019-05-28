@@ -47,7 +47,7 @@ model IntegratedPrimaryLoadSide
     k=m_flow/sqrt(dp), with unit=(kg.m)^(1/2)."
     annotation(Dialog(group="Pump"));
   Modelica.Blocks.Interfaces.RealInput yPum[numPum](
-    final unit = "1",
+    each final unit = "1",
     each min=0,
     each max=1)
     "Constant normalized rotational speed"
@@ -60,7 +60,7 @@ model IntegratedPrimaryLoadSide
     annotation (Placement(transformation(extent={{100,-50},{120,-30}})));
 
   Buildings.Applications.DataCenters.ChillerCooled.Equipment.FlowMachine_y pum(
-    redeclare each final package Medium = Medium2,
+    redeclare final package Medium = Medium2,
     final p_start=p2_start,
     final T_start=T2_start,
     final X_start=X2_start,
@@ -108,6 +108,10 @@ equation
                                       color={0,0,127}));
   annotation (Documentation(revisions="<html>
 <ul>
+<li>
+January 12, 2019, by Michael Wetter:<br/>
+Removed wrong use of <code>each</code>.
+</li>
 <li>
 July 1, 2017, by Yangyang Fu:<br/>
 First implementation.

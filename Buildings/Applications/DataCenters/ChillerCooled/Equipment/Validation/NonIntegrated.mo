@@ -84,6 +84,10 @@ according to different cooling mode signals
 </html>", revisions="<html>
 <ul>
 <li>
+January 12, 2019, by Michael Wetter:<br/>
+Removed wrong use of <code>each</code>.
+</li>
+<li>
 September 11, 2017, by Michael Wetter:<br/>
 Corrected wrong use of replaceable model in the base class.<br/>
 This is for

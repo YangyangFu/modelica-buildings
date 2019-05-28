@@ -131,8 +131,8 @@ model FC_Pump_RDC_Time
   Modelica.Blocks.Sources.BooleanStep booleanStep(startValue=true, startTime(
         displayUnit="h") = 31492800)
     annotation (Placement(transformation(extent={{360,218},{340,238}})));
-  Modelica.Blocks.Sources.BooleanStep booleanStep1(startTime(displayUnit="h")
-       = 31507200)
+  Modelica.Blocks.Sources.BooleanStep booleanStep1(startTime(displayUnit="h")=
+         31507200)
     annotation (Placement(transformation(extent={{360,182},{340,202}})));
   Modelica.Blocks.Logical.Or con
     annotation (Placement(transformation(extent={{314,210},{294,230}})));
@@ -321,7 +321,7 @@ equation
   connect(bat.SOC, batCon.SOC) annotation (Line(points={{337,80},{356,80},{356,
           158},{304,158},{304,142}}, color={0,0,127}));
   connect(powAHU.y, criPow.u[1]) annotation (Line(points={{201,-40},{212,-40},{
-          212,-16},{276,-16},{276,45.6},{298,45.6}}, color={0,0,127}));
+          212,-16},{276,-16},{276,41.6},{298,41.6}}, color={0,0,127}));
   connect(powCha.y, batCon.powCha) annotation (Line(points={{321,0},{358,0},{
           358,156},{312,156},{312,142}}, color={0,0,127}));
   connect(booleanStep.y, con.u1) annotation (Line(points={{339,228},{328,228},{328,
@@ -357,12 +357,12 @@ equation
   connect(wseSta.y, orWSE.u1)
     annotation (Line(points={{-139,110},{-102,110}}, color={255,0,255}));
   connect(powPumCHW.y, criPow.u[2]) annotation (Line(points={{201,0},{212,0},{
-          212,24},{274,24},{274,42.8},{298,42.8}},
+          212,24},{274,24},{274,40.8},{298,40.8}},
                                            color={0,0,127}));
   connect(powPumCW.y, criPow.u[3]) annotation (Line(points={{201,130},{214,130},
           {214,64},{282,64},{282,40},{298,40}},     color={0,0,127}));
   connect(powCooTow.y, criPow.u[4]) annotation (Line(points={{201,170},{206,170},
-          {206,60},{286,60},{286,37.2},{298,37.2}}, color={0,0,127}));
+          {206,60},{286,60},{286,39.2},{298,39.2}}, color={0,0,127}));
   connect(bat.SOC, lesEquThr.u) annotation (Line(points={{337,80},{376,80},{376,
           304},{362,304}}, color={0,0,127}));
   connect(lesEquThr.y, powCri.u1) annotation (Line(points={{339,304},{334,304},{
@@ -390,7 +390,7 @@ equation
     annotation (Line(points={{219,-160},{184,-160}}, color={255,0,255}));
   connect(swi1.y, pro1.u1) annotation (Line(points={{161,-160},{146,-160},{146,
           -218},{-368,-218},{-368,-132},{-92,-132}}, color={0,0,127}));
-  connect(criPow.y,add2. u1) annotation (Line(points={{321.7,40},{352,40},{352,48},
+  connect(criPow.y,add2. u1) annotation (Line(points={{321,40},{352,40},{352,48},
           {378,48}}, color={0,0,127}));
   connect(pv.P,add2. u2) annotation (Line(points={{441,197},{452,197},{452,20},{
           368,20},{368,36},{378,36}}, color={0,0,127}));
@@ -408,7 +408,7 @@ equation
   connect(sen.terminal_p, traACAC.terminal_n) annotation (Line(points={{362,-80},
           {362,-88},{350,-88}}, color={0,120,120}));
   connect(powRack.y, criPow.u[5]) annotation (Line(points={{201,-68},{278,-68},
-          {278,34.4},{298,34.4}}, color={0,0,127}));
+          {278,38.4},{298,38.4}}, color={0,0,127}));
   connect(DHI.y[1], weaData.HDifHor_in) annotation (Line(points={{-379,-50},{
           -368,-50},{-368,-77.6},{-361,-77.6}}, color={0,0,127}));
   connect(GHI.y[1], weaData.HGloHor_in) annotation (Line(points={{-379,-80},{

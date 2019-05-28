@@ -126,8 +126,8 @@ model FC_Pump_PLR075_RDC_Time
   Modelica.Blocks.Sources.BooleanStep booleanStep(startValue=true, startTime(
         displayUnit="h") = 31492800)
     annotation (Placement(transformation(extent={{360,218},{340,238}})));
-  Modelica.Blocks.Sources.BooleanStep booleanStep1(startTime(displayUnit="h")
-       = 31496400)
+  Modelica.Blocks.Sources.BooleanStep booleanStep1(startTime(displayUnit="h")=
+         31496400)
     annotation (Placement(transformation(extent={{360,182},{340,202}})));
   Modelica.Blocks.Logical.Or con
     annotation (Placement(transformation(extent={{314,210},{294,230}})));
