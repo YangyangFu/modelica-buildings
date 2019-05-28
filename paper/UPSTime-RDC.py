@@ -124,7 +124,7 @@ plt.plot(timeindex.time,bat_CriPum075,color = 'k',linestyle=linestyles[0])
 plt.plot(timeindex.time,bat_CriPum075c,color = 'k',linestyle=linestyles[1])
 plt.grid(True,linestyle=':',linewidth=0.5)
 plt.ylabel('UPS Current [A]')
-plt.xticks(a,fontsize=12,rotation='30')
+plt.xticks(a,[])
 plt.xlabel ('')
 
 
