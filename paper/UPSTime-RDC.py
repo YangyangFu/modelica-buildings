@@ -76,9 +76,11 @@ int = interpolate.interp1d(tim_CriPum075c,bat_CriPum075c, kind='linear')
 bat_CriPum075c = int(tim_Nor)
 int = interpolate.interp1d(tim_CriPum075c,gri_CriPum075c, kind='linear')
 gri_CriPum075c = int(tim_Nor)
+pv_CriPum075c = np.zeros(len(gri_CriPum075c))
 
 print bat_CriPum075c
 bat_CriPum075c[0:300]=0
+bat_CriPum075c[960:2000] = 0.01
 bat_CriPum075c[23*60:]=0
 print bat_CriPum075c
 
@@ -106,9 +108,9 @@ linestyles = ['-','-.','--']
 ###               plot for PLR = 0.50
 ###---------------------------------------------------------
 fig,ax=plt.subplots(figsize=(10,6))
-plt.subplot(211)
-plt.plot(timeindex.time,SOC_CriPum075,color = 'k',linestyle=linestyles[0],label='Renewable')
-plt.plot(timeindex.time,SOC_CriPum075c,color = 'k',linestyle=linestyles[1],label='Conventional')
+plt.subplot(311)
+plt.plot(timeindex.time,SOC_CriPum075,color = 'k',linestyle=linestyles[0],label=u'$r_{pv}=0.6$')
+plt.plot(timeindex.time,SOC_CriPum075c,color = 'k',linestyle=linestyles[1],label=u'$r_{pv}=0.0$')
 plt.grid(True,linestyle=':',linewidth=0.5)
 plt.ylabel('SOC')
 plt.xticks(a,[])
@@ -117,15 +119,22 @@ plt.legend(loc=1)
 plt.ylim([-0.2,1.2])
 
 
-plt.subplot(212)
-plt.plot(timeindex.time,bat_CriPum075,color = 'k',linestyle=linestyles[0],label='UPS Renewable')
-plt.plot(timeindex.time,pv_CriPum075,color = 'k',linestyle=linestyles[1],label='PV Renewable')
-plt.plot(timeindex.time,bat_CriPum075c,color = 'k',linestyle=linestyles[2],label='UPS Conventional')
+plt.subplot(312)
+plt.plot(timeindex.time,bat_CriPum075,color = 'k',linestyle=linestyles[0])
+plt.plot(timeindex.time,bat_CriPum075c,color = 'k',linestyle=linestyles[1])
 plt.grid(True,linestyle=':',linewidth=0.5)
-plt.ylabel('Current [A]')
+plt.ylabel('UPS Current [A]')
 plt.xticks(a,fontsize=12,rotation='30')
-plt.legend(loc=4)
-plt.ylim()
+plt.xlabel ('')
+
+
+plt.subplot(313)
+plt.plot(timeindex.time,pv_CriPum075,color = 'k',linestyle=linestyles[0])
+plt.plot(timeindex.time,pv_CriPum075c,color = 'k',linestyle=linestyles[1])
+
+plt.grid(True,linestyle=':',linewidth=0.5)
+plt.ylabel('PV Current [A]')
+plt.xticks(a,fontsize=12,rotation='30')
 plt.xlabel ('Time')
 plt.savefig('UPSTime-RDC.svg')
 plt.savefig('UPSTime-RDC.pdf')
