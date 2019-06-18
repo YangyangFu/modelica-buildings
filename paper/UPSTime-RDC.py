@@ -84,6 +84,8 @@ bat_CriPum075c[960:2000] = 0.01
 bat_CriPum075c[23*60:]=0
 print bat_CriPum075c
 
+bat_c = pd.DataFrame({'bat':bat_CriPum075c},index=tim_Nor)
+bat_c.to_csv('bat_CriPum075c.csv')
 
 ### ------------------------------------------------------------------------------
 ###           setup time axis
