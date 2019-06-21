@@ -80,12 +80,18 @@ pv_CriPum075c = np.zeros(len(gri_CriPum075c))
 
 print bat_CriPum075c
 bat_CriPum075c[0:300]=0
-bat_CriPum075c[960:2000] = 0.01
+bat_CriPum075c[1260:2000] = 0.01
 bat_CriPum075c[23*60:]=0
 print bat_CriPum075c
 
-bat_c = pd.DataFrame({'bat':bat_CriPum075c},index=tim_Nor)
-bat_c.to_csv('bat_CriPum075c.csv')
+tm = tim_Nor[range(0,len(tim_Nor)+1,60)]
+print tm
+
+#bat_c = pd.DataFrame({'soc':soc},index=t)
+#bat_c.to_csv('bat_CriPum075c.csv')
+soc = pd.read_csv('bat_CriPum075c.csv')
+int = interpolate.interp1d(tm,soc['soc'], kind='linear')
+SOC_CriPum075c = int(tim_Nor)
 
 ### ------------------------------------------------------------------------------
 ###           setup time axis
@@ -122,20 +128,20 @@ plt.ylim([-0.2,1.2])
 
 
 plt.subplot(312)
-plt.plot(timeindex.time,bat_CriPum075,color = 'k',linestyle=linestyles[0])
-plt.plot(timeindex.time,bat_CriPum075c,color = 'k',linestyle=linestyles[1])
+plt.plot(timeindex.time,bat_CriPum075/1000,color = 'k',linestyle=linestyles[0])
+plt.plot(timeindex.time,bat_CriPum075c/1000,color = 'k',linestyle=linestyles[1])
 plt.grid(True,linestyle=':',linewidth=0.5)
-plt.ylabel('UPS Current [A]')
+plt.ylabel('UPS Current [kA]')
 plt.xticks(a,[])
 plt.xlabel ('')
 
 
 plt.subplot(313)
-plt.plot(timeindex.time,pv_CriPum075,color = 'k',linestyle=linestyles[0])
-plt.plot(timeindex.time,pv_CriPum075c,color = 'k',linestyle=linestyles[1])
+plt.plot(timeindex.time,pv_CriPum075/1000,color = 'k',linestyle=linestyles[0])
+plt.plot(timeindex.time,pv_CriPum075c/1000,color = 'k',linestyle=linestyles[1])
 
 plt.grid(True,linestyle=':',linewidth=0.5)
-plt.ylabel('PV Current [A]')
+plt.ylabel('PV Current [kA]')
 plt.xticks(a,fontsize=12,rotation='30')
 plt.xlabel ('Time')
 plt.savefig('UPSTime-RDC.svg')
