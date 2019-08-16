@@ -7,4 +7,6 @@ PropyleneGlycolWaterTemperatureEnthalpyInversion
 WaterDerivativeCheck
 WaterProperties
 WaterTemperatureEnthalpyInversion
+SteamProperties
+WaterTestProperties
 BaseClasses
