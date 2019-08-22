@@ -1,6 +1,6 @@
 within Buildings.Media;
 package Steam "Package of classes modeling steam"
-  extends Modelica.Media.Water.WaterIF97_pT;
+  extends Modelica.Media.Water.WaterIF97_ph;
 
   redeclare model extends BaseProperties "Base properties"
 

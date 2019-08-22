@@ -3,7 +3,7 @@ model SteamProperties
   "Model that tests the implementation of the fluid properties"
   extends Modelica.Icons.Example;
   extends Buildings.Media.Examples.BaseClasses.SteamProperties(
-    redeclare package Medium = Modelica.Media.Examples.TwoPhaseWater,
+    redeclare package Medium = Buildings.Media.Steam,
     TMin=293.15,
     TMax=673.15);
 equation
