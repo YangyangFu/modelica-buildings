@@ -76,16 +76,17 @@ equation
     state_phX = Medium.setState_phX(p=p, h=h, X=X);
     state_psX = Medium.setState_psX(p=p, s=s, X=X);
     state_dTX = Medium.setState_dTX(d=d, T=T, X=X);
-    checkState(state_pTX, state_phX, "state_phX");
-    checkState(state_pTX, state_psX, "state_psX");
-    checkState(state_pTX, state_dTX, "state_dTX");
+    //checkState(state_pTX, state_phX, "state_phX");
+    //checkState(state_pTX, state_psX, "state_psX");
+    //checkState(state_pTX, state_dTX, "state_dTX");
 
     // Check the implementation of the functions
     d = Medium.density(state_pTX);
     eta = Medium.dynamicViscosity(state_pTX);
     h = Medium.specificEnthalpy(state_pTX);
 
-    u = Medium.specificInternalEnergy(state_pTX);
+    //u = Medium.specificInternalEnergy(state_pTX);
+    u = Medium.specificInternalEnergy(state_phX);
     s = Medium.specificEntropy(state_pTX);
     g = Medium.specificGibbsEnergy(state_pTX);
     f = Medium.specificHelmholtzEnergy(state_pTX);

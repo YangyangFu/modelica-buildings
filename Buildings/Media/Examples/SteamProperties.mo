@@ -3,13 +3,15 @@ model SteamProperties
   "Model that tests the implementation of the fluid properties"
   extends Modelica.Icons.Example;
   extends Buildings.Media.Examples.BaseClasses.SteamProperties(
-    redeclare package Medium = Modelica.Media.Water.WaterIF97_ph,
+    redeclare package Medium = Modelica.Media.Examples.TwoPhaseWater,
     TMin=293.15,
     TMax=673.15);
 equation
   // Check the implementation of the base properties
   basPro.state.p=p;
   basPro.state.h=h;
+  //basPro.state.T=T;
+
    annotation(experiment(Tolerance=1e-6, StopTime=1.0),
 __Dymola_Commands(file="modelica://Buildings/Resources/Scripts/Dymola/Media/Examples/WaterProperties.mos"
         "Simulate and plot"),
