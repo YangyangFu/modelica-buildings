@@ -1,6 +1,6 @@
 within Buildings.Media.Examples;
 model SteamProperties
-  "Model that tests the implementation of the fluid properties"
+  "Model that tests the implementation of the steam properties"
   extends Modelica.Icons.Example;
   extends Buildings.Media.Examples.BaseClasses.SteamProperties(
     redeclare package Medium = Buildings.Media.Steam,
