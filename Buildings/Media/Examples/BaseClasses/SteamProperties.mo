@@ -95,30 +95,13 @@ equation
    annotation (
 Documentation(info="<html>
 <p>
-This example checks thermophysical properties of the medium.
+This example checks thermophysical properties of the steam medium.
 </p>
 </html>",
 revisions="<html>
 <ul>
 <li>
-June 6, 2015, by Michael Wetter:<br/>
-Changed type of <code>T</code> from
-<code>Modelica.SIunits.Temperature</code> to <code>Medium.Temperature</code>.
-Otherwise, it has a different start value than <code>BaseProperties.T</code>, which
-causes an error if
-<a href=\"Buildings.Media.Examples.WaterProperties\">
-Buildings.Media.Examples.WaterProperties</a>
-is translated in pedantic mode.
-This fixes
-<a href=\"https://github.com/ibpsa/modelica-ibpsa/issues/266\">#266</a>.
-</li>
-<li>
-October 16, 2014, by Michael Wetter:<br/>
-Removed call to <code>setState_dTX</code> as this
-function is physically not defined for incompressible media.
-</li>
-<li>
-December 19, 2013, by Michael Wetter:<br/>
+September 12, 2019, by Yangyang Fu:<br/>
 First implementation.
 </li>
 </ul>
