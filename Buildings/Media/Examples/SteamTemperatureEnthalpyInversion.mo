@@ -3,7 +3,7 @@ model SteamTemperatureEnthalpyInversion
   "Model to check computation of h(T) and its inverse"
   extends Modelica.Icons.Example;
   extends Buildings.Media.Examples.BaseClasses.TestTemperatureEnthalpyInversionSteam(
-    redeclare package Medium = Buildings.Media.Steam);
+    redeclare package Medium = Modelica.Media.Water.StandardWaterOnePhase);
   annotation (
 experiment(Tolerance=1e-6, StopTime=1.0),
 __Dymola_Commands(file="modelica://Buildings/Resources/Scripts/Dymola/Media/Examples/WaterTemperatureEnthalpyInversion.mos"
