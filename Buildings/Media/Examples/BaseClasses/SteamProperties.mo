@@ -2,7 +2,7 @@ within Buildings.Media.Examples.BaseClasses;
 partial model SteamProperties
   "Model that tests the implementation of the fluid properties"
 
-  replaceable package Medium = Modelica.Media.Water.WaterIF97_pT;
+  replaceable package Medium = Buildings.Media.Steam;
 
   parameter Modelica.SIunits.Temperature TMin
     "Minimum temperature for the simulation";
@@ -16,9 +16,6 @@ partial model SteamProperties
     "Celsius temperature";
 
   Medium.ThermodynamicState state_pTX "Medium state";
-  Medium.ThermodynamicState state_phX "Medium state";
-  Medium.ThermodynamicState state_psX "Medium state";
-  Medium.ThermodynamicState state_dTX "Medium state";
 
   Modelica.SIunits.Density d "Density";
   Modelica.SIunits.DynamicViscosity eta "Dynamic viscosity";
@@ -38,10 +35,6 @@ partial model SteamProperties
     "Density derivative w.r.t. pressure";
   Modelica.Media.Interfaces.Types.DerDensityByEnthalpy ddhp
     "Density derivative w.r.t. enthalpy";
-  //Modelica.Media.Interfaces.Types.DerDensityByTemperature ddTp
-  //  "Density derivative w.r.t. temperature";
-  //Modelica.SIunits.Density[Medium.nX] dddX
-  //  "Density derivative w.r.t. mass fraction";
 
   Modelica.SIunits.SpecificHeatCapacity cp "Specific heat capacity";
   Modelica.SIunits.SpecificHeatCapacity cv "Specific heat capacity";
@@ -52,41 +45,31 @@ partial model SteamProperties
   Modelica.SIunits.MolarMass MM "Mixture molar mass";
 
   Medium.BaseProperties basPro "Medium base properties";
+
+  Integer region;
+  Modelica.Media.Common.IF97BaseTwoPhase aux;
+
 protected
   constant Real conv(unit="1/s") = 1 "Conversion factor to satisfy unit check";
 
-  function checkState
-    extends Modelica.Icons.Function;
-    input Medium.ThermodynamicState state1 "Medium state";
-    input Medium.ThermodynamicState state2 "Medium state";
-    input String message "Message for error reporting";
-  algorithm
-    assert(abs(Medium.temperature(state1)-Medium.temperature(state2))
-       < 1e-8, "Error in temperature of " + message);
-    assert(abs(Medium.pressure(state1)-Medium.pressure(state2))
-       < 1e-8, "Error in pressure of " + message);
-  end checkState;
 equation
+    // Check the water region
+    aux = Modelica.Media.Water.IF97_Utilities.waterBaseProp_pT(p=p,T=T);
+    region = aux.region;
+
     // Compute temperatures that are used as input to the functions
     T = TMin + conv*time * (TMax-TMin);
     T_degC = Modelica.SIunits.Conversions.to_degC(T);
 
     // Check setting the states
     state_pTX = Medium.setState_pTX(p=p, T=T, X=X);
-    state_phX = Medium.setState_phX(p=p, h=h, X=X);
-    state_psX = Medium.setState_psX(p=p, s=s, X=X);
-    state_dTX = Medium.setState_dTX(d=d, T=T, X=X);
-    //checkState(state_pTX, state_phX, "state_phX");
-    //checkState(state_pTX, state_psX, "state_psX");
-    //checkState(state_pTX, state_dTX, "state_dTX");
 
     // Check the implementation of the functions
     d = Medium.density(state_pTX);
     eta = Medium.dynamicViscosity(state_pTX);
     h = Medium.specificEnthalpy(state_pTX);
 
-    //u = Medium.specificInternalEnergy(state_pTX);
-    u = Medium.specificInternalEnergy(state_phX);
+    u = Medium.specificInternalEnergy(state_pTX);
     s = Medium.specificEntropy(state_pTX);
     g = Medium.specificGibbsEnergy(state_pTX);
     f = Medium.specificHelmholtzEnergy(state_pTX);
@@ -94,11 +77,8 @@ equation
     beta = Medium.isobaricExpansionCoefficient(state_pTX);
     kappa = Medium.isothermalCompressibility(state_pTX);
 
-    //ddpT = Medium.density_derp_T(state_pTX);
     ddhp = Medium.density_derh_p(state_pTX);
     ddph = Medium.density_derp_h(state_pTX);
-    //ddTp = Medium.density_derT_p(state_pTX);
-    //dddX   = Medium.density_derX(state_pTX);
 
     cp = Medium.specificHeatCapacityCp(state_pTX);
     cv = Medium.specificHeatCapacityCv(state_pTX);
